@@ -12,8 +12,8 @@ export function FilmDetails({ route }) {
     const [detalhes, setDetalhes] = useState([]);
 
     async function carregaDetalhes() {
-        const resultado = await filmDetailsService(route.params.idFilm)
-        setDetalhes(resultado)
+        const resultado = await filmDetailsService(route.params.idFilm);
+        setDetalhes(resultado);
     }
 
     useEffect(() => {

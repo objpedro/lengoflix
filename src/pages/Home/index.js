@@ -1,45 +1,40 @@
 import React, { useState, useEffect } from "react";
-import {
-    View,
-    Text,
-    Image,
-    FlatList,
-    TouchableOpacity,
-} from 'react-native';
+import { ScrollView, Text } from 'react-native';
 import styles from "./styles";
+import { Filmes } from "../components/Filmes";
 import { lancamentosService } from "../../services/requests/lancamentosService";
 
-export function Home({ navigation }) {
+export function Home() {
     const [filmes, setFilmes] = useState([]);
 
     async function carregaFilmes() {
-        const resultado = await lancamentosService()
+        const resultado = await lancamentosService();
         setFilmes(resultado);
     }
 
     useEffect(() => {
-        carregaFilmes()
+        carregaFilmes();
     }, []);
 
     return (
-        <View style={styles.container}>
+        <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
             <Text style={styles.cabecalho}>Lançamentos</Text>
-            <FlatList
-                data={filmes}
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-                keyExtractor={filmes => filmes.id}
-                renderItem={({ item }) => (
-                    <TouchableOpacity
-                        onPress={() => {
-                            navigation.navigate('FilmDetails', { idFilm: item.id })
-                        }} >
-                        <Image
-                            style={styles.poster}
-                            source={{ uri: `https://image.tmdb.org/t/p/original/${item.poster_path}` }} />
-                    </TouchableOpacity>
-                )}
-            />
-        </View>
+            <Filmes filmes={filmes} />
+
+            <Text style={styles.cabecalho}>Lançamentos</Text>
+            <Filmes filmes={filmes} />
+
+            <Text style={styles.cabecalho}>Lançamentos</Text>
+            <Filmes filmes={filmes} />
+
+            <Text style={styles.cabecalho}>Lançamentos</Text>
+            <Filmes filmes={filmes} />
+
+            <Text style={styles.cabecalho}>Lançamentos</Text>
+            <Filmes filmes={filmes} />
+
+            <Text style={styles.cabecalho}>Lançamentos</Text>
+            <Filmes filmes={filmes} />
+        </ScrollView>
     )
 }
