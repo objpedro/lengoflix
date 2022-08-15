@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, ActivityIndicator } from 'react-native';
 
-export function FooterList({ load }) {
+export function FooterList({ load, size }) {
     if (!load) return null;
 
     return (
@@ -10,7 +10,9 @@ export function FooterList({ load }) {
             alignItems: 'center',
             justifyContent: 'center'
         }}>
-            <ActivityIndicator size="small" color="#fff" />
+            <ActivityIndicator
+                size={size}
+                color="#fff" />
         </View>
     )
 }
