@@ -22,7 +22,7 @@ export function FilmDetails({ route }) {
     return (
         <View style={styles.container}>
             <Image
-                source={{ uri: `https://image.tmdb.org/t/p/original/${detalhes.poster_path}` }}
+                source={{ uri: `https://image.tmdb.org/t/p/original/${detalhes.backdrop_path}` }}
                 style={styles.poster} />
             <Text style={styles.tituloDoFilme}>{detalhes.title}</Text>
             <Text style={styles.descricao}>{detalhes.overview}</Text>
