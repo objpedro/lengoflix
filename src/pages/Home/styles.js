@@ -3,7 +3,6 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'black',
-        padding: 20,
     },
     cabecalho: {
         color: '#fff',
