@@ -6,12 +6,15 @@ import ProviderResult from "../../dto/contexts/providerResult";
 import { lancamentosService } from "../../services/requests/lancamentosService";
 
 export function FilmeProvider(props) {
-    const [listaFilmes, setListaFilmes] = useState<Filme[]>([])
-    const [load, setLoad] = useState(false);
-    const [page, setPage] = useState(1);
+    const [listaFilmes, setListaFilmes] = useState<Filme[]>([]);
+    const [load, setLoad] = useState<boolean>(false);
+    const [page, setPage] = useState<number>(1);
+
     const FilmesProviderValue: IFilmeProvider = {
         load,
         setLoad,
+        page,
+        setPage,
         listaFilmes,
         setListaFilmes,
         listarFilmes: async () => {
@@ -21,7 +24,10 @@ export function FilmeProvider(props) {
 
             if (requestResult) {
                 console.log("Listar Filmes Provider Sucesso: ", requestResult)
-                setListaFilmes(requestResult);
+
+                setListaFilmes([...listaFilmes, ...requestResult]);
+                setPage(page + 1);
+
                 ret = {
                     ...ret,
                     sucesso: true

@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import {
     ScrollView,
     Text,
@@ -9,6 +9,7 @@ import {
 import styles from "./styles";
 import { lancamentosService } from "../../../services/requests/lancamentosService";
 import { useNavigation } from "@react-navigation/native";
+import { FilmeContext } from "../../../contexts/Filme/FilmeContext";
 import { FooterList } from "../FooterList";
 
 export function Lancamentos() {
@@ -16,25 +17,17 @@ export function Lancamentos() {
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
     const navigation = useNavigation();
-    
-    async function carregaFilmes() {
-        if (loading) return;
-        setLoading(true);
-        const resultado = await lancamentosService(page);
-        setFilmesLancamentos([...filmesLancamentos, ...resultado]);
-        setPage(page + 1);
-        setLoading(false);
-    }
+    const filmeContext = useContext(FilmeContext);
 
     useEffect(() => {
-        carregaFilmes();
+        filmeContext.listarFilmes();
     }, []);
 
     return (
         <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
             <Text style={styles.cabecalho}>Lançamentos</Text>
             <FlatList
-                data={filmesLancamentos}
+                data={filmeContext.listaFilmes}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 keyExtractor={filmes => filmes.id}
@@ -48,7 +41,7 @@ export function Lancamentos() {
                             source={{ uri: `https://image.tmdb.org/t/p/original/${item.poster_path}` }} />
                     </TouchableOpacity>
                 )}
-                onEndReached={carregaFilmes}
+                onEndReached={filmeContext.listaFilmes}
                 onEndReachedThreshold={0.1}
                 ListFooterComponent={<FooterList load={loading} />}
             />

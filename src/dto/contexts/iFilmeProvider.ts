@@ -2,14 +2,14 @@ import { Filme } from "../domain/Filme";
 import ProviderResult from "./providerResult";
 
 interface IFilmeProvider {
-    //Listagem de vagas
+    //Listagem de Filmes
     listaFilmes: Filme[];
-    listaFilmesFiltradas: Filme[];
     setListaFilmes: (filme: Filme[]) => void;
-    setListaFilmesFiltradas: (filme: Filme[]) => void;
     listarFilmes: () => Promise<ProviderResult>;
 
     //Loading
+    page: number,
+    setPage: (p : number) => void;
     load: boolean;
     setLoad: (status: boolean) => void;
 }
