@@ -1,6 +1,6 @@
 import React from 'react';
-import { iFilmeProvider } from '../../dto/contexts/iFilmeProvider';
+import { IFilmeProvider } from '../../dto/contexts/iFilmeProvider';
 
-const FilmeContext = React.createContext<iFilmeProvider>(null);
+const FilmeContext = React.createContext<IFilmeProvider>(null);
 
-export { FilmeContext }
+export { FilmeContext };

@@ -2,7 +2,6 @@ import { Filme } from "../domain/Filme";
 import ProviderResult from "./providerResult";
 
 interface IFilmeProvider {
-
     //Listagem de vagas
     listaFilmes: Filme[];
     listaFilmesFiltradas: Filme[];
@@ -11,8 +10,8 @@ interface IFilmeProvider {
     listarFilmes: () => Promise<ProviderResult>;
 
     //Loading
-    setLoad: (status: boolean) => void;
     load: boolean;
+    setLoad: (status: boolean) => void;
 }
 
 export { IFilmeProvider }
