@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { iFilmeProvider } from '../../dto/contexts/iFilmeProvider';
 
-const FilmeContext = createContext(null);
+const FilmeContext = React.createContext<iFilmeProvider>(null);
 
-export { FilmeContext };
+export { FilmeContext }

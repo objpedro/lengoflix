@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useContext, useState, useEffect } from "react";
 import {
     ScrollView,
     Text,
@@ -7,21 +7,21 @@ import {
     Image,
 } from 'react-native';
 import styles from "./styles";
-import { filmesPopularesService } from "../../../services/requests/filmesPopularesService";
+import { lancamentosService } from "../../../services/requests/lancamentosService";
 import { useNavigation } from "@react-navigation/native";
 import { FooterList } from "../FooterList";
 
-export function Populares() {
-    const [filmesPopulares, setFilmesPopulares] = useState([]);
+export function Lancamentos() {
+    const [filmesLancamentos, setFilmesLancamentos] = useState([]);
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
     const navigation = useNavigation();
-
+    
     async function carregaFilmes() {
         if (loading) return;
         setLoading(true);
-        const resultado = await filmesPopularesService(page);
-        setFilmesPopulares([...filmesPopulares, ...resultado]);
+        const resultado = await lancamentosService(page);
+        setFilmesLancamentos([...filmesLancamentos, ...resultado]);
         setPage(page + 1);
         setLoading(false);
     }
@@ -32,9 +32,9 @@ export function Populares() {
 
     return (
         <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
-            <Text style={styles.cabecalho}>Populares no Lengoflix</Text>
+            <Text style={styles.cabecalho}>Lançamentos</Text>
             <FlatList
-                data={filmesPopulares}
+                data={filmesLancamentos}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 keyExtractor={filmes => filmes.id}
