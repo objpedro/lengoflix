@@ -5,17 +5,13 @@ import {
     FlatList,
     TouchableOpacity,
     Image,
+    ActivityIndicator
 } from 'react-native';
 import styles from "./styles";
-import { lancamentosService } from "../../../services/requests/lancamentosService";
 import { useNavigation } from "@react-navigation/native";
 import { FilmeContext } from "../../../contexts/Filme/FilmeContext";
-import { FooterList } from "../FooterList";
 
 export function Lancamentos() {
-    const [filmesLancamentos, setFilmesLancamentos] = useState([]);
-    const [page, setPage] = useState(1);
-    const [loading, setLoading] = useState(false);
     const navigation = useNavigation();
     const filmeContext = useContext(FilmeContext);
 
@@ -41,10 +37,21 @@ export function Lancamentos() {
                             source={{ uri: `https://image.tmdb.org/t/p/original/${item.poster_path}` }} />
                     </TouchableOpacity>
                 )}
-                onEndReached={filmeContext.listaFilmes}
-                onEndReachedThreshold={0.1}
-                ListFooterComponent={<FooterList load={loading} />}
             />
+            {
+                filmeContext.load
+                    ?
+                    <ActivityIndicator
+                        size="large"
+                        color={'#fff'}
+                        style={{
+                            flex: 1,
+                            alignItems: 'center',
+                            justifyContent: "center"
+                        }} />
+                    :
+                    <></>
+            }
         </ScrollView>
     )
 }
