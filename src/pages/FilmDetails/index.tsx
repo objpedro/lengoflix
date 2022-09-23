@@ -6,7 +6,6 @@ import {
 } from 'react-native';
 import styles from "./styles";
 import { filmDetailsService } from "../../services/requests/filmDetailsService";
-import { FooterList } from '../components/FooterList'
 
 export function FilmDetails({ route }) {
 
@@ -26,23 +25,11 @@ export function FilmDetails({ route }) {
 
     return (
         <View style={styles.container}>
-            {
-                loading
-                    ?
-                    <>
-                        <FooterList
-                            load={loading}
-                            size='large' />
-                    </>
-                    :
-                    <>
-                        <Image
-                            source={{ uri: `https://image.tmdb.org/t/p/original/${detalhes.backdrop_path}` }}
-                            style={styles.poster} />
-                        <Text style={styles.tituloDoFilme}>{detalhes.title}</Text>
-                        <Text style={styles.descricao}>{detalhes.overview}</Text>
-                    </>
-            }
+            <Image
+                source={{ uri: `https://image.tmdb.org/t/p/original/${detalhes.backdrop_path}` }}
+                style={styles.poster} />
+            <Text style={styles.tituloDoFilme}>{detalhes.title}</Text>
+            <Text style={styles.descricao}>{detalhes.overview}</Text>
         </View>
     )
 }

@@ -4,9 +4,11 @@ import { IFilmeProvider } from "../../dto/contexts/iFilmeProvider";
 import { Filme } from "../../dto/domain/Filme";
 import ProviderResult from "../../dto/contexts/providerResult";
 import { lancamentosService } from "../../services/requests/lancamentosService";
+import { filtrarFilmeService } from "../../services/requests/filtrarFilmeService";
 
 export function FilmeProvider(props) {
     const [listaFilmes, setListaFilmes] = useState<Filme[]>([]);
+    const [listaFilmesFiltrados, setListaFilmesFiltrados] = useState<Filme[]>([])
     const [load, setLoad] = useState<boolean>(false);
     const [page, setPage] = useState<number>(1);
 
@@ -17,13 +19,16 @@ export function FilmeProvider(props) {
         setPage,
         listaFilmes,
         setListaFilmes,
+        listaFilmesFiltrados,
+        setListaFilmesFiltrados,
         listarFilmes: async () => {
             setLoad(true)
             let ret: ProviderResult = null;
             const requestResult = await lancamentosService(page);
             if (requestResult) {
-                console.log("Listar Filmes Provider Sucesso: ", requestResult)
+                // console.log("Listar Filmes Provider Sucesso: ", requestResult)
                 setListaFilmes([...listaFilmes, ...requestResult]);
+                setListaFilmesFiltrados([...listaFilmesFiltrados, ...requestResult]);
                 setPage(page + 1);
                 ret = {
                     ...ret,
@@ -32,6 +37,29 @@ export function FilmeProvider(props) {
                 setLoad(false)
             } else {
                 console.log("Listar Filmes Provider Falha: ", requestResult)
+                ret = {
+                    ...ret,
+                    sucesso: false,
+                    mensagemErro: requestResult
+                }
+                setLoad(false);
+            }
+            return ret;
+        },
+        listarFilmesFiltrados: async (tituloFilme: string) => {
+            setLoad(true)
+            let ret: ProviderResult = null;
+            const requestResult = await filtrarFilmeService(tituloFilme);
+            if (requestResult) {
+                console.log("Filtrar Filmes Provider Sucesso: ", requestResult);
+                setListaFilmesFiltrados(requestResult);
+                ret = {
+                    ...ret,
+                    sucesso: true
+                };
+                setLoad(false);
+            } else {
+                console.log("Filtrar Filmes Provider Falha: ", requestResult);
                 ret = {
                     ...ret,
                     sucesso: false,
