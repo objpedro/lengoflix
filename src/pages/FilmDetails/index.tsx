@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
     Text,
     View,
@@ -6,9 +6,11 @@ import {
 } from 'react-native';
 import styles from "./styles";
 import { filmDetailsService } from "../../services/requests/filmDetailsService";
+import { FilmeDetailsContext } from "../../contexts/FilmeDetails/FilmeDetailsContex";
 
 export function FilmDetails({ route }) {
 
+    const filmeDetailsContext = useContext(FilmeDetailsContext);
     const [detalhes, setDetalhes] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -21,6 +23,8 @@ export function FilmDetails({ route }) {
 
     useEffect(() => {
         carregaDetalhes()
+        console.log("route.params.idFilm", route.params.idFilm);
+        filmeDetailsContext.listarFilmeDetails(route.params.idFilm)
     }, [])
 
     return (
