@@ -12,7 +12,6 @@ import {
 import styles from "../styles";
 import { useNavigation } from "@react-navigation/native";
 import { FilmeContext } from "../../../contexts/Filme/FilmeContext";
-import { ListaDeFilmes } from "./ListaDeFilmes";
 
 export function Lancamentos() {
     const navigation = useNavigation();
