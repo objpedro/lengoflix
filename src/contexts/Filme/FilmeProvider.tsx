@@ -4,11 +4,9 @@ import { IFilmeProvider } from "../../dto/contexts/iFilmeProvider";
 import { Filme } from "../../dto/domain/Filme";
 import ProviderResult from "../../dto/contexts/providerResult";
 import { lancamentosService } from "../../services/requests/lancamentosService";
-import { filtrarFilmeService } from "../../services/requests/filtrarFilmeService";
 
 export function FilmeProvider(props) {
     const [listaFilmes, setListaFilmes] = useState<Filme[]>([]);
-    const [listaFilmesFiltrados, setListaFilmesFiltrados] = useState<Filme[]>([])
     const [load, setLoad] = useState<boolean>(false);
     const [page, setPage] = useState<number>(1);
 
