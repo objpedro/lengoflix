@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { Home } from '../pages/Home';
 import { FilmDetails } from '../pages/FilmDetails';
+import ContextBuilder from '../contexts/utils/ContextBuilder'
 
 const Stack = createNativeStackNavigator();
 

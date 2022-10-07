@@ -1,29 +1,12 @@
-// interface Filme {
-//     id_vaga: number;
-//     titulo: string;
-//     status_vaga: string;
-//     vagas_abertas: number;
-//     numeroInscritoVaga: number;
-//     inscrito: boolean;
-//     descricao: string;
-// }
-
-// export { Filme };
-
 interface Filme {
-    id_filme: number,
+    id: number,
     imdb_id: number,
-    titulo: string,
-    descricao: string,
-    genero: [
-        {
-            id: number,
-            name: string
-        }
-    ]
-    poster: string,
+    title: string,
+    overview: string,
+    backdrop_path: string,
+    poster_path: string,
     tagline: string,
-    data_lancamento: string
+    release_date: string
 }
 
 export { Filme };
