@@ -1,20 +1,18 @@
 import React from "react";
 import {
-    View,
-    Text,
-    Image,
     FlatList,
     TouchableOpacity,
-} from "react-native";
+    Image
+} from 'react-native';
+import { Filme } from "../../../dto/domain/Filme";
+import styles from "../styles";
 import { useNavigation } from "@react-navigation/native";
-import styles from "./styles";
 
-export function Filmes(props) {
+export function ListaDeFilmes(listaDeFilmes: Filme[]) {
     const navigation = useNavigation();
-
     return (
         <FlatList
-            data={props.filmes}
+            data={listaDeFilmes}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             keyExtractor={filmes => filmes.id}
