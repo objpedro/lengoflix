@@ -20,7 +20,6 @@ export function FilmeDetailsProvider(props) {
             let ret: ProviderResult = null;
             const requestResult = await filmDetailsService(idFilme)
             if (requestResult) {
-                console.log("Filme Details Provider Sucesso: ", requestResult);
                 setFilmeDetails(requestResult);
                 ret = {
                     ...ret,
@@ -28,7 +27,6 @@ export function FilmeDetailsProvider(props) {
                 },
                     setLoad(false);
             } else {
-                console.log("Filme Details Provider Falha: ", requestResult);
                 ret = {
                     ...ret,
                     sucesso: false,
@@ -38,7 +36,6 @@ export function FilmeDetailsProvider(props) {
             }
             return ret
         }
-
     }
 
     return (

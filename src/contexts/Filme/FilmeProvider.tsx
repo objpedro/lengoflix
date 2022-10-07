@@ -26,7 +26,6 @@ export function FilmeProvider(props) {
             let ret: ProviderResult = null;
             const requestResult = await lancamentosService(page);
             if (requestResult) {
-                // console.log("Listar Filmes Provider Sucesso: ", requestResult)
                 setListaFilmes([...listaFilmes, ...requestResult]);
                 setListaFilmesFiltrados([...listaFilmesFiltrados, ...requestResult]);
                 setPage(page + 1);
@@ -36,7 +35,6 @@ export function FilmeProvider(props) {
                 };
                 setLoad(false)
             } else {
-                console.log("Listar Filmes Provider Falha: ", requestResult)
                 ret = {
                     ...ret,
                     sucesso: false,
@@ -51,7 +49,6 @@ export function FilmeProvider(props) {
             let ret: ProviderResult = null;
             const requestResult = await filtrarFilmeService(tituloFilme);
             if (requestResult) {
-                console.log("Filtrar Filmes Provider Sucesso: ", requestResult);
                 setListaFilmesFiltrados(requestResult);
                 ret = {
                     ...ret,
@@ -59,7 +56,6 @@ export function FilmeProvider(props) {
                 };
                 setLoad(false);
             } else {
-                console.log("Filtrar Filmes Provider Falha: ", requestResult);
                 ret = {
                     ...ret,
                     sucesso: false,

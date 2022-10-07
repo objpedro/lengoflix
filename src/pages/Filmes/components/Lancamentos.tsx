@@ -46,7 +46,6 @@ export function Lancamentos() {
                 >
                     <Text>Buscar</Text>
                 </TouchableOpacity>
-                {console.log(searchData)}
             </View>
 
             <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
