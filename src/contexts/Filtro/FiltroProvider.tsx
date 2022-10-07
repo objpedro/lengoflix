@@ -1,42 +1,38 @@
 import React, { useState } from "react";
-import { FilmeContext } from "./FilmeContext";
-import { IFilmeProvider } from "../../dto/contexts/iFilmeProvider";
 import { Filme } from "../../dto/domain/Filme";
+import { IFiltroProvider } from "../../dto/contexts/iFiltroProvider";
 import ProviderResult from "../../dto/contexts/providerResult";
-import { lancamentosService } from "../../services/requests/lancamentosService";
 import { filtrarFilmeService } from "../../services/requests/filtrarFilmeService";
+import { FiltroContext } from "./FiltroContext";
 
-export function FilmeProvider(props) {
-    const [listaFilmes, setListaFilmes] = useState<Filme[]>([]);
+export function FiltroProvider(props) {
     const [listaFilmesFiltrados, setListaFilmesFiltrados] = useState<Filme[]>([])
     const [load, setLoad] = useState<boolean>(false);
-    const [page, setPage] = useState<number>(1);
 
-    const FilmesProviderValue: IFilmeProvider = {
+    const FiltroPropsValue: IFiltroProvider = {
         load,
         setLoad,
-        page,
-        setPage,
-        listaFilmes,
-        setListaFilmes,
-        listarFilmes: async () => {
-            setLoad(true)
+        listaFilmesFiltrados,
+        setListaFilmesFiltrados,
+        listarFilmesFiltrados: async (tituloFilme: string) => {
+            setLoad(true);
             let ret: ProviderResult = null;
-            const requestResult = await lancamentosService(page);
+            const requestResult = await filtrarFilmeService(tituloFilme);
             if (requestResult) {
-                setListaFilmes([...listaFilmes, ...requestResult]);
-                setPage(page + 1);
+                setListaFilmesFiltrados(requestResult);
+                console.log("Lista Filmes Filtrados Sucesso: ", requestResult);
                 ret = {
                     ...ret,
                     sucesso: true
                 };
-                setLoad(false)
+                setLoad(false);
             } else {
+                console.log("Lista Filmes Filtrados Falha: ", requestResult);
                 ret = {
                     ...ret,
                     sucesso: false,
                     mensagemErro: requestResult
-                }
+                };
                 setLoad(false);
             }
             return ret;
@@ -44,8 +40,8 @@ export function FilmeProvider(props) {
     }
 
     return (
-        <FilmeContext.Provider value={FilmesProviderValue}>
+        <FiltroContext.Provider value={FiltroPropsValue}>
             {props.children}
-        </FilmeContext.Provider>
+        </FiltroContext.Provider>
     )
 }

@@ -7,11 +7,6 @@ interface IFilmeProvider {
     setListaFilmes: (filme: Filme[]) => void;
     listarFilmes: () => Promise<ProviderResult>;
 
-    //Filtrar filmes
-    listaFilmesFiltrados: Filme[];
-    setListaFilmesFiltrados: (filme: Filme[]) => void;
-    listarFilmesFiltrados: (tituloFilme: string) => Promise<ProviderResult>;
-
     //Loading
     page: number,
     setPage: (p: number) => void;

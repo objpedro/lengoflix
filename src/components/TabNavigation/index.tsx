@@ -18,7 +18,7 @@ interface TabNavigatorParam {
 
 function renderIcons(item: ItemTabNavigatorParam, focused: boolean) {
     switch (item.titulo) {
-        case 'Home':
+        case 'Filmes':
             return <Image
                 source={item.icone}
                 resizeMode={'contain'}
