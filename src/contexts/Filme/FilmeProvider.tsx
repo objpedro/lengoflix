@@ -50,12 +50,14 @@ export function FilmeProvider(props) {
             const requestResult = await filtrarFilmeService(tituloFilme);
             if (requestResult) {
                 setListaFilmesFiltrados(requestResult);
+                console.log("Lista Filmes Filtrados Sucesso: ", requestResult)
                 ret = {
                     ...ret,
                     sucesso: true
                 };
                 setLoad(false);
             } else {
+                console.log("Lista Filmes Filtrados Falha: ", requestResult)
                 ret = {
                     ...ret,
                     sucesso: false,
