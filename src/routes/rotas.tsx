@@ -13,13 +13,15 @@ export default function Routes() {
                 name='Home'
                 component={Home}
                 options={{
-                    title: 'Lengoflix'
+                    title: 'Lengoflix',
+                    headerShown: false,
                 }} />
             <Stack.Screen
                 name='FilmDetails'
                 component={FilmDetails}
                 options={{
-                    title: 'Detalhes'
+                    title: 'Detalhes',
+                    // headerShown: false,
                 }} />
         </Stack.Navigator>
     );

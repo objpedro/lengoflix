@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'black',
+        backgroundColor: '#000000',
         padding: 20,
     },
     cabecalho: {
@@ -19,18 +19,26 @@ const styles = StyleSheet.create({
         borderRadius: 5,
     },
     searchContainer: {
-        width: '100%',
-        paddingHorizontal: 20,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        marginBottom: 10,
     },
     searchFilme: {
+        width: '80%',
+        paddingHorizontal: 10,
+        borderTopLeftRadius: 10,
+        borderBottomLeftRadius: 10,
         backgroundColor: '#fff',
-        color: '#000',
     },
     searchButton: {
-        backgroundColor: '#fff',
+        width: '20%',
+        backgroundColor: '#14213D',
+        borderTopRightRadius: 10,
+        borderBottomRightRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    textSearchButton: {
+        color: '#fff',
     }
 })
 

@@ -18,16 +18,16 @@ const styles = StyleSheet.create({
         marginRight: 10,
         borderRadius: 5,
     },
-    searchContainer:{
+    searchContainer: {
         width: '100%',
         paddingHorizontal: 20,
         flexDirection: 'row'
     },
-    searchFilme:{
+    searchFilme: {
         backgroundColor: '#fff',
         color: '#000',
     },
-    searchButton:{
+    searchButton: {
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
