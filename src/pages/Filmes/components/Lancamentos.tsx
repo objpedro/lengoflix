@@ -38,13 +38,13 @@ export function Lancamentos() {
                     style={styles.searchFilme}
                     onChangeText={(tituloFilme: string) => setSearchData(tituloFilme)}
                     value={searchData}
-                    placeholder="Pesquisar Filme"
+                    placeholder="Buscar Filme"
                 />
                 <TouchableOpacity
                     style={styles.searchButton}
                     onPress={() => filmeContext.listarFilmesFiltrados(searchData)}
                 >
-                    <Text>Buscar</Text>
+                    <Text style={styles.textButton}>Buscar</Text>
                 </TouchableOpacity>
                 {console.log(searchData)}
             </View>
