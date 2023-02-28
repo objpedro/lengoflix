@@ -26,7 +26,6 @@ export function FilmeProvider(props) {
             let ret: ProviderResult = null;
             const requestResult = await lancamentosService(page);
             if (requestResult) {
-                // console.log("Listar Filmes Provider Sucesso: ", requestResult)
                 setListaFilmes([...listaFilmes, ...requestResult]);
                 setListaFilmesFiltrados([...listaFilmesFiltrados, ...requestResult]);
                 setPage(page + 1);
