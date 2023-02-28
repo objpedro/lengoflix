@@ -19,29 +19,18 @@ const styles = StyleSheet.create({
         borderRadius: 5,
     },
     searchContainer: {
-        marginTop: 20,
         width: '100%',
         paddingHorizontal: 20,
-        flexDirection: 'row',
+        flexDirection: 'row'
     },
     searchFilme: {
-        width: '80%',
         backgroundColor: '#fff',
         color: '#000',
-        borderTopLeftRadius: 10,
-        borderBottomLeftRadius: 10,
-        paddingLeft: 10,
     },
     searchButton: {
-        width: '20%',
-        backgroundColor: '#1D70A2',
+        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
-        borderTopEndRadius: 10,
-        borderBottomEndRadius: 10,
-    },
-    textButton: {
-        color: '#fff',
     }
 })
 
