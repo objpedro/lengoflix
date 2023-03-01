@@ -23,14 +23,15 @@ const styles = StyleSheet.create({
     },
     imdbLogo: {
         resizeMode: "cover",
-        width: '10%',
-        height: '70%',
+        borderRadius: 3,
+        width: 30,
+        height: 15,
         marginRight: 10,
     },
     metacriticLogo: {
         resizeMode: "cover",
-        width: '6%',
-        height: '100%',
+        width: 15,
+        height: 15,
         marginRight: 10,
     },
     nota: {
