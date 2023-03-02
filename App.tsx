@@ -4,10 +4,17 @@ import { FilmeProvider } from './src/contexts/Filme/FilmeProvider';
 import { FilmeDetailsProvider } from './src/contexts/FilmeDetails/FilmesDetailsProvider';
 import { FiltroProvider } from './src/contexts/Filtro/FiltroProvider';
 import { SeriesProvider } from './src/contexts/Series/SeriesProvider';
+import { SeriesDetailsProvider } from './src/contexts/SeriesDetails/SeriesDetailsProvider';
 import ContextBuilder from './src/contexts/utils/ContextBuilder';
 import Routes from './src/routes/rotas';
 
-const ContextContainer = ContextBuilder([FilmeProvider, FilmeDetailsProvider, FiltroProvider, SeriesProvider]);
+const ContextContainer = ContextBuilder([
+  FilmeProvider,
+  FilmeDetailsProvider,
+  FiltroProvider,
+  SeriesProvider,
+  SeriesDetailsProvider,
+]);
 
 export default function App() {
   return (

@@ -15,8 +15,8 @@ export function MoviesDetails({ route }) {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        filmeDetailsContext.listarFilmeDetails(idFilm)
         filmeDetailsContext.listarNotas(filmeDetailsContext.filmeDetails.imdb_id)
+        filmeDetailsContext.listarFilmeDetails(idFilm)
     }, [])
 
     return (
@@ -30,13 +30,13 @@ export function MoviesDetails({ route }) {
                 <Image
                     source={{ uri: imdbLogo }}
                     style={styles.imdbLogo} />
-                <Text style={styles.nota}>6.7/10</Text>
-                {/* <Text style={styles.nota}>{filmeDetailsContext.nota.imDb}/10</Text> */}
+                {/* <Text style={styles.nota}>6.7/10</Text> */}
+                <Text style={styles.nota}>{filmeDetailsContext.nota.imDb}/10</Text>
                 <Image
                     source={{ uri: metacriticLogo }}
                     style={styles.metacriticLogo} />
-                <Text style={styles.nota}>77/10</Text>
-                {/* <Text style={styles.nota}>{filmeDetailsContext.nota.metacritic}/10</Text> */}
+                {/* <Text style={styles.nota}>77/10</Text> */}
+                <Text style={styles.nota}>{filmeDetailsContext.nota.metacritic}/10</Text>
             </View>
 
             <Text style={styles.descricao}>{filmeDetailsContext.filmeDetails.overview}</Text>

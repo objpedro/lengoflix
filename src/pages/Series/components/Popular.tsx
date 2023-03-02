@@ -30,7 +30,7 @@ export function Popular() {
                 renderItem={({ item }) => (
                     <TouchableOpacity
                         onPress={() => {
-                            navigation.navigate('SeriesDetails', { idSeries: item.id })
+                            navigation.navigate('SeriesDetails', { idSerie: item.id })
                         }} >
                         <Image
                             style={styles.poster}

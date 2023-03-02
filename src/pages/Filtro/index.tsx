@@ -18,7 +18,6 @@ export function Filtro() {
 
     useEffect(() => {
         filmesFiltradosContext.listarFilmesFiltrados(searchData);
-        console.log("filmesFiltradosContext.listaFilmesFiltrados", filmesFiltradosContext.listaFilmesFiltrados);
     }, []);
 
     return (
@@ -46,7 +45,16 @@ export function Filtro() {
                 renderItem={({ item }) => (
                     <TouchableOpacity
                         onPress={() => {
-                            navigation.navigate('FilmDetails', { idFilm: item.id })
+                            switch (item.media_type) {
+                                case 'movie':
+                                    navigation.navigate('MoviesDetails', { idFilm: item.id })
+                                    break;
+                                case 'tv':
+                                    navigation.navigate('SeriesDetails', { idSerie: item.id })
+                                    break;
+                                default:
+                                    console.log('item.media_type', item.media_type)
+                            }
                         }} >
                         <Image
                             style={styles.poster}

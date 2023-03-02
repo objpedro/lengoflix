@@ -23,6 +23,7 @@ export function FilmeProvider(props) {
             const requestResult = await lancamentosService(page);
             if (requestResult) {
                 setListaFilmes([...listaFilmes, ...requestResult]);
+                // console.log("Movie Provider Sucesso: ", requestResult);
                 setPage(page + 1);
                 ret = {
                     ...ret,
@@ -30,6 +31,7 @@ export function FilmeProvider(props) {
                 };
                 setLoad(false)
             } else {
+                console.log("Movie Provider Erro: ", requestResult);
                 ret = {
                     ...ret,
                     sucesso: false,

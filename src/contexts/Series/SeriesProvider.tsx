@@ -18,14 +18,12 @@ export function SeriesProvider(props) {
         listaSeries,
         setListaSeries,
         obterSeries: async () => {
-            console.log("Cheguei até aqui");
-
             setLoad(true)
             let ret: ProviderResult = null;
             const requestResult = await seriesService(page);
             if (requestResult) {
                 setListaSeries([...listaSeries, ...requestResult]);
-                console.log("Series Provider Sucesso: ", requestResult);
+                // console.log("Series Provider Sucesso: ", requestResult);
                 setPage(page + 1);
                 ret = {
                     ...ret,

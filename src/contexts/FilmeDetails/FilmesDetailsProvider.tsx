@@ -45,7 +45,7 @@ export function FilmeDetailsProvider(props) {
             let ret: ProviderResult = null;
             const requestResult = await getRatingService(imdbId)
             if (requestResult) {
-                console.log("Notas Provider Sucesso: ", requestResult);
+                // console.log("Notas Provider Sucesso: ", requestResult);
                 setNota(requestResult);
                 ret = {
                     ...ret,
