@@ -1,13 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { ScrollView, Text } from 'react-native';
-import styles from "./styles";
-import { Filmes } from "../Filmes";
-import { Lancamentos } from "../Filmes/components/Lancamentos";
+import React from "react";
+import {
+    View
+} from 'react-native';
+import { TabNavigator } from "../../components/TabNavigation";
+
+import { Movies } from "../Movies";
+import { Series } from '../Series';
+import { Filtro } from "../Filtro";
 
 export function Home() {
     return (
-        <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
-            <Filmes />
-        </ScrollView>
+        <View
+            style={{ flex: 1 }}>
+            <TabNavigator
+                itens={[
+                    { titulo: 'Movies', page: Movies, icone: require("../../assets/TabIcon/filme.png"), id: "tabFilm" },
+                    { titulo: 'Series', page: Series, icone: require("../../assets/TabIcon/roloFilme.png"), id: "tabFilm" },
+                    { titulo: 'Filtro', page: Filtro, icone: require('../../assets/TabIcon/search.png'), id: "tabFiltro" },
+                ]} />
+        </View>
     )
 }

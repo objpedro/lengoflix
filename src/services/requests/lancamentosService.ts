@@ -1,6 +1,6 @@
 import api from "../api";
 
-export async function lancamentosService(page) {
+export async function lancamentosService(page: number) {
     try {
         const resultado = await api.get(`movie/now_playing`, {
             params: {
