@@ -2,6 +2,7 @@ import React from "react";
 import { Image, ImageURISource, View } from 'react-native';
 import { styles } from "./style";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import colors from "../../utils/color";
 
 const Tab = createBottomTabNavigator();
 
@@ -27,7 +28,7 @@ function renderIcons(item: ItemTabNavigatorParam, focused: boolean) {
                     justifyContent: "center",
                     width: 26,
                     height: 26,
-                    tintColor: focused ? '#FFFFFF' : '#000000',
+                    tintColor: focused ? colors.whiteBlue : colors.preto,
                 }}
             />
         case 'Filtro':
@@ -39,7 +40,7 @@ function renderIcons(item: ItemTabNavigatorParam, focused: boolean) {
                     justifyContent: "center",
                     width: 20,
                     height: 20,
-                    tintColor: focused ? '#FFFFFF' : '#000000',
+                    tintColor: focused ? colors.whiteBlue : colors.preto,
                 }}
             />
         case 'Perfil':
@@ -51,7 +52,7 @@ function renderIcons(item: ItemTabNavigatorParam, focused: boolean) {
                     justifyContent: "center",
                     width: 20,
                     height: 20,
-                    tintColor: focused ? '#FFFFFF' : '#000000',
+                    tintColor: focused ? colors.whiteBlue : colors.preto,
                 }}
             />
         default:
@@ -63,7 +64,7 @@ function renderIcons(item: ItemTabNavigatorParam, focused: boolean) {
                     justifyContent: "center",
                     width: 22,
                     height: 22,
-                    tintColor: focused ? '#FFFFFF' : '#000000',
+                    tintColor: focused ? colors.whiteBlue : colors.preto,
                 }}
             />
     }
@@ -101,7 +102,7 @@ function TabNavigator(param: TabNavigatorParam) {
                         width: "100%",
                         alignItems: "center",
                         justifyContent: "center",
-                        backgroundColor: '#F25017',
+                        backgroundColor: colors.secundario,
                         elevation: 1,
                     },
                     tabBarHideOnKeyboard: true

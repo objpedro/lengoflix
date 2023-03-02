@@ -5,7 +5,7 @@ import { Filme } from "../../dto/domain/Filme";
 import ProviderResult from "../../dto/contexts/providerResult";
 import { IFilmeDetailsProvider } from "../../dto/contexts/IFilmeDetailsProvider";
 import { filmDetailsService } from "../../services/requests/filmDetailsService";
-import { obterNotaService } from "../../utils/requests/obterNotaService";
+import { getRatingService } from "../../utils/ratingRequest/getRatingService";
 
 export function FilmeDetailsProvider(props) {
     const [filmeDetails, setFilmeDetails] = useState<Filme>([]);
@@ -43,7 +43,7 @@ export function FilmeDetailsProvider(props) {
         listarNotas: async (imdbId: string) => {
             setLoad(true);
             let ret: ProviderResult = null;
-            const requestResult = await obterNotaService(imdbId)
+            const requestResult = await getRatingService(imdbId)
             if (requestResult) {
                 console.log("Notas Provider Sucesso: ", requestResult);
                 setNota(requestResult);

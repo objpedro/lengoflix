@@ -1,6 +1,6 @@
-import apiImdb from "../apiImdb";
+import apiImdb from "./apiImdb";
 
-export async function obterNotaService(imdbId: string) {
+export async function getRatingService(imdbId: string) {
     try {
         const resultado = await apiImdb.get(imdbId);
         return resultado.data

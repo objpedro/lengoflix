@@ -20,7 +20,7 @@ export function FiltroProvider(props) {
             const requestResult = await filtrarFilmeService(tituloFilme);
             if (requestResult) {
                 setListaFilmesFiltrados(requestResult);
-                console.log("Lista Filmes Filtrados Sucesso: ", requestResult);
+                // console.log("Lista Filmes Filtrados Sucesso: ", requestResult);
                 ret = {
                     ...ret,
                     sucesso: true
