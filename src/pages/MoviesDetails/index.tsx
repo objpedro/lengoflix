@@ -3,6 +3,7 @@ import {
     Text,
     View,
     Image,
+    ScrollView,
 } from 'react-native';
 import styles from "./styles";
 import { FilmeDetailsContext } from "../../contexts/FilmeDetails/FilmeDetailsContex";
@@ -38,8 +39,9 @@ export function MoviesDetails({ route }) {
                 {/* <Text style={styles.nota}>77/10</Text> */}
                 <Text style={styles.nota}>{filmeDetailsContext.nota.metacritic}/10</Text>
             </View>
-
-            <Text style={styles.descricao}>{filmeDetailsContext.filmeDetails.overview}</Text>
+            <ScrollView>
+                <Text style={styles.descricao}>{filmeDetailsContext.filmeDetails.overview}</Text>
+            </ScrollView>
         </View>
     )
 }

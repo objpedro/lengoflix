@@ -3,6 +3,7 @@ import {
     Text,
     View,
     Image,
+    ScrollView,
 } from 'react-native';
 import styles from "./styles";
 import { SeriesDetailsContext } from "../../contexts/SeriesDetails/SeriesDetailsContex";
@@ -25,7 +26,9 @@ export function SeriesDetails({ route }) {
                 style={styles.poster} />
             <Text style={styles.tituloDoFilme}>{seriesDetailsContext.seriesDetails.name}</Text>
             <Text style={styles.tituloOriginal}>Titulo original: {seriesDetailsContext.seriesDetails.original_name}</Text>
-            <Text style={styles.descricao}>{seriesDetailsContext.seriesDetails.overview}</Text>
+            <ScrollView>
+                <Text style={styles.descricao}>{seriesDetailsContext.seriesDetails.overview}</Text>
+            </ScrollView>
         </View>
     )
 }
