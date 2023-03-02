@@ -23,6 +23,14 @@ const styles = StyleSheet.create({
         color: colors.branco,
         marginBottom: 10,
     },
+    genresContainer: {
+        marginBottom: 10,
+    },
+    genres: {
+        fontSize: RFValue(10),
+        color: colors.branco,
+        height: 15,
+    },
     imdbLogo: {
         resizeMode: "cover",
         borderRadius: 3,

@@ -1,4 +1,5 @@
 import { Genre } from "./Genre"
+import { Network } from "./Network"
 
 interface Serie {
     id: number,
@@ -10,7 +11,7 @@ interface Serie {
     backdrop_path: string,
     poster_path: string,
     release_date: string,
-    networks: string,
+    networks: Network[],
     seasons: number,
 }
 
