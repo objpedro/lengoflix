@@ -30,7 +30,7 @@ export function Lancamentos() {
                 renderItem={({ item }) => (
                     <TouchableOpacity
                         onPress={() => {
-                            navigation.navigate('FilmDetails', { idFilm: item.id })
+                            navigation.navigate('MoviesDetails', { idFilm: item.id })
                         }} >
                         <Image
                             style={styles.poster}

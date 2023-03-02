@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import { TabNavigator } from "../../components/TabNavigation";
 
-import { Movies } from "../Filmes";
+import { Movies } from "../Movies";
 import { Series } from '../Series';
 import { Filtro } from "../Filtro";
 

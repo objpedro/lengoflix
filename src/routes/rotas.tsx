@@ -2,7 +2,7 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { Home } from '../pages/Home';
-import { FilmDetails } from '../pages/FilmDetails';
+import { MoviesDetails } from '../pages/MoviesDetails';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,8 +17,8 @@ export default function Routes() {
                     headerShown: false,
                 }} />
             <Stack.Screen
-                name='FilmDetails'
-                component={FilmDetails}
+                name='MoviesDetails'
+                component={MoviesDetails}
                 options={{
                     title: 'Detalhes',
                     // headerShown: false,
