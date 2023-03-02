@@ -6,7 +6,6 @@ interface Filme {
     overview: string,
     backdrop_path: string,
     poster_path: string,
-    tagline: string,
     release_date: string
 }
 

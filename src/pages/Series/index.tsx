@@ -1,16 +1,11 @@
 import React from "react";
-import {
-    View,
-    Text
-} from 'react-native';
-import { styles } from "./styles";
+import { ScrollView, Text } from 'react-native';
+import { Popular } from './components/Popular';
 
 export function Series() {
     return (
-        <View
-            style={styles.container}
-        >
-            <Text>Olá Mundo!</Text>
-        </View>
+        <ScrollView>
+            <Popular />
+        </ScrollView>
     )
 }
