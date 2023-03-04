@@ -29,12 +29,12 @@ export function MoviesDetails({ route }) {
             <Text style={styles.tituloOriginal}>Titulo original: {filmeDetailsContext.filmeDetails.original_title}</Text>
             <View style={styles.containerInfo}>
                 <Image
-                    source={{ uri: imdbLogo }}
+                    source={require('../../assets/imdb_logo.png')}
                     style={styles.imdbLogo} />
                 <Text style={styles.nota}>6.7/10</Text>
                 {/* <Text style={styles.nota}>{filmeDetailsContext.nota.imDb}/10</Text> */}
                 <Image
-                    source={{ uri: metacriticLogo }}
+                    source={require('../../assets/metacritic_logo.png')}
                     style={styles.metacriticLogo} />
                 <Text style={styles.nota}>77/10</Text>
                 {/* <Text style={styles.nota}>{filmeDetailsContext.nota.metacritic}/10</Text> */}

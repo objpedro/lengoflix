@@ -20,7 +20,7 @@ export function SeriesDetailsProvider(props) {
             const requestResult = await seriesDetailsService(idSerie)
             if (requestResult) {
                 setSeriesDetails(requestResult);
-                console.log("Series Details Provider Sucesso: ", requestResult);
+                // console.log("Series Details Provider Sucesso: ", requestResult);
                 ret = {
                     ...ret,
                     sucesso: true
