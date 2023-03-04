@@ -22,14 +22,14 @@ export default function Routes() {
                 component={MoviesDetails}
                 options={{
                     title: 'Detalhes do Filme',
-                    // headerShown: false,
+                    headerShown: false,
                 }} />
             <Stack.Screen
                 name='SeriesDetails'
                 component={SeriesDetails}
                 options={{
                     title: 'Detalhes da Serie',
-                    // headerShown: false,
+                    headerShown: false,
                 }} />
         </Stack.Navigator>
     );

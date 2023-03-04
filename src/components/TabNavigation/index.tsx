@@ -34,7 +34,7 @@ function renderIcons(item: ItemTabNavigatorParam, focused: boolean) {
                     }}
                 />
                 <Text style={{
-                    fontSize: RFValue(10),
+                    fontSize: RFValue(12),
                     color: focused ? colors.whiteBlue : colors.preto,
                 }}>Filmes</Text>
             </>
@@ -52,7 +52,7 @@ function renderIcons(item: ItemTabNavigatorParam, focused: boolean) {
                     }}
                 />
                 <Text style={{
-                    fontSize: RFValue(10),
+                    fontSize: RFValue(12),
                     color: focused ? colors.whiteBlue : colors.preto,
                 }}>Filtro</Text>
             </>
@@ -70,7 +70,7 @@ function renderIcons(item: ItemTabNavigatorParam, focused: boolean) {
                     }}
                 />
                 <Text style={{
-                    fontSize: RFValue(10),
+                    fontSize: RFValue(12),
                     color: focused ? colors.whiteBlue : colors.preto,
                 }}>Series</Text>
             </>
@@ -88,7 +88,7 @@ function renderIcons(item: ItemTabNavigatorParam, focused: boolean) {
                     }}
                 />
                 <Text style={{
-                    fontSize: RFValue(10),
+                    fontSize: RFValue(12),
                     color: focused ? colors.whiteBlue : colors.preto,
                 }}>Default</Text>
             </>
@@ -111,6 +111,7 @@ function montaTabs(param: TabNavigatorParam) {
                             {renderIcons(item, focused)}
                         </View>
                     ),
+                    // headerShown: false,
                 }}
             />
         )
