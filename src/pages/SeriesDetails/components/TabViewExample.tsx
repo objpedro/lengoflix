@@ -4,8 +4,6 @@ import { TabView, SceneMap } from 'react-native-tab-view';
 import { About } from './About';
 import { Episodes } from './Episodes';
 
-import { SeriesDetails } from '..';
-
 const FirstRoute = () => (
     <About />
 );

@@ -5,10 +5,10 @@ import colors from "../../../../utils/color";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#673ab7',
+        backgroundColor: colors.preto,
+        padding: 20,
     },
     tituloOriginal: {
-        marginTop: 5,
         fontSize: RFValue(10),
         color: colors.branco,
     },
