@@ -11,7 +11,7 @@ export async function episodesService(idSerie: number, idSeason: number) {
         return resultado.data
     }
     catch (error) {
-        console.log(error)
+        console.log('Episodes: ', error)
         return {}
     }
 }

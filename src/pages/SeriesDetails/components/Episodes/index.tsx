@@ -6,6 +6,7 @@ import React, {
 import {
     Text,
     View,
+    FlatList,
     ScrollView,
     SafeAreaView,
     TouchableOpacity,
@@ -21,16 +22,37 @@ export function Episodes() {
     const idSerie = seriesDetailsContext.seriesDetails.id;
     const idSeason = 1;
     // const season
+    const [visibility, setVisibility] = useState<boolean>(false);
 
-    useEffect(() => {
-        episodesContext.getEpisodes(idSerie, idSeason)
-    }, [])
+    // useEffect(() => {
+    //     seriesDetailsContext.getEpisodes(seriesDetailsContext.seriesDetails.id, idSeason)
+    // }, [])
 
     return (
         <View style={styles.container}>
-            <Text style={styles.txt}>
-                Olá mundo!
-            </Text>
+            <FlatList
+                data={seriesDetailsContext.seriesDetails.seasons}
+                renderItem={({ item }) => (
+                    <>
+                        <TouchableOpacity
+                            onPress={() => {
+                                setVisibility(true)
+                            }} >
+                            <Text style={styles.txt}>{item.name}</Text>
+                        </TouchableOpacity>
+                        {
+                            visibility
+                                ?
+                                <Text style={styles.txt}>
+                                    Olá mundo!
+                                </Text>
+                                :
+                                <></>
+                        }
+                    </>
+                )}
+            />
+
         </View>
     )
 }

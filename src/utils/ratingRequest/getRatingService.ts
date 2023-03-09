@@ -6,7 +6,7 @@ export async function getRatingService(imdbId: string) {
         return resultado.data
     }
     catch (error) {
-        console.log(error)
+        console.log('Ratings Service: ',error)
         return {}
     }
 }

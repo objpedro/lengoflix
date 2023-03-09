@@ -12,7 +12,7 @@ export async function lancamentosService(page: number) {
         return resultado.data.results
     }
     catch (error) {
-        console.log(error)
+        console.log('Now Playing Service: ', error)
         return {}
     }
 }

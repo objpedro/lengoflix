@@ -8,8 +8,15 @@ const styles = StyleSheet.create({
         padding: 20,
         backgroundColor: 'black',
     },
+    poster: {
+        resizeMode: "cover",
+        width: '100%',
+        height: RFValue(200),
+        marginRight: 10,
+        justifyContent: 'flex-end'
+    },
     tituloDoFilme: {
-        fontSize: RFValue(30),
+        fontSize: RFValue(20),
         color: colors.branco,
         marginBottom: 5,
     },
@@ -24,7 +31,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     genresContainer: {
-        marginBottom: 10,
+        padding: 20
     },
     genres: {
         fontSize: RFValue(10),
@@ -48,14 +55,6 @@ const styles = StyleSheet.create({
         fontSize: RFValue(15),
         color: colors.branco,
         marginRight: 20,
-    },
-    poster: {
-        resizeMode: "cover",
-        width: '100%',
-        height: RFValue(150),
-        marginRight: 10,
-        marginBottom: 20,
-        borderRadius: 5,
     },
     descricao: {
         fontSize: RFValue(15),

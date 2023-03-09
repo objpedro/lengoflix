@@ -11,7 +11,7 @@ export async function filmDetailsService(idFilm) {
         return resultado.data
     }
     catch (error) {
-        console.log(error)
+        console.log('Movies Details Service: ', error)
         return {}
     }
 }

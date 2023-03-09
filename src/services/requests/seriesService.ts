@@ -12,7 +12,7 @@ export async function seriesService(page: number) {
         return resultado.data.results
     }
     catch (error) {
-        console.log(error)
+        console.log('Serie Service: ', error)
         return {}
     }
 }
