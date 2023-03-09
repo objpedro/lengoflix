@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import styles from "./styles";
 import { SeriesDetailsContext } from "../../contexts/SeriesDetails/SeriesDetailsContex";
+import TabViewExample from "./components/TabViewExample";
 
 export function SeriesDetails({ route }) {
     const idSerie = route.params.idSerie;
@@ -24,7 +25,8 @@ export function SeriesDetails({ route }) {
                 source={{ uri: `${urlImage}${seriesDetailsContext.seriesDetails.backdrop_path}` }}
                 style={styles.poster} />
             <Text style={styles.tituloDoFilme}>{seriesDetailsContext.seriesDetails.name}</Text>
-            <Text style={styles.tituloOriginal}>Titulo original: {seriesDetailsContext.seriesDetails.original_name}</Text>
+            <TabViewExample />
+            {/* <Text style={styles.tituloOriginal}>Titulo original: {seriesDetailsContext.seriesDetails.original_name}</Text>
             <View style={styles.genresContainer}>
                 <FlatList
                     data={seriesDetailsContext.seriesDetails.genres}
@@ -35,7 +37,7 @@ export function SeriesDetails({ route }) {
                 />
             </View>
             <View style={styles.networksContainer}>
-            <FlatList
+                <FlatList
                     data={seriesDetailsContext.seriesDetails.networks}
                     horizontal={true}
                     renderItem={({ item }) => (
@@ -47,7 +49,7 @@ export function SeriesDetails({ route }) {
                     )}
                 />
             </View>
-            <Text style={styles.descricao}>{seriesDetailsContext.seriesDetails.overview}</Text>
+            <Text style={styles.descricao}>{seriesDetailsContext.seriesDetails.overview}</Text> */}
         </View>
     )
 }
