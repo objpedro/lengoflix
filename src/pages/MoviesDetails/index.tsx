@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 import styles from "./styles";
 import { FilmeDetailsContext } from "../../contexts/FilmeDetails/FilmeDetailsContex";
+import LinearGradient from "react-native-linear-gradient";
+import { RunTime } from "../../components/Runtime/Runtime";
 
 export function MoviesDetails({ route }) {
     const idFilm = route.params.idFilm;
@@ -24,16 +26,32 @@ export function MoviesDetails({ route }) {
             <ImageBackground
                 style={styles.poster}
                 source={{ uri: `https://image.tmdb.org/t/p/original/${filmeDetailsContext.filmeDetails.backdrop_path}` }}>
-                <View style={styles.genresContainer}>
-                    <Text style={styles.tituloDoFilme}>{filmeDetailsContext.filmeDetails.title}</Text>
-                    <FlatList
-                        data={filmeDetailsContext.filmeDetails.genres}
-                        horizontal={true}
-                        renderItem={({ item }) => (
-                            <Text style={styles.genres}>{item.name} • </Text>
-                        )}
-                    />
-                </View>
+                <LinearGradient
+                    colors={[
+                        'rgba(0,0,0,0.0)',
+                        'rgba(0,0,0,0.6)',
+                        'rgba(0,0,0,0.7)',
+                        'rgba(0,0,0,1)',
+                    ]}
+                    style={styles.linearGradient}>
+
+                    <View style={styles.genresContainer}>
+                        <Text style={styles.tituloDoFilme}>{filmeDetailsContext.filmeDetails.title}</Text>
+                        <View style={{
+                            flexDirection: 'row',
+                            alignItems: 'center'
+                        }}>
+                            <RunTime runtime={filmeDetailsContext.filmeDetails.runtime} />
+                            <FlatList
+                                data={filmeDetailsContext.filmeDetails.genres}
+                                horizontal={true}
+                                renderItem={({ item }) => (
+                                    <Text style={styles.genres}> • {item.name}</Text>
+                                )}
+                            />
+                        </View>
+                    </View>
+                </LinearGradient>
             </ImageBackground>
 
             <View style={styles.container}>

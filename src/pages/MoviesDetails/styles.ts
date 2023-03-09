@@ -15,6 +15,9 @@ const styles = StyleSheet.create({
         marginRight: 10,
         justifyContent: 'flex-end'
     },
+    linearGradient: {
+        marginTop: 16,
+    },
     tituloDoFilme: {
         fontSize: RFValue(20),
         color: colors.branco,
@@ -34,7 +37,7 @@ const styles = StyleSheet.create({
         padding: 20
     },
     genres: {
-        fontSize: RFValue(10),
+        fontSize: RFValue(11),
         color: colors.branco,
         height: 15,
     },
