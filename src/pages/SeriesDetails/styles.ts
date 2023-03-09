@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     poster: {
         resizeMode: "cover",
         width: '100%',
-        height: '40%',
+        height: RFValue(150),
         marginRight: 10,
         marginBottom: 20,
         borderRadius: 5,

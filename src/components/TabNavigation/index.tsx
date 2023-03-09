@@ -111,7 +111,7 @@ function montaTabs(param: TabNavigatorParam) {
                             {renderIcons(item, focused)}
                         </View>
                     ),
-                    // headerShown: false,
+                    headerShown: false,
                 }}
             />
         )

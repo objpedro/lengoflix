@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { View, useWindowDimensions } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
-
-import { SeriesDetails } from '..';
+import { Episodes } from './Episodes';
+import { About } from './About';
 
 const FirstRoute = () => (
-    <View style={{ flex: 1, backgroundColor: '#ff4081' }} />
+    <Episodes />
 );
 
 const SecondRoute = () => (
-    <View style={{ flex: 1, backgroundColor: '#673ab7' }} />
+    <About />
 );
 
 const renderScene = SceneMap({
@@ -17,7 +17,7 @@ const renderScene = SceneMap({
     second: SecondRoute,
 });
 
-export default function TabViewExample(serieContext) {
+export default function TabViewExample() {
     const layout = useWindowDimensions();
 
     const [index, setIndex] = React.useState(0);

@@ -1,13 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
-import {
-    Text,
-    View,
-    Image,
-    FlatList
-} from 'react-native';
+import React from "react";
+import { Text, View } from 'react-native';
 import { styles } from "./styles";
 
-export function About() {
+export function Episodes() {
     return (
         <View style={styles.container}>
             <Text style={styles.txt}>
