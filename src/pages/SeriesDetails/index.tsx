@@ -7,12 +7,14 @@ import {
 } from 'react-native';
 import styles from "./styles";
 import { SeriesDetailsContext } from "../../contexts/SeriesDetails/SeriesDetailsContex";
+import { EpisodesContext } from "../../contexts/Episodes/EpisodesContex";
 import TabViewExample from "./components/TabViewExample";
 
 export function SeriesDetails({ route }) {
     const idSerie = route.params.idSerie;
     const urlImage = 'https://image.tmdb.org/t/p/original/';
     const seriesDetailsContext = useContext(SeriesDetailsContext);
+    const episodesContext = useContext(EpisodesContext);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -26,30 +28,6 @@ export function SeriesDetails({ route }) {
                 style={styles.poster} />
             <Text style={styles.tituloDoFilme}>{seriesDetailsContext.seriesDetails.name}</Text>
             <TabViewExample />
-            {/* <Text style={styles.tituloOriginal}>Titulo original: {seriesDetailsContext.seriesDetails.original_name}</Text>
-            <View style={styles.genresContainer}>
-                <FlatList
-                    data={seriesDetailsContext.seriesDetails.genres}
-                    horizontal={true}
-                    renderItem={({ item }) => (
-                        <Text style={styles.genres}>{item.name} • </Text>
-                    )}
-                />
-            </View>
-            <View style={styles.networksContainer}>
-                <FlatList
-                    data={seriesDetailsContext.seriesDetails.networks}
-                    horizontal={true}
-                    renderItem={({ item }) => (
-                        <View style={styles.containerLogo}>
-                            <Image
-                                source={{ uri: `${urlImage}${item.logo_path}` }}
-                                style={styles.networks} />
-                        </View>
-                    )}
-                />
-            </View>
-            <Text style={styles.descricao}>{seriesDetailsContext.seriesDetails.overview}</Text> */}
         </View>
     )
 }

@@ -1,6 +1,6 @@
 import { Genre } from "./Genre"
 import { Network } from "./Network"
-
+import { Season } from "./Season";
 interface Serie {
     id: number,
     imdb_id: string,
@@ -12,7 +12,8 @@ interface Serie {
     poster_path: string,
     release_date: string,
     networks: Network[],
-    seasons: number,
+    number_of_seasons: number,
+    seasons: Season[],
 }
 
 export { Serie };
