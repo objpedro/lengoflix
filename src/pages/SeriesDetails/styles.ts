@@ -6,53 +6,41 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 20,
-        backgroundColor: 'black',
+        backgroundColor: colors.preto,
     },
     poster: {
         resizeMode: "cover",
         width: '100%',
-        height: RFValue(150),
+        height: RFValue(200),
         marginRight: 10,
-        marginBottom: 20,
-        borderRadius: 5,
+        justifyContent: 'flex-end'
+    },
+    linearGradient: {
+        marginTop: 16,
     },
     tituloDoFilme: {
-        fontSize: RFValue(30),
+        fontSize: RFValue(20),
         color: colors.branco,
         marginBottom: 5,
+    },
+    containerInfo: {
+        alignItems: 'center',
+        marginBottom: 10,
+        flexDirection: 'row',
     },
     tituloOriginal: {
         fontSize: RFValue(10),
         color: colors.branco,
-    },
-    //genres
-    genresContainer: {
         marginBottom: 10,
     },
+    genresContainer: {
+        padding: 20
+    },
     genres: {
-        fontSize: RFValue(10),
+        fontSize: RFValue(11),
         color: colors.branco,
         height: 15,
     },
-    //network
-    networksContainer: {
-        marginBottom: 10,
-        justifyContent: 'center',
-    },
-    containerLogo: {
-        backgroundColor: colors.branco,
-        borderRadius: 5,
-        padding: 3,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginRight: 10,
-    },
-    networks: {
-        resizeMode: "contain",
-        width: 40,
-        height: 40,
-    },
-    //ratings
     imdbLogo: {
         resizeMode: "cover",
         borderRadius: 3,

@@ -128,7 +128,7 @@ function TabNavigator(param: TabNavigatorParam) {
                         width: "100%",
                         alignItems: "center",
                         justifyContent: "center",
-                        backgroundColor: colors.secundario,
+                        backgroundColor: colors.azul,
                         elevation: 1,
                     },
                     tabBarHideOnKeyboard: true

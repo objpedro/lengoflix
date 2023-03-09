@@ -3,12 +3,14 @@ import {
     Text,
     View,
     Image,
-    FlatList
+    FlatList,
+    ImageBackground
 } from 'react-native';
 import styles from "./styles";
 import { SeriesDetailsContext } from "../../contexts/SeriesDetails/SeriesDetailsContex";
 import { EpisodesContext } from "../../contexts/Episodes/EpisodesContex";
 import TabViewExample from "./components/TabViewExample";
+import LinearGradient from "react-native-linear-gradient";
 
 export function SeriesDetails({ route }) {
     const idSerie = route.params.idSerie;
@@ -22,12 +24,26 @@ export function SeriesDetails({ route }) {
     }, [])
 
     return (
-        <View style={styles.container}>
-            <Image
+        <>
+            <ImageBackground
                 source={{ uri: `${urlImage}${seriesDetailsContext.seriesDetails.backdrop_path}` }}
-                style={styles.poster} />
-            <Text style={styles.tituloDoFilme}>{seriesDetailsContext.seriesDetails.name}</Text>
+                style={styles.poster}
+            >
+                <LinearGradient
+                    colors={[
+                        'rgba(0,0,0,0.0)',
+                        'rgba(0,0,0,0.6)',
+                        'rgba(0,0,0,0.7)',
+                        'rgba(0,0,0,1)',
+                    ]}
+                    style={styles.linearGradient}>
+                    <View style={styles.genresContainer}>
+                        <Text style={styles.tituloDoFilme}>{seriesDetailsContext.seriesDetails.name}</Text>
+                        <Text style={styles.genres}>{seriesDetailsContext.seriesDetails.number_of_seasons} Temporadas</Text>
+                    </View>
+                </LinearGradient>
+            </ImageBackground>
             <TabViewExample />
-        </View>
+        </>
     )
 }

@@ -34,7 +34,6 @@ export function MoviesDetails({ route }) {
                         'rgba(0,0,0,1)',
                     ]}
                     style={styles.linearGradient}>
-
                     <View style={styles.genresContainer}>
                         <Text style={styles.tituloDoFilme}>{filmeDetailsContext.filmeDetails.title}</Text>
                         <View style={{
