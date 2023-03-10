@@ -5,11 +5,11 @@ interface IFilmeProvider {
     //Listagem de Filmes
     listaFilmes: Filme[];
     setListaFilmes: (filme: Filme[]) => void;
-    listarFilmes: () => Promise<ProviderResult>;
+    listarFilmes: (page: number) => Promise<ProviderResult>;
 
     //Loading
-    page: number,
-    setPage: (p: number) => void;
+    // page: number,
+    // setPage: (p: number) => void;
     load: boolean;
     setLoad: (status: boolean) => void;
 }

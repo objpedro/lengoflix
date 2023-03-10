@@ -1,10 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
-    ScrollView,
     Text,
-    FlatList,
-    TouchableOpacity,
+    View,
     Image,
+    FlatList,
+    ScrollView,
+    TouchableOpacity,
     ActivityIndicator,
 } from 'react-native';
 import styles from "../styles";
@@ -14,9 +15,19 @@ import { FilmeContext } from "../../../contexts/Filme/FilmeContext";
 export function Lancamentos() {
     const navigation = useNavigation();
     const filmeContext = useContext(FilmeContext);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [page, setPage] = useState<number>(1);
+
+    async function loadContext() {
+        if (loading) return;
+        setLoading(true);
+        await filmeContext.listarFilmes(page + 1);
+        setPage(page + 1);
+        setLoading(false);
+    }
 
     useEffect(() => {
-        filmeContext.listarFilmes();
+        filmeContext.listarFilmes(page);
     }, [])
 
     return (
@@ -26,7 +37,7 @@ export function Lancamentos() {
                 data={filmeContext.listaFilmes}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
-                keyExtractor={filmes => filmes.id}
+                keyExtractor={item => item.id}
                 renderItem={({ item }) => (
                     <TouchableOpacity
                         onPress={() => {
@@ -37,6 +48,8 @@ export function Lancamentos() {
                             source={{ uri: `https://image.tmdb.org/t/p/original/${item.poster_path}` }} />
                     </TouchableOpacity>
                 )}
+                onEndReached={loadContext}
+                onEndReachedThreshold={0.1}
             />
             {
                 filmeContext.load
@@ -45,7 +58,6 @@ export function Lancamentos() {
                         size="large"
                         color={'#fff'}
                         style={{
-                            flex: 1,
                             alignItems: 'center',
                             justifyContent: "center"
                         }} />

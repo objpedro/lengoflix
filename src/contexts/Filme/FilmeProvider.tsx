@@ -8,23 +8,19 @@ import { lancamentosService } from "../../services/requests/lancamentosService";
 export function FilmeProvider(props) {
     const [listaFilmes, setListaFilmes] = useState<Filme[]>([]);
     const [load, setLoad] = useState<boolean>(false);
-    const [page, setPage] = useState<number>(1);
 
     const FilmesProviderValue: IFilmeProvider = {
         load,
         setLoad,
-        page,
-        setPage,
         listaFilmes,
         setListaFilmes,
-        listarFilmes: async () => {
+        listarFilmes: async (page: number) => {
             setLoad(true)
             let ret: ProviderResult = null;
             const requestResult = await lancamentosService(page);
             if (requestResult) {
                 setListaFilmes([...listaFilmes, ...requestResult]);
                 // console.log("Movie Provider Sucesso: ", requestResult);
-                setPage(page + 1);
                 ret = {
                     ...ret,
                     sucesso: true
