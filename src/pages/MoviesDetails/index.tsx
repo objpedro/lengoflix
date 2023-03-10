@@ -61,11 +61,6 @@ export function MoviesDetails({ route }) {
                         style={styles.imdbLogo} />
                     <Text style={styles.nota}>6.7/10</Text>
                     {/* <Text style={styles.nota}>{filmeDetailsContext.nota.imDb}/10</Text> */}
-                    <Image
-                        source={require('../../assets/metacritic_logo.png')}
-                        style={styles.metacriticLogo} />
-                    <Text style={styles.nota}>77/10</Text>
-                    {/* <Text style={styles.nota}>{filmeDetailsContext.nota.metacritic}/10</Text> */}
                 </View>
 
                 <Text style={styles.descricao}>{filmeDetailsContext.filmeDetails.overview}</Text>
