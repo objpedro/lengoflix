@@ -18,7 +18,6 @@ import { styles } from "./styles";
 export function Episodes() {
     const seriesDetailsContext = useContext(SeriesDetailsContext);
     const episodesContext = useContext(EpisodesContext);
-    const number_of_seasons = seriesDetailsContext.seriesDetails.number_of_seasons;
     const idSerie = seriesDetailsContext.seriesDetails.id;
     const idSeason = 1;
     // const season
@@ -36,7 +35,7 @@ export function Episodes() {
                     <>
                         <TouchableOpacity
                             onPress={() => {
-                                setVisibility(true)
+                                setVisibility(!visibility)
                             }} >
                             <Text style={styles.txt}>{item.name}</Text>
                         </TouchableOpacity>
@@ -52,7 +51,6 @@ export function Episodes() {
                     </>
                 )}
             />
-
         </View>
     )
 }

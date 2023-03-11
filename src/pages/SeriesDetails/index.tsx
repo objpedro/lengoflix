@@ -9,8 +9,9 @@ import {
 import styles from "./styles";
 import { SeriesDetailsContext } from "../../contexts/SeriesDetails/SeriesDetailsContex";
 import { EpisodesContext } from "../../contexts/Episodes/EpisodesContex";
-import TabViewExample from "./components/TabViewExample";
+
 import LinearGradient from "react-native-linear-gradient";
+import TabViewExample from "../../components/TabView/TabView";
 
 export function SeriesDetails({ route }) {
     const idSerie = route.params.idSerie;

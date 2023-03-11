@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { View, useWindowDimensions } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
-import { About } from './About';
-import { Episodes } from './Episodes';
+import { About } from '../../pages/SeriesDetails/components/About';
+import { Episodes } from '../../pages/SeriesDetails/components/Episodes';
 
 const FirstRoute = () => (
     <About />
