@@ -39,7 +39,16 @@ export function SeriesDetails({ route }) {
                     style={styles.linearGradient}>
                     <View style={styles.genresContainer}>
                         <Text style={styles.tituloDoFilme}>{seriesDetailsContext.seriesDetails.name}</Text>
-                        <Text style={styles.genres}>{seriesDetailsContext.seriesDetails.number_of_seasons} Temporadas</Text>
+                        <View style={styles.numberSeasonsContainer}>
+                            <Text style={styles.genres}>{seriesDetailsContext.seriesDetails.number_of_seasons} Temporadas</Text>
+                            <FlatList
+                                data={seriesDetailsContext.seriesDetails.genres}
+                                horizontal={true}
+                                renderItem={({ item }) => (
+                                    <Text style={styles.genres}> • {item.name}</Text>
+                                )}
+                            />
+                        </View>
                     </View>
                 </LinearGradient>
             </ImageBackground>

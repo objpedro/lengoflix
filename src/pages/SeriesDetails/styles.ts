@@ -41,6 +41,9 @@ const styles = StyleSheet.create({
         color: colors.branco,
         height: 15,
     },
+    numberSeasonsContainer: {
+        flexDirection: 'row',
+    },
     imdbLogo: {
         resizeMode: "cover",
         borderRadius: 3,

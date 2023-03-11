@@ -41,6 +41,10 @@ const styles = StyleSheet.create({
         color: colors.branco,
         height: 15,
     },
+    runTimeContainer:{
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
     imdbLogo: {
         resizeMode: "cover",
         borderRadius: 3,

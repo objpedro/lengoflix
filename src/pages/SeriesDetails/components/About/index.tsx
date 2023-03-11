@@ -19,13 +19,6 @@ export function About() {
             <ScrollView>
                 <Text style={styles.tituloOriginal}>Titulo original: {seriesDetailsContext.seriesDetails.original_name}</Text>
                 <View style={styles.genresContainer}>
-                    <FlatList
-                        data={seriesDetailsContext.seriesDetails.genres}
-                        horizontal={true}
-                        renderItem={({ item }) => (
-                            <Text style={styles.genres}>{item.name} • </Text>
-                        )}
-                    />
                 </View>
                 <View style={styles.networksContainer}>
                     <FlatList

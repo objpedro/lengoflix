@@ -36,10 +36,7 @@ export function MoviesDetails({ route }) {
                     style={styles.linearGradient}>
                     <View style={styles.genresContainer}>
                         <Text style={styles.tituloDoFilme}>{filmeDetailsContext.filmeDetails.title}</Text>
-                        <View style={{
-                            flexDirection: 'row',
-                            alignItems: 'center'
-                        }}>
+                        <View style={styles.runTimeContainer}>
                             <RunTime runtime={filmeDetailsContext.filmeDetails.runtime} />
                             <FlatList
                                 data={filmeDetailsContext.filmeDetails.genres}
