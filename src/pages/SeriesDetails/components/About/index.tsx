@@ -33,7 +33,12 @@ export function About() {
                         )}
                     />
                 </View>
-                <Text style={styles.descricao}>{seriesDetailsContext.seriesDetails.overview}</Text>
+                {
+                    seriesDetailsContext.seriesDetails.overview !== '' ?
+                        <Text style={styles.descricao}>{seriesDetailsContext.seriesDetails.overview}</Text>
+                        :
+                        <Text style={styles.descricao}>Descrição indisponível</Text>
+                }
             </ScrollView>
         </SafeAreaView>
     )

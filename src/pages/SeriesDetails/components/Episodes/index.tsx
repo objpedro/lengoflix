@@ -1,8 +1,4 @@
-import React, {
-    useState,
-    useEffect,
-    useContext
-} from "react";
+import React, { } from "react";
 import {
     Text,
     View,
@@ -11,46 +7,16 @@ import {
     SafeAreaView,
     TouchableOpacity,
 } from 'react-native';
-import { EpisodesContext } from "../../../../contexts/Episodes/EpisodesContex";
-import { SeriesDetailsContext } from "../../../../contexts/SeriesDetails/SeriesDetailsContex";
 import { styles } from "./styles";
 
-export function Episodes() {
-    const seriesDetailsContext = useContext(SeriesDetailsContext);
-    const episodesContext = useContext(EpisodesContext);
-    const idSerie = seriesDetailsContext.seriesDetails.id;
-    const idSeason = 1;
-    // const season
-    const [visibility, setVisibility] = useState<boolean>(false);
 
-    // useEffect(() => {
-    //     seriesDetailsContext.getEpisodes(seriesDetailsContext.seriesDetails.id, idSeason)
-    // }, [])
+export function Episodes(visibility: boolean) {
 
     return (
-        <View style={styles.container}>
-            <FlatList
-                data={seriesDetailsContext.seriesDetails.seasons}
-                renderItem={({ item }) => (
-                    <>
-                        <TouchableOpacity
-                            onPress={() => {
-                                setVisibility(!visibility)
-                            }} >
-                            <Text style={styles.txt}>{item.name}</Text>
-                        </TouchableOpacity>
-                        {
-                            visibility
-                                ?
-                                <Text style={styles.txt}>
-                                    Olá mundo!
-                                </Text>
-                                :
-                                <></>
-                        }
-                    </>
-                )}
-            />
-        </View>
+        <>
+            <View style={styles.container}>
+                <Text style={styles.txt}>Olá Episodes</Text>
+            </View>
+        </>
     )
 }

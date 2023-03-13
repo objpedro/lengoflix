@@ -2,14 +2,15 @@ import * as React from 'react';
 import { View, useWindowDimensions } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
 import { About } from '../../pages/SeriesDetails/components/About';
-import { Episodes } from '../../pages/SeriesDetails/components/Episodes';
+import { Season } from '../../pages/SeriesDetails/components/Season';
+
 
 const FirstRoute = () => (
     <About />
 );
 
 const SecondRoute = () => (
-    <Episodes />
+    <Season />
 );
 
 const renderScene = SceneMap({

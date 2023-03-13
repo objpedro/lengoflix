@@ -16,17 +16,18 @@ export function Popular() {
     const seriesContext = useContext(SeriesContext);
     const [loading, setLoading] = useState<boolean>(false);
     const [page, setPage] = useState<number>(1);
+    const view = 'popular';
 
     async function loadContext() {
         if (loading) return;
         setLoading(true);
-        await seriesContext.obterSeries(page + 1);
+        await seriesContext.obterSeries(view, page + 1);
         setPage(page + 1);
         setLoading(false);
     }
 
     useEffect(() => {
-        seriesContext.obterSeries(page);
+        seriesContext.obterSeries(view, page);
     }, [])
 
     return (
