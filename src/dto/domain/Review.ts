@@ -1,6 +1,6 @@
-interface Nota {
+interface Review {
     imDb: string,
     metacritic: string,
 }
 
-export { Nota };
+export { Review };

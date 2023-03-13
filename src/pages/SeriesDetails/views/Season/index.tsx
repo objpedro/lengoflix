@@ -1,15 +1,7 @@
-import React, {
-    useState,
-    useEffect,
-    useContext
-} from "react";
+import React, { useContext } from "react";
 import {
-    Text,
     View,
     FlatList,
-    ScrollView,
-    SafeAreaView,
-    TouchableOpacity,
 } from 'react-native';
 import { SeriesDetailsContext } from "../../../../contexts/SeriesDetails/SeriesDetailsContex";
 import { Episodes } from "../Episodes";

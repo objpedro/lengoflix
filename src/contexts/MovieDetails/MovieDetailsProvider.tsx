@@ -1,36 +1,38 @@
 import React, { useState } from "react";
-import { FilmeDetailsContext } from "./FilmeDetailsContex";
-import { Nota } from "../../dto/domain/Nota";
-import { Filme } from "../../dto/domain/Filme";
+import { MovieDetailsContext } from "./MovieDetailsContex";
+import { Review } from "../../dto/domain/Review";
+import { Movie } from "../../dto/domain/Movie";
 import ProviderResult from "../../dto/contexts/providerResult";
-import { IFilmeDetailsProvider } from "../../dto/contexts/IFilmeDetailsProvider";
+import { IMovieDetailsProvider } from "../../dto/contexts/iMovieDetailsProvider";
 import { filmDetailsService } from "../../services/requests/filmDetailsService";
 import { getRatingService } from "../../utils/ratingRequest/getRatingService";
 
-export function FilmeDetailsProvider(props) {
-    const [filmeDetails, setFilmeDetails] = useState<Filme>([]);
-    const [nota, setNota] = useState<Nota>('');
+export function MovieDetailsProvider(props) {
+    const [movieDetails, setMovieDetails] = useState<Movie>([]);
+    const [review, setReview] = useState<Review>('');
     const [load, setLoad] = useState<boolean>(false);
 
-    const FilmeDetailsValue: IFilmeDetailsProvider = {
+    const MovieDetailsValue: IMovieDetailsProvider = {
         load,
         setLoad,
-        nota,
-        setNota,
-        filmeDetails,
-        setFilmeDetails,
-        listarFilmeDetails: async (idFilme: number) => {
+        review,
+        setReview,
+        movieDetails,
+        setMovieDetails,
+        getMovieDetails: async (idFilme: number) => {
             setLoad(true);
             let ret: ProviderResult = null;
             const requestResult = await filmDetailsService(idFilme)
             if (requestResult) {
-                setFilmeDetails(requestResult);
+                // console.log("Movie Provider Sucesso: ", requestResult);
+                setMovieDetails(requestResult);
                 ret = {
                     ...ret,
                     sucesso: true
                 },
                     setLoad(false);
             } else {
+                console.log("Movie Provider Sucesso: ", requestResult);
                 ret = {
                     ...ret,
                     sucesso: false,
@@ -40,13 +42,13 @@ export function FilmeDetailsProvider(props) {
             }
             return ret
         },
-        listarNotas: async (imdbId: string) => {
+        getReviews: async (imdbId: string) => {
             setLoad(true);
             let ret: ProviderResult = null;
             const requestResult = await getRatingService(imdbId)
             if (requestResult) {
                 // console.log("Notas Provider Sucesso: ", requestResult);
-                setNota(requestResult);
+                setReview(requestResult);
                 ret = {
                     ...ret,
                     sucesso: true
@@ -66,8 +68,8 @@ export function FilmeDetailsProvider(props) {
     }
 
     return (
-        <FilmeDetailsContext.Provider value={FilmeDetailsValue}>
+        <MovieDetailsContext.Provider value={MovieDetailsValue}>
             {props.children}
-        </FilmeDetailsContext.Provider>
+        </MovieDetailsContext.Provider>
     )
 }

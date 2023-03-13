@@ -1,6 +1,6 @@
 import { Genre } from "./Genre"
 
-interface Filme {
+interface Movie {
     id: number,
     imdb_id: string,
     title: string,
@@ -13,4 +13,4 @@ interface Filme {
     runtime: number
 }
 
-export { Filme };
+export { Movie };

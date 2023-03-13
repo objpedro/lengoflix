@@ -34,7 +34,13 @@ export function Episodes({
             <TouchableOpacity
                 style={styles.container}
                 onPress={() => {
-                    setVisible(!visible)
+                    if (
+                        seasonNumber !== seriesDetailsContext.episodes.season_number
+                    ) {
+                        setVisible(true)
+                    } else {
+                        setVisible(!visible)
+                    }
                     seriesDetailsContext.getEpisodes(serieId, seasonNumber)
                 }} >
                 <Text style={styles.seasonName}>{seasonName}</Text>
