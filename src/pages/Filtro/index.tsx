@@ -14,7 +14,7 @@ import { FiltroContext } from "../../contexts/Filtro/FiltroContext";
 export function Filtro() {
     const navigation = useNavigation();
     const filmesFiltradosContext = useContext(FiltroContext);
-    const [searchData, setSearchData] = useState<string>('gotham');
+    const [searchData, setSearchData] = useState<string>('');
 
     useEffect(() => {
         filmesFiltradosContext.listarFilmesFiltrados(searchData);

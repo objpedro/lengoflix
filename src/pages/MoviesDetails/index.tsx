@@ -17,8 +17,8 @@ export function MoviesDetails({ route }) {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        movieDetailsContext.getReviews(movieDetailsContext.movieDetails.imdb_id)
         movieDetailsContext.getMovieDetails(idFilm)
+        movieDetailsContext.getReviews(movieDetailsContext.movieDetails.imdb_id)
     }, [])
 
     return (
