@@ -1,8 +1,4 @@
-import React, {
-    useState,
-    useContext,
-    useEffect
-} from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
     Text,
     FlatList,
@@ -15,12 +11,14 @@ interface Props {
     serieId: number,
     seasonNumber: number,
     seasonName: string,
+    episodeCount: number,
 }
 
 export function Episodes({
     serieId,
     seasonNumber,
     seasonName,
+    episodeCount,
 }: Props) {
     const seriesDetailsContext = useContext(SeriesDetailsContext);
     const [visible, setVisible] = useState<boolean>(false)
@@ -44,6 +42,7 @@ export function Episodes({
                     seriesDetailsContext.getEpisodes(serieId, seasonNumber)
                 }} >
                 <Text style={styles.seasonName}>{seasonName}</Text>
+                <Text style={styles.epCount}>{episodeCount}</Text>
             </TouchableOpacity>
             {
                 (seasonNumber == seriesDetailsContext.episodes.season_number && visible === true)

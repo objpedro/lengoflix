@@ -19,7 +19,8 @@ export function Season() {
                         <Episodes
                             serieId={seriesDetailsContext.seriesDetails.id}
                             seasonNumber={item.season_number}
-                            seasonName={item.name} />
+                            seasonName={item.name}
+                            episodeCount={item.episode_count} />
                     </>
                 )}
             />
