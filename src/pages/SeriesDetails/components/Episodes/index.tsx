@@ -11,12 +11,14 @@ import { styles } from "./styles";
 
 
 export function Episodes(visibility: boolean) {
+    console.log(visibility.visibility)
 
     return (
         <>
-            <View style={styles.container}>
-                <Text style={styles.txt}>Olá Episodes</Text>
-            </View>
+            {
+                visibility.visibility &&
+                <Text style={styles.txt}>Lista de Episódios</Text>
+            }
         </>
     )
 }

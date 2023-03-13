@@ -11,42 +11,37 @@ import {
     SafeAreaView,
     TouchableOpacity,
 } from 'react-native';
-import { EpisodesContext } from "../../../../contexts/Episodes/EpisodesContex";
 import { SeriesDetailsContext } from "../../../../contexts/SeriesDetails/SeriesDetailsContex";
 import { Episodes } from "../Episodes";
 import { styles } from "./styles";
 
 export function Season() {
     const seriesDetailsContext = useContext(SeriesDetailsContext);
-    const episodesContext = useContext(EpisodesContext);
-    const idSerie = seriesDetailsContext.seriesDetails.id;
-    const idSeason = 1;
-    // const season
     const [visibility, setVisibility] = useState<boolean>(false);
-
-    // useEffect(() => {
-    //     seriesDetailsContext.getEpisodes(seriesDetailsContext.seriesDetails.id, idSeason)
-    // }, [])
-
+    const [item, setItemId] = useState<number>();
+    console.log(item)
     return (
         <View style={styles.container}>
             <FlatList
                 data={seriesDetailsContext.seriesDetails.seasons}
+                keyExtractor={item => item.id}
                 renderItem={({ item }) => (
                     <>
                         <TouchableOpacity
                             onPress={() => {
                                 setVisibility(!visibility)
+                                setItemId(item.id)
                             }} >
                             <Text style={styles.txt}>{item.name}</Text>
                         </TouchableOpacity>
+                        <Episodes visibility={visibility} />
+                        {/* {
+                            visibility &&
+                            <Episodes visibility={visibility} />
+                        } */}
                     </>
                 )}
             />
-            {
-                visibility &&
-                <Episodes visibility={visibility} />
-            }
         </View>
     )
 }
