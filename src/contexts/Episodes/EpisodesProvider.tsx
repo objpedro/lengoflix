@@ -20,8 +20,7 @@ export function EpisodesProvider(props) {
             const requestResult = await episodesService(idSerie, idSeason)
             if (requestResult) {
                 setEpisodes(requestResult);
-                console.log("Episodes Provider Sucesso: ", idSerie, idSeason);
-                console.log("Episodes Provider Sucesso: ", requestResult);
+                // console.log("Episodes Provider Sucesso: ", requestResult);
                 ret = {
                     ...ret,
                     sucesso: true

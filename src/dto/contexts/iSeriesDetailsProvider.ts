@@ -1,6 +1,7 @@
 import { Serie } from "../domain/Serie";
 import { Episode } from "../domain/Episode";
 import ProviderResult from "./providerResult";
+import { EpisodeList } from "../domain/EpisodeList";
 
 interface ISeriesDetailsProvider {
     seriesDetails: Serie;
@@ -8,8 +9,8 @@ interface ISeriesDetailsProvider {
     getSeriesDetails: (idSerie: number) => Promise<ProviderResult>;
 
     //Episodes
-    episodes: Episode;
-    setEpisodes: (episode: Episode) => void;
+    episodes: EpisodeList;
+    setEpisodes: (episodeList: EpisodeList) => void;
     getEpisodes: (idSerie: number, idSeason: number) => Promise<ProviderResult>;
 
     //Loading

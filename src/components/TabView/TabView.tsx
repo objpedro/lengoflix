@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { View, useWindowDimensions } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
-import { About } from '../../pages/SeriesDetails/components/About';
-import { Season } from '../../pages/SeriesDetails/components/Season';
+import { About } from '../../pages/SeriesDetails/views/About';
+import { Season } from '../../pages/SeriesDetails/views/Season';
 
 
 const FirstRoute = () => (
@@ -18,9 +18,8 @@ const renderScene = SceneMap({
     second: SecondRoute,
 });
 
-export default function TabViewExample() {
+export default function TabViewComponent() {
     const layout = useWindowDimensions();
-
     const [index, setIndex] = React.useState(0);
     const [routes] = React.useState([
         { key: 'first', title: 'Sobre' },

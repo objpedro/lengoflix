@@ -4,10 +4,16 @@ import colors from "../../../../utils/color";
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: colors.preto,
+        flex: 1,
+        backgroundColor: colors.branco,
+        marginBottom: 10
     },
-    txt: {
-        color: 'white',
+    seasonName: {
+        color: colors.preto,
+        padding: 10,
+    },
+    episodeList: {
+        marginBottom: 10,
     }
 })
 

@@ -17,9 +17,6 @@ import { styles } from "./styles";
 
 export function Season() {
     const seriesDetailsContext = useContext(SeriesDetailsContext);
-    const [visibility, setVisibility] = useState<boolean>(false);
-    const [item, setItemId] = useState<number>();
-    console.log(item)
     return (
         <View style={styles.container}>
             <FlatList
@@ -27,21 +24,14 @@ export function Season() {
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => (
                     <>
-                        <TouchableOpacity
-                            onPress={() => {
-                                setVisibility(!visibility)
-                                setItemId(item.id)
-                            }} >
-                            <Text style={styles.txt}>{item.name}</Text>
-                        </TouchableOpacity>
-                        <Episodes visibility={visibility} />
-                        {/* {
-                            visibility &&
-                            <Episodes visibility={visibility} />
-                        } */}
+                        <Episodes
+                            serieId={seriesDetailsContext.seriesDetails.id}
+                            seasonNumber={item.season_number}
+                            seasonName={item.name} />
                     </>
                 )}
             />
+
         </View>
     )
 }

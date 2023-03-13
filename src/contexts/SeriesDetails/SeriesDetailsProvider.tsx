@@ -6,10 +6,11 @@ import ProviderResult from "../../dto/contexts/providerResult";
 import { ISeriesDetailsProvider } from "../../dto/contexts/iSeriesDetailsProvider";
 import { seriesDetailsService } from "../../services/requests/seriesDetailsService";
 import { episodesService } from "../../services/requests/episodesService";
+import { EpisodeList } from "../../dto/domain/EpisodeList";
 
 export function SeriesDetailsProvider(props) {
     const [seriesDetails, setSeriesDetails] = useState<Serie>([]);
-    const [episodes, setEpisodes] = useState<Episode>([]);
+    const [episodes, setEpisodes] = useState<EpisodeList>([]);
     const [load, setLoad] = useState<boolean>(false);
 
     const SeriesDetailsValue: ISeriesDetailsProvider = {
@@ -48,8 +49,7 @@ export function SeriesDetailsProvider(props) {
             const requestResult = await episodesService(idSerie, idSeason)
             if (requestResult) {
                 setEpisodes(requestResult);
-                console.log("Episodes Provider Sucesso: ", idSerie, idSeason);
-                console.log("Episodes Provider Sucesso: ", requestResult);
+                // console.log("Episodes Provider Sucesso: ", requestResult);
                 ret = {
                     ...ret,
                     sucesso: true
