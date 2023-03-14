@@ -15,6 +15,12 @@ export function SeriesDetails({ route }) {
     const idSerie = route.params.idSerie;
     const urlImage = 'https://image.tmdb.org/t/p/original/';
     const seriesDetailsContext = useContext(SeriesDetailsContext);
+    const linearColors: string[] = [
+        'rgba(0,0,0,0.0)',
+        'rgba(0,0,0,0.6)',
+        'rgba(0,0,0,0.7)',
+        'rgba(0,0,0,1)',
+    ]
 
     useEffect(() => {
         seriesDetailsContext.getSeriesDetails(idSerie)
@@ -26,12 +32,7 @@ export function SeriesDetails({ route }) {
                 source={{ uri: `${urlImage}${seriesDetailsContext.seriesDetails.backdrop_path}` }}
                 style={styles.poster}>
                 <LinearGradient
-                    colors={[
-                        'rgba(0,0,0,0.0)',
-                        'rgba(0,0,0,0.6)',
-                        'rgba(0,0,0,0.7)',
-                        'rgba(0,0,0,1)',
-                    ]}
+                    colors={linearColors}
                     style={styles.linearGradient}>
                     <View style={styles.genresContainer}>
                         <Text style={styles.tituloDoFilme}>{seriesDetailsContext.seriesDetails.name}</Text>

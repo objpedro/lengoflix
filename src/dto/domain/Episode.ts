@@ -1,5 +1,5 @@
 interface Episode {
-    air_date: Date,
+    air_date: string,
     episode_number: number,
     id: number,
     name: string,
@@ -9,6 +9,7 @@ interface Episode {
     season_number: number,
     show_id: number,
     still_path: string,
+    vote_average: number,
 }
 
 export { Episode }

@@ -3,7 +3,7 @@ import {
     View,
     FlatList,
 } from 'react-native';
-import { SeriesDetailsContext } from "../../../../contexts/SeriesDetails/SeriesDetailsContex";
+import { SeriesDetailsContext } from "../../contexts/SeriesDetails/SeriesDetailsContex";
 import { Episodes } from "../Episodes";
 import { styles } from "./styles";
 

@@ -6,8 +6,8 @@ import {
     FlatList,
     TouchableOpacity,
 } from 'react-native';
-import { RunTime } from "../../../../components/Runtime/Runtime";
-import { SeriesDetailsContext } from "../../../../contexts/SeriesDetails/SeriesDetailsContex";
+import { useNavigation } from "@react-navigation/native";
+import { SeriesDetailsContext } from "../../contexts/SeriesDetails/SeriesDetailsContex";
 import { styles } from "./styles";
 
 interface Props {
@@ -23,6 +23,7 @@ export function Episodes({
     seasonName,
     episodeCount,
 }: Props) {
+    const navigation = useNavigation()
     const seriesDetailsContext = useContext(SeriesDetailsContext);
     const [visible, setVisible] = useState<boolean>(false)
     const urlImage = 'https://image.tmdb.org/t/p/original/';
@@ -56,29 +57,17 @@ export function Episodes({
                     data={seriesDetailsContext.episodes.episodes}
                     keyExtractor={item => item.id}
                     renderItem={({ item }) => (
-                        <TouchableOpacity style={{
-                            borderRadius: 5,
-                            marginBottom: 10,
-                            alignItems: 'center',
-                            flexDirection: 'row',
-                            backgroundColor: 'white',
-                        }}>
+                        <TouchableOpacity style={styles.episodeContainer}
+                            onPress={() => {
+                                navigation.navigate('EpisodesDetails', { episode: item })
+                            }}
+                        >
                             <Image
-                                style={{
-                                    width: 90,
-                                    height: 90,
-                                    resizeMode: 'cover',
-                                    borderTopLeftRadius: 5,
-                                    borderBottomLeftRadius: 5,
-                                }}
+                                style={styles.episodePoster}
                                 source={{ uri: `${urlImage}${item.still_path}` }}
                             />
-                            <View style={{
-                                padding: 10,
-                                justifyContent: 'center',
-                                width: '80%'
-                            }}>
-                                <Text style={{ color: 'black' }}>{item.episode_number}. {item.name}</Text>
+                            <View style={styles.episodeTitleContainer}>
+                                <Text style={styles.episodeTitle}>{item.episode_number}. {item.name}</Text>
                             </View>
                         </TouchableOpacity>
                     )}

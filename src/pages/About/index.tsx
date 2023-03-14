@@ -7,7 +7,7 @@ import {
     ScrollView,
     SafeAreaView,
 } from 'react-native';
-import { SeriesDetailsContext } from "../../../../contexts/SeriesDetails/SeriesDetailsContex";
+import { SeriesDetailsContext } from "../../contexts/SeriesDetails/SeriesDetailsContex";
 import { styles } from "./styles";
 
 export function About() {
