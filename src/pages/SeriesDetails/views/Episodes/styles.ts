@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
-import colors from "../../../../utils/color";
 import { utilFonts } from "../../../../utils/fonts";
+import colors from "../../../../utils/color";
 
 const styles = StyleSheet.create({
     container: {
@@ -11,7 +11,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: 10,
+        padding: 20,
+        borderRadius: 5,
     },
     seasonName: {
         color: colors.preto,

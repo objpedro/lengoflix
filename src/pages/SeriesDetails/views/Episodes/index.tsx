@@ -1,9 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import {
     Text,
+    View,
+    Image,
     FlatList,
     TouchableOpacity,
 } from 'react-native';
+import { RunTime } from "../../../../components/Runtime/Runtime";
 import { SeriesDetailsContext } from "../../../../contexts/SeriesDetails/SeriesDetailsContex";
 import { styles } from "./styles";
 
@@ -22,6 +25,7 @@ export function Episodes({
 }: Props) {
     const seriesDetailsContext = useContext(SeriesDetailsContext);
     const [visible, setVisible] = useState<boolean>(false)
+    const urlImage = 'https://image.tmdb.org/t/p/original/';
 
     useEffect(() => {
         seriesDetailsContext.getEpisodes(serieId, 1)
@@ -52,9 +56,31 @@ export function Episodes({
                     data={seriesDetailsContext.episodes.episodes}
                     keyExtractor={item => item.id}
                     renderItem={({ item }) => (
-                        <Text style={{
-                            color: 'white'
-                        }}>{item.name}</Text>
+                        <TouchableOpacity style={{
+                            borderRadius: 5,
+                            marginBottom: 10,
+                            alignItems: 'center',
+                            flexDirection: 'row',
+                            backgroundColor: 'white',
+                        }}>
+                            <Image
+                                style={{
+                                    width: 90,
+                                    height: 90,
+                                    resizeMode: 'cover',
+                                    borderTopLeftRadius: 5,
+                                    borderBottomLeftRadius: 5,
+                                }}
+                                source={{ uri: `${urlImage}${item.still_path}` }}
+                            />
+                            <View style={{
+                                padding: 10,
+                                justifyContent: 'center',
+                                width: '80%'
+                            }}>
+                                <Text style={{ color: 'black' }}>{item.episode_number}. {item.name}</Text>
+                            </View>
+                        </TouchableOpacity>
                     )}
                 />
             }
