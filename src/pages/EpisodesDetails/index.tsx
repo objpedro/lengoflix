@@ -2,6 +2,7 @@ import React from "react";
 import {
     Text,
     View,
+    Image,
     ScrollView,
     SafeAreaView,
     ImageBackground,
@@ -19,6 +20,7 @@ export function EpisodesDetails({ route }) {
         'rgba(0,0,0,0.7)',
         'rgba(0,0,0,1)',
     ]
+    console.log(episode.vote_average)
 
     return (
         <View style={styles.container}>
@@ -36,7 +38,12 @@ export function EpisodesDetails({ route }) {
                 <ScrollView>
                     <View style={styles.airDateContainer}>
                         <Text style={styles.airDate}>{episode.air_date}</Text>
-                        <Text style={styles.airDate}>{episode.vote_average.toFixed(1)} / 10</Text>
+                        <View style={styles.voteAverageContainer}>
+                            <Image
+                                source={require('../../assets/the_movie_db_logo.png')}
+                                style={styles.tmdbLogo} />
+                            <Text style={styles.airDate}>{episode.vote_average.toFixed(1)} / 10</Text>
+                        </View>
                     </View>
                     <Text style={styles.airDate}>{episode.overview}</Text>
                 </ScrollView>

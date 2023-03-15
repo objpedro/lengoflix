@@ -10,7 +10,8 @@ interface Movie {
     backdrop_path: string,
     poster_path: string,
     release_date: string,
-    runtime: number
+    runtime: number,
+    vote_average: number,
 }
 
 export { Movie };

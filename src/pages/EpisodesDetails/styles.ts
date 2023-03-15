@@ -39,6 +39,15 @@ const styles = StyleSheet.create({
         fontSize: RFValue(15),
         color: colors.branco,
     },
+    tmdbLogo: {
+        resizeMode: "center",
+        width: 30,
+        height: 20,
+        marginRight: 5,
+    },
+    voteAverageContainer: {
+        flexDirection: 'row',
+    },
     voteAverage: {
         fontSize: RFValue(15),
         color: colors.branco,

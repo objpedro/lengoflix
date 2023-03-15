@@ -45,17 +45,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center'
     },
-    imdbLogo: {
-        resizeMode: "cover",
-        borderRadius: 3,
+    tmdbLogo: {
+        resizeMode: "center",
         width: 30,
-        height: 15,
-        marginRight: 10,
-    },
-    metacriticLogo: {
-        resizeMode: "cover",
-        width: 15,
-        height: 15,
+        height: '100%',
         marginRight: 10,
     },
     nota: {
