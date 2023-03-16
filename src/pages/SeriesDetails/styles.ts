@@ -5,11 +5,20 @@ import colors from "../../utils/color";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
-        backgroundColor: 'black',
+        backgroundColor: colors.preto,
+    },
+    poster: {
+        resizeMode: "cover",
+        width: '100%',
+        height: RFValue(200),
+        marginRight: 10,
+        justifyContent: 'flex-end'
+    },
+    linearGradient: {
+        marginTop: 16,
     },
     tituloDoFilme: {
-        fontSize: RFValue(30),
+        fontSize: RFValue(20),
         color: colors.branco,
         marginBottom: 5,
     },
@@ -22,6 +31,17 @@ const styles = StyleSheet.create({
         fontSize: RFValue(10),
         color: colors.branco,
         marginBottom: 10,
+    },
+    genresContainer: {
+        padding: 20
+    },
+    genres: {
+        fontSize: RFValue(11),
+        color: colors.branco,
+        height: 15,
+    },
+    numberSeasonsContainer: {
+        flexDirection: 'row',
     },
     imdbLogo: {
         resizeMode: "cover",
@@ -40,14 +60,6 @@ const styles = StyleSheet.create({
         fontSize: RFValue(15),
         color: colors.branco,
         marginRight: 20,
-    },
-    poster: {
-        resizeMode: "cover",
-        width: '100%',
-        height: '40%',
-        marginRight: 10,
-        marginBottom: 20,
-        borderRadius: 5,
     },
     descricao: {
         fontSize: RFValue(15),

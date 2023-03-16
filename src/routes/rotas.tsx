@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Home } from '../pages/Home';
 import { MoviesDetails } from '../pages/MoviesDetails';
 import { SeriesDetails } from '../pages/SeriesDetails';
+import { EpisodesDetails } from '../pages/EpisodesDetails';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,14 +23,21 @@ export default function Routes() {
                 component={MoviesDetails}
                 options={{
                     title: 'Detalhes do Filme',
-                    // headerShown: false,
+                    headerShown: false,
                 }} />
             <Stack.Screen
                 name='SeriesDetails'
                 component={SeriesDetails}
                 options={{
                     title: 'Detalhes da Serie',
-                    // headerShown: false,
+                    headerShown: false,
+                }} />
+            <Stack.Screen
+                name='EpisodesDetails'
+                component={EpisodesDetails}
+                options={{
+                    title: 'Detalhes do Episódio',
+                    headerShown: false,
                 }} />
         </Stack.Navigator>
     );

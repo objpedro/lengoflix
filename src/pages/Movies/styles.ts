@@ -1,13 +1,15 @@
 import { StyleSheet } from "react-native";
+import { RFValue } from "react-native-responsive-fontsize";
+import colors from "../../utils/color";
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'black',
+        backgroundColor: colors.preto,
         padding: 20,
     },
     cabecalho: {
-        color: '#fff',
+        color: colors.branco,
         fontSize: 20,
         marginBottom: 10,
     },
@@ -24,11 +26,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     searchFilme: {
-        backgroundColor: '#fff',
-        color: '#000',
+        backgroundColor: colors.branco,
+        color: colors.preto,
     },
     searchButton: {
-        backgroundColor: '#fff',
+        backgroundColor: colors.branco,
         alignItems: 'center',
         justifyContent: 'center',
     }

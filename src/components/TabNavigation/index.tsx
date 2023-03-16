@@ -1,7 +1,8 @@
 import React from "react";
-import { Image, ImageURISource, View } from 'react-native';
+import { Image, ImageURISource, View, Text } from 'react-native';
 import { styles } from "./style";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { RFValue } from "react-native-responsive-fontsize";
 import colors from "../../utils/color";
 
 const Tab = createBottomTabNavigator();
@@ -19,54 +20,78 @@ interface TabNavigatorParam {
 
 function renderIcons(item: ItemTabNavigatorParam, focused: boolean) {
     switch (item.titulo) {
-        case 'Filmes':
-            return <Image
-                source={item.icone}
-                resizeMode={'contain'}
-                style={{
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: 26,
-                    height: 26,
-                    tintColor: focused ? colors.whiteBlue : colors.preto,
-                }}
-            />
+        case 'Movies':
+            return <>
+                <Image
+                    source={item.icone}
+                    resizeMode={'contain'}
+                    style={{
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: 20,
+                        height: 20,
+                        tintColor: focused ? colors.whiteBlue : colors.preto,
+                    }}
+                />
+                <Text style={{
+                    fontSize: RFValue(12),
+                    color: focused ? colors.whiteBlue : colors.preto,
+                }}>Filmes</Text>
+            </>
         case 'Filtro':
-            return <Image
-                source={item.icone}
-                resizeMode={'contain'}
-                style={{
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: 20,
-                    height: 20,
-                    tintColor: focused ? colors.whiteBlue : colors.preto,
-                }}
-            />
-        case 'Perfil':
-            return <Image
-                source={item.icone}
-                resizeMode={'contain'}
-                style={{
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: 20,
-                    height: 20,
-                    tintColor: focused ? colors.whiteBlue : colors.preto,
-                }}
-            />
+            return <>
+                <Image
+                    source={item.icone}
+                    resizeMode={'contain'}
+                    style={{
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: 20,
+                        height: 20,
+                        tintColor: focused ? colors.whiteBlue : colors.preto,
+                    }}
+                />
+                <Text style={{
+                    fontSize: RFValue(12),
+                    color: focused ? colors.whiteBlue : colors.preto,
+                }}>Filtro</Text>
+            </>
+        case 'Series':
+            return <>
+                <Image
+                    source={item.icone}
+                    resizeMode={'contain'}
+                    style={{
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: 20,
+                        height: 20,
+                        tintColor: focused ? colors.whiteBlue : colors.preto,
+                    }}
+                />
+                <Text style={{
+                    fontSize: RFValue(12),
+                    color: focused ? colors.whiteBlue : colors.preto,
+                }}>Series</Text>
+            </>
         default:
-            return <Image
-                source={item.icone}
-                resizeMode={'contain'}
-                style={{
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: 22,
-                    height: 22,
-                    tintColor: focused ? colors.whiteBlue : colors.preto,
-                }}
-            />
+            return <>
+                <Image
+                    source={item.icone}
+                    resizeMode={'contain'}
+                    style={{
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: 20,
+                        height: 20,
+                        tintColor: focused ? colors.whiteBlue : colors.preto,
+                    }}
+                />
+                <Text style={{
+                    fontSize: RFValue(12),
+                    color: focused ? colors.whiteBlue : colors.preto,
+                }}>Default</Text>
+            </>
     }
 }
 
@@ -86,6 +111,7 @@ function montaTabs(param: TabNavigatorParam) {
                             {renderIcons(item, focused)}
                         </View>
                     ),
+                    headerShown: false,
                 }}
             />
         )
@@ -102,7 +128,7 @@ function TabNavigator(param: TabNavigatorParam) {
                         width: "100%",
                         alignItems: "center",
                         justifyContent: "center",
-                        backgroundColor: colors.secundario,
+                        backgroundColor: colors.azul,
                         elevation: 1,
                     },
                     tabBarHideOnKeyboard: true

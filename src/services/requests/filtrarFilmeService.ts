@@ -12,7 +12,7 @@ export async function filtrarFilmeService(tituloFilme: string) {
         return resultado.data.results
     }
     catch (error) {
-        console.log(error)
+        console.log('Filter Service: ', error)
         return {}
     }
 }

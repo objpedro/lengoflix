@@ -8,23 +8,19 @@ import { seriesService } from "../../services/requests/seriesService";
 export function SeriesProvider(props) {
     const [listaSeries, setListaSeries] = useState<Serie[]>([]);
     const [load, setLoad] = useState<boolean>(false);
-    const [page, setPage] = useState<number>(1);
 
     const SeriesProviderValue: ISeriesProvider = {
         load,
         setLoad,
-        page,
-        setPage,
         listaSeries,
         setListaSeries,
-        obterSeries: async () => {
+        obterSeries: async (view: string, page: number) => {
             setLoad(true)
             let ret: ProviderResult = null;
-            const requestResult = await seriesService(page);
+            const requestResult = await seriesService(view, page);
             if (requestResult) {
                 setListaSeries([...listaSeries, ...requestResult]);
                 // console.log("Series Provider Sucesso: ", requestResult);
-                setPage(page + 1);
                 ret = {
                     ...ret,
                     sucesso: true

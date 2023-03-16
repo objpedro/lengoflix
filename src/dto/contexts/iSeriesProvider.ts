@@ -5,11 +5,9 @@ interface ISeriesProvider {
     //Listagem de Series
     listaSeries: Serie[];
     setListaSeries: (serie: Serie[]) => void;
-    obterSeries: () => Promise<ProviderResult>;
+    obterSeries: (view: string, page: number) => Promise<ProviderResult>;
 
     //Loading
-    page: number,
-    setPage: (p: number) => void;
     load: boolean;
     setLoad: (status: boolean) => void;
 }

@@ -1,8 +1,8 @@
 import api from "../api";
 
-export async function seriesService(page: number) {
+export async function seriesService(view: string, page: number) {
     try {
-        const resultado = await api.get(`tv/popular`, {
+        const resultado = await api.get(`tv/${view}`, {
             params: {
                 api_key: "a81f256628352a57fc50c3593588644f",
                 language: "pt-BR",
@@ -12,7 +12,7 @@ export async function seriesService(page: number) {
         return resultado.data.results
     }
     catch (error) {
-        console.log(error)
+        console.log('Serie Service: ', error)
         return {}
     }
 }

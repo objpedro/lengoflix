@@ -11,7 +11,7 @@ export async function seriesDetailsService(idSerie: number) {
         return resultado.data
     }
     catch (error) {
-        console.log(error)
+        console.log('Serie Details Service: ', error)
         return {}
     }
 }
