@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { FilmeProvider } from './src/contexts/Filme/FilmeProvider';
+import { MovieProvider } from './src/contexts/Movie/MovieProvider';
 import { MovieDetailsProvider } from './src/contexts/MovieDetails/MovieDetailsProvider';
 import { FiltroProvider } from './src/contexts/Filtro/FiltroProvider';
 import { SeriesProvider } from './src/contexts/Series/SeriesProvider';
@@ -10,7 +10,7 @@ import ContextBuilder from './src/contexts/utils/ContextBuilder';
 import Routes from './src/routes/rotas';
 
 const ContextContainer = ContextBuilder([
-  FilmeProvider,
+  MovieProvider,
   MovieDetailsProvider,
   FiltroProvider,
   SeriesProvider,

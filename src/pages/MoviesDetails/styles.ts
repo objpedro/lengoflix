@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         color: colors.branco,
         height: 15,
     },
-    runTimeContainer:{
+    runTimeContainer: {
         flexDirection: 'row',
         alignItems: 'center'
     },
@@ -51,10 +51,22 @@ const styles = StyleSheet.create({
         height: '100%',
         marginRight: 10,
     },
-    nota: {
+    releaseDateContainer: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 10,
+    },
+    releaseDate: {
         fontSize: RFValue(15),
         color: colors.branco,
-        marginRight: 20,
+    },
+    voteAverageContainer: {
+        flexDirection: 'row',
+    },
+    voteAverage: {
+        fontSize: RFValue(15),
+        color: colors.branco,
     },
     descricao: {
         fontSize: RFValue(15),

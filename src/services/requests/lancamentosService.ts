@@ -2,7 +2,7 @@ import api from "../api";
 
 export async function lancamentosService(page: number) {
     try {
-        const resultado = await api.get(`movie/now_playing`, {
+        const resultado = await api.get(`movie/popular`, {
             params: {
                 api_key: "a81f256628352a57fc50c3593588644f",
                 language: "pt-BR",

@@ -14,7 +14,6 @@ import { RunTime } from "../../components/Runtime/Runtime";
 export function MoviesDetails({ route }) {
     const idFilm = route.params.idFilm;
     const movieDetailsContext = useContext(MovieDetailsContext);
-    const [loading, setLoading] = useState(false);
     const gradientColor = [
         'rgba(0,0,0,0.0)',
         'rgba(0,0,0,0.6)',
@@ -49,16 +48,19 @@ export function MoviesDetails({ route }) {
                     </View>
                 </LinearGradient>
             </ImageBackground>
-
             <View style={styles.container}>
                 <Text style={styles.tituloOriginal}>Titulo original: {movieDetailsContext.movieDetails.original_title}</Text>
                 <View style={styles.containerInfo}>
-                    <Image
-                        source={require('../../assets/the_movie_db_logo.png')}
-                        style={styles.tmdbLogo} />
-                    <Text style={styles.nota}>{movieDetailsContext.movieDetails.vote_average} / 10</Text>
+                    <View style={styles.releaseDateContainer}>
+                        <View style={styles.voteAverageContainer}>
+                            <Image
+                                source={require('../../assets/the_movie_db_logo.png')}
+                                style={styles.tmdbLogo} />
+                            <Text style={styles.releaseDate}>{movieDetailsContext.movieDetails.vote_average} / 10</Text>
+                        </View>
+                        <Text style={styles.releaseDate}>{movieDetailsContext.movieDetails.release_date}</Text>
+                    </View>
                 </View>
-
                 <Text style={styles.descricao}>{movieDetailsContext.movieDetails.overview}</Text>
             </View>
         </>
