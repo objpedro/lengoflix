@@ -1,20 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
 import {
     Text,
     View,
-    TextInput,
     TouchableOpacity,
 } from 'react-native';
 import { styles } from "./styles";
 import { useForm, Controller } from 'react-hook-form'
+import { useNavigation } from "@react-navigation/native";
 import { TextField } from "../../components/TextField";
 
-export function SignUp() {
+//Yup
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
-    const { control, handleSubmit, formState: { errors } } = useForm({})
+const schema = yup.object({
+    userName: yup.string().required("Informe seu Nome"),
+    email: yup.string().email("Email inválido").required("Informe seu Email"),
+    password: yup.string().min(8, "A senha deve ter pelo menos 8 dígitos").required("Informe uma senha"),
+})
+
+export function SignUp() {
+    const navigation = useNavigation();
+    const { control, handleSubmit, reset, formState: { errors } } = useForm({
+        resolver: yupResolver(schema)
+    })
 
     function handleSignup(data) {
         console.log(data);
+        navigation.navigate('Home');
+        reset();
     }
 
     return (
@@ -33,6 +47,7 @@ export function SignUp() {
                     />
                 )}
             />
+            {errors.userName && <Text style={styles.labelError}>{errors.userName?.message}</Text>}
 
             <Controller
                 control={control}
@@ -47,10 +62,11 @@ export function SignUp() {
                     />
                 )}
             />
+            {errors.email && <Text style={styles.labelError}>{errors.email?.message}</Text>}
 
             <Controller
                 control={control}
-                name="senha"
+                name="password"
                 render={({ field: { onChange, onBlur, value } }) => (
                     <TextField
                         onBlur={onBlur}
@@ -61,6 +77,7 @@ export function SignUp() {
                     />
                 )}
             />
+            {errors.password && <Text style={styles.labelError}>{errors.password?.message}</Text>}
 
             <TouchableOpacity
                 style={styles.btnCadastrar}

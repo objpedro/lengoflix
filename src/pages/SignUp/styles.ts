@@ -35,6 +35,11 @@ const styles = StyleSheet.create({
     txtBtnCadastrar: {
         color: colors.branco,
         fontSize: RFValue(15),
+    },
+    labelError: {
+        alignSelf: 'flex-start',
+        color: colors.error,
+        marginBottom: 8,
     }
 })
 
