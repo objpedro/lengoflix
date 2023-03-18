@@ -1,6 +1,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import { SignUp } from '../pages/SignUp';
 import { Home } from '../pages/Home';
 import { MoviesDetails } from '../pages/MoviesDetails';
 import { SeriesDetails } from '../pages/SeriesDetails';
@@ -10,7 +11,14 @@ const Stack = createNativeStackNavigator();
 
 export default function Routes() {
     return (
-        <Stack.Navigator initialRouteName='Home'>
+        <Stack.Navigator initialRouteName='SignUp'>
+            <Stack.Screen
+                name='SignUp'
+                component={SignUp}
+                options={{
+                    title: 'Lengoflix',
+                    headerShown: false,
+                }} />
             <Stack.Screen
                 name='Home'
                 component={Home}
