@@ -11,38 +11,33 @@ import { TextField } from "../../components/TextField";
 
 //Yup
 import { yupResolver } from '@hookform/resolvers/yup';
-import { schemaSignUp } from "../../utils/schemaSignUp";
+import { schemaSignIn } from "../../utils/schemaSignIn";
 
-export function SignUp() {
+export function SignIn() {
     const navigation = useNavigation();
     const { control, handleSubmit, reset, formState: { errors } } = useForm({
-        resolver: yupResolver(schemaSignUp)
+        resolver: yupResolver(schemaSignIn)
     })
 
-    function handleSignup(data) {
+    function handleSignIn(data) {
         console.log(data);
+        navigation.navigate('Home');
+        reset();
+    }
+
+    function handleSignUp() {
+        navigation.navigate('SignUp');
+        reset();
+    }
+
+    function handleForgotPassword() {
         navigation.navigate('Home');
         reset();
     }
 
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>Cadastrar Usuário</Text>
-            <Controller
-                control={control}
-                name="userName"
-                render={({ field: { onChange, onBlur, value } }) => (
-                    <TextField
-                        onBlur={onBlur}
-                        onChange={onChange}
-                        value={value}
-                        placeholder={'Seu nome'}
-                        isPassword={false}
-                    />
-                )}
-            />
-            {errors.userName && <Text style={styles.labelError}>{errors.userName?.message}</Text>}
-
+            <Text style={styles.header}>Login</Text>
             <Controller
                 control={control}
                 name="email"
@@ -72,26 +67,22 @@ export function SignUp() {
                 )}
             />
             {errors.password && <Text style={styles.labelError}>{errors.password?.message}</Text>}
-
-            <Controller
-                control={control}
-                name="confirmPassword"
-                render={({ field: { onChange, onBlur, value } }) => (
-                    <TextField
-                        onBlur={onBlur}
-                        onChange={onChange}
-                        value={value}
-                        placeholder={'Confirmar Senha'}
-                        isPassword={true}
-                    />
-                )}
-            />
-            {errors.password && <Text style={styles.labelError}>{errors.password?.message}</Text>}
-
+            <View style={styles.forgotPassword}>
+                <TouchableOpacity
+                    style={styles.btnLogin}
+                    onPress={handleSubmit(handleSignIn)}>
+                    <Text style={styles.txtBtnLogin}>Logar</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.forgotPasswordContainer}
+                    onPress={handleForgotPassword}>
+                    <Text style={styles.txtBtnLogin}>Esqueceu a senha?</Text>
+                </TouchableOpacity>
+            </View>
             <TouchableOpacity
-                style={styles.btnCadastrar}
-                onPress={handleSubmit(handleSignup)}>
-                <Text style={styles.txtBtnCadastrar}>Cadastrar</Text>
+                style={styles.btnSignUp}
+                onPress={handleSignUp}>
+                <Text style={styles.txtBtnLogin}>Novo por aqui? Inscreva-se agora.</Text>
             </TouchableOpacity>
         </View>
     )
