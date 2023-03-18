@@ -10,19 +10,13 @@ import { useNavigation } from "@react-navigation/native";
 import { TextField } from "../../components/TextField";
 
 //Yup
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-
-const schema = yup.object({
-    userName: yup.string().required("Informe seu Nome"),
-    email: yup.string().email("Email inválido").required("Informe seu Email"),
-    password: yup.string().min(8, "A senha deve ter pelo menos 8 dígitos").required("Informe uma senha"),
-})
+import { schemaSignUp } from "../../utils/schemaSignUp";
 
 export function SignUp() {
     const navigation = useNavigation();
     const { control, handleSubmit, reset, formState: { errors } } = useForm({
-        resolver: yupResolver(schema)
+        resolver: yupResolver(schemaSignUp)
     })
 
     function handleSignup(data) {
