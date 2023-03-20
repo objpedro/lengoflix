@@ -1,21 +1,18 @@
-import Spinner from 'react-native-loading-spinner-overlay';
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { ActivityIndicator } from 'react-native';
+import colors from '../../utils/color';
 
-const styles = StyleSheet.create({
-    spinnerTextStyle: {
-      color: '#FFF'
-    },
-  });
+interface Props {
+  isVisible: boolean,
+}
 
-export default function Loading(props){
-    return (
-        <Spinner
-            visible={props.visibility}
-            textContent={'Carregando...'}
-            textStyle={styles.spinnerTextStyle}
-            overlayColor={'rgba(0, 0, 0, 0.75)'}
-        />
-    )
+export function Loading({ isVisible }: Props) {
+  return (
+    isVisible &&
+    <ActivityIndicator
+      size="large"
+      color={colors.branco}
+    />
+  )
 }
 
