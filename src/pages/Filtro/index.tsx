@@ -10,15 +10,12 @@ import {
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { FiltroContext } from "../../contexts/Filtro/FiltroContext";
+import { Loading } from "../../components/Loading";
 
 export function Filtro() {
     const navigation = useNavigation();
     const filmesFiltradosContext = useContext(FiltroContext);
-    const [searchData, setSearchData] = useState<string>('stranger things');
-
-    useEffect(() => {
-        filmesFiltradosContext.listarFilmesFiltrados(searchData);
-    }, []);
+    const [searchData, setSearchData] = useState<string>('');
 
     return (
         <View style={styles.container}>
@@ -27,7 +24,7 @@ export function Filtro() {
                     style={styles.searchFilme}
                     onChangeText={(tituloFilme: string) => setSearchData(tituloFilme)}
                     value={searchData}
-                    placeholder="Pesquisar Filme"
+                    placeholder="Pesquisar"
                 />
                 <TouchableOpacity
                     style={styles.searchButton}
@@ -62,6 +59,7 @@ export function Filtro() {
                     </TouchableOpacity>
                 )}
             />
+            <Loading isVisible={filmesFiltradosContext.load} />
         </View>
     )
 }

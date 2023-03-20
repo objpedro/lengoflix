@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Filme } from "../../dto/domain/Filme";
+import { Movie } from "../../dto/domain/Movie";
 import { IFiltroProvider } from "../../dto/contexts/iFiltroProvider";
 import ProviderResult from "../../dto/contexts/providerResult";
 import { filtrarFilmeService } from "../../services/requests/filtrarFilmeService";
 import { FiltroContext } from "./FiltroContext";
 
 export function FiltroProvider(props) {
-    const [listaFilmesFiltrados, setListaFilmesFiltrados] = useState<Filme[]>([])
+    const [listaFilmesFiltrados, setListaFilmesFiltrados] = useState<Movie[]>([])
     const [load, setLoad] = useState<boolean>(false);
 
     const FiltroPropsValue: IFiltroProvider = {
@@ -20,7 +20,7 @@ export function FiltroProvider(props) {
             const requestResult = await filtrarFilmeService(tituloFilme);
             if (requestResult) {
                 setListaFilmesFiltrados(requestResult);
-                // console.log("Lista Filmes Filtrados Sucesso: ", requestResult);
+                console.log("Lista Filmes Filtrados Sucesso: ", requestResult);
                 ret = {
                     ...ret,
                     sucesso: true
