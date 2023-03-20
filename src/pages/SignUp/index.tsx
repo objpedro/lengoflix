@@ -13,16 +13,29 @@ import { TextField } from "../../components/TextField";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaSignUp } from "../../utils/schemaSignUp";
 
+import auth from '@react-native-firebase/auth';
+
+interface Data {
+    userName: string,
+    email: string,
+    password: string,
+    confirmPassword: string,
+}
+
 export function SignUp() {
     const navigation = useNavigation();
     const { control, handleSubmit, reset, formState: { errors } } = useForm({
         resolver: yupResolver(schemaSignUp)
     })
 
-    function handleSignup(data) {
-        console.log(data);
-        navigation.navigate('Home');
-        reset();
+    function handleSignup(data: Data) {
+        if (data.confirmPassword !== data.password) {
+            console.log(data)
+        } else {
+            reset();
+            // auth().createUserWithEmailAndPassword(data.email, data.password);
+        }
+        // navigation.navigate('Home');
     }
 
     return (
@@ -86,7 +99,7 @@ export function SignUp() {
                     />
                 )}
             />
-            {errors.password && <Text style={styles.labelError}>{errors.password?.message}</Text>}
+            {errors.password && <Text style={styles.labelError}>{errors.confirmPassword?.message}</Text>}
 
             <TouchableOpacity
                 style={styles.btnCadastrar}
