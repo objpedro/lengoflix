@@ -12,6 +12,12 @@ import { TextField } from "../../components/TextField";
 //Yup
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaSignIn } from "../../utils/schemaSignIn";
+import auth from '@react-native-firebase/auth';
+
+interface userData {
+    email: string,
+    password: string,
+}
 
 export function SignIn() {
     const navigation = useNavigation();
@@ -19,20 +25,16 @@ export function SignIn() {
         resolver: yupResolver(schemaSignIn)
     })
 
-    function handleSignIn(data) {
+    function handleSignIn(data: userData) {
         console.log(data);
-        navigation.navigate('Home');
-        reset();
-    }
-
-    function handleSignUp() {
-        navigation.navigate('SignUp');
-        reset();
-    }
-
-    function handleForgotPassword() {
-        navigation.navigate('Home');
-        reset();
+        auth()
+            .signInWithEmailAndPassword(data.email, data.password)
+            .then(() => {
+                navigation.navigate('Home');
+            })
+            .catch(error => {
+                console.log(error)
+            });
     }
 
     return (
@@ -75,13 +77,17 @@ export function SignIn() {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.forgotPasswordContainer}
-                    onPress={handleForgotPassword}>
+                    onPress={() => {
+                        navigation.navigate('Home');
+                    }}>
                     <Text style={styles.txtBtnLogin}>Esqueceu a senha?</Text>
                 </TouchableOpacity>
             </View>
             <TouchableOpacity
                 style={styles.btnSignUp}
-                onPress={handleSignUp}>
+                onPress={() => {
+                    navigation.navigate('SignUp');
+                }}>
                 <Text style={styles.txtBtnLogin}>Novo por aqui? Inscreva-se agora.</Text>
             </TouchableOpacity>
         </View>

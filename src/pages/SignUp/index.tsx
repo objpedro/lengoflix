@@ -15,7 +15,7 @@ import { schemaSignUp } from "../../utils/schemaSignUp";
 
 import auth from '@react-native-firebase/auth';
 
-interface Data {
+interface userData {
     userName: string,
     email: string,
     password: string,
@@ -28,14 +28,27 @@ export function SignUp() {
         resolver: yupResolver(schemaSignUp)
     })
 
-    function handleSignup(data: Data) {
+    function handleSignup(data: userData) {
         if (data.confirmPassword !== data.password) {
             console.log(data)
+            // user:  {"additionalUserInfo": {"isNewUser": true}, "user": {"displayName": null, "email": "wandinha.asevedi@lengoflix.com", "emailVerified": false, "isAnonymous": false, "metadata": [Object], "multiFactor": [Object], "phoneNumber": null, "photoURL": null, "providerData": [Array], "providerId": "firebase", "tenantId": null, "uid": "z1GA7rASMuhBCsEXDPXUjL8Bojd2"}}
         } else {
             reset();
-            // auth().createUserWithEmailAndPassword(data.email, data.password);
+            auth()
+                .createUserWithEmailAndPassword(data.email, data.password)
+                .then((userCredential) => {
+                    // console.log('user: ', userCredential);
+                    navigation.navigate('Home');
+                })
+                .catch(error => {
+                    if (error.code == 'auth/email-already-in-use') {
+                        console.log('Email já existe');
+                    }
+                    if (error.code == 'auth/invalid-email') {
+                        console.log('Email inválido');
+                    }
+                })
         }
-        // navigation.navigate('Home');
     }
 
     return (
