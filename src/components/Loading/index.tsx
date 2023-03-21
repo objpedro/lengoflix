@@ -4,13 +4,14 @@ import colors from '../../utils/color';
 
 interface Props {
   isVisible: boolean,
+  size: number,
 }
 
-export function Loading({ isVisible }: Props) {
+export function Loading({ isVisible, size }: Props) {
   return (
     isVisible &&
     <ActivityIndicator
-      size="large"
+      size={size}
       color={colors.branco}
     />
   )

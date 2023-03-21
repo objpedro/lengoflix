@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
         padding: '4%',
         alignItems: 'center',
         justifyContent: 'center',
+        flexDirection: 'row',
     },
     txtBtnLogin: {
         color: colors.branco,

@@ -12,6 +12,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaSignIn } from "../../utils/schemaSignIn";
 import { FirebaseContext } from "../../contexts/Firebase/FirebaseContex";
 import { User } from "../../dto/domain/User";
+import { CustomButton } from "../../components/CustomButton";
 
 export function SignIn() {
     const navigation = useNavigation();
@@ -56,11 +57,10 @@ export function SignIn() {
             {errors.password && <Text style={styles.labelError}>{errors.password?.message}</Text>}
             {firebaseContext.errorFirebase && <Text style={styles.labelError}>{firebaseContext.errorFirebase}</Text>}
             <View style={styles.forgotPassword}>
-                <TouchableOpacity
-                    style={styles.btnLogin}
-                    onPress={handleSubmit(handleSignIn)}>
-                    <Text style={styles.txtBtnLogin}>Logar</Text>
-                </TouchableOpacity>
+                <CustomButton
+                    onPress={handleSubmit(handleSignIn)}
+                    txtButton={'Logar'}
+                    isLoading={firebaseContext.load} />
                 <TouchableOpacity
                     style={styles.forgotPasswordContainer}
                     onPress={() => {

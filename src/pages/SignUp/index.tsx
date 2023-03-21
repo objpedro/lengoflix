@@ -11,6 +11,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaSignUp } from "../../utils/schemaSignUp";
 import { FirebaseContext } from "../../contexts/Firebase/FirebaseContex";
 import { User } from "../../dto/domain/User";
+import { CustomButton } from '../../components/CustomButton';
 
 export function SignUp() {
     const firebaseContext = useContext(FirebaseContext);
@@ -89,11 +90,10 @@ export function SignUp() {
             />
             {errors.password && <Text style={styles.labelError}>{errors.confirmPassword?.message}</Text>}
             {firebaseContext.errorFirebase && <Text style={styles.labelError}>{firebaseContext.errorFirebase}</Text>}
-            <TouchableOpacity
-                style={styles.btnCadastrar}
-                onPress={handleSubmit(handleSignup)}>
-                <Text style={styles.txtBtnCadastrar}>Cadastrar</Text>
-            </TouchableOpacity>
+            <CustomButton
+                onPress={handleSubmit(handleSignup)}
+                txtButton={'Cadastrar'}
+                isLoading={firebaseContext.load} />
         </View>
     )
 }
