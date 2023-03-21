@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import {
     Text,
     View,
@@ -6,47 +6,26 @@ import {
 } from 'react-native';
 import { styles } from "./styles";
 import { useForm, Controller } from 'react-hook-form'
-import { useNavigation } from "@react-navigation/native";
 import { TextField } from "../../components/TextField";
-
-//Yup
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaSignUp } from "../../utils/schemaSignUp";
-
-import auth from '@react-native-firebase/auth';
-import { VerifyErroCode } from "../../utils/VerifyErroCode";
-
-interface userData {
-    userName: string,
-    email: string,
-    password: string,
-    confirmPassword: string,
-}
+import { FirebaseContext } from "../../contexts/Firebase/FirebaseContex";
+import { User } from "../../dto/domain/User";
 
 export function SignUp() {
-    const navigation = useNavigation();
+    const firebaseContext = useContext(FirebaseContext);
     const { control, handleSubmit, reset, formState: { errors } } = useForm({
         resolver: yupResolver(schemaSignUp)
     })
-    const [errorFirebase, setErrorFirebase] = useState<string | null>(null)
 
-    function handleSignup(data: userData) {
+    function handleSignup(data: User) {
         if (data.confirmPassword !== data.password) {
             console.log(data)
-            setErrorFirebase('Senhas não combinam')
+            firebaseContext.setErrorFirebase('Senhas não combinam')
             // user:  {"additionalUserInfo": {"isNewUser": true}, "user": {"displayName": null, "email": "wandinha.asevedi@lengoflix.com", "emailVerified": false, "isAnonymous": false, "metadata": [Object], "multiFactor": [Object], "phoneNumber": null, "photoURL": null, "providerData": [Array], "providerId": "firebase", "tenantId": null, "uid": "z1GA7rASMuhBCsEXDPXUjL8Bojd2"}}
         } else {
+            firebaseContext.handleSignUp(data)
             reset();
-            auth()
-                .createUserWithEmailAndPassword(data.email, data.password)
-                .then((userCredential) => {
-                    // console.log('user: ', userCredential);
-                    setErrorFirebase(null)
-                    navigation.navigate('Home');
-                })
-                .catch(error => {
-                    setErrorFirebase(VerifyErroCode(error.code))
-                })
         }
     }
 
@@ -109,8 +88,7 @@ export function SignUp() {
                 )}
             />
             {errors.password && <Text style={styles.labelError}>{errors.confirmPassword?.message}</Text>}
-            {errorFirebase && <Text style={styles.labelError}>{errorFirebase}</Text>}
-
+            {firebaseContext.errorFirebase && <Text style={styles.labelError}>{firebaseContext.errorFirebase}</Text>}
             <TouchableOpacity
                 style={styles.btnCadastrar}
                 onPress={handleSubmit(handleSignup)}>
