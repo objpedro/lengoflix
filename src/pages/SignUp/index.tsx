@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Text,
     View,
@@ -14,6 +14,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaSignUp } from "../../utils/schemaSignUp";
 
 import auth from '@react-native-firebase/auth';
+import { VerifyErroCode } from "../../utils/VerifyErroCode";
 
 interface userData {
     userName: string,
@@ -27,10 +28,12 @@ export function SignUp() {
     const { control, handleSubmit, reset, formState: { errors } } = useForm({
         resolver: yupResolver(schemaSignUp)
     })
+    const [errorFirebase, setErrorFirebase] = useState<string>()
 
     function handleSignup(data: userData) {
         if (data.confirmPassword !== data.password) {
             console.log(data)
+            setErrorFirebase('Senhas não combinam')
             // user:  {"additionalUserInfo": {"isNewUser": true}, "user": {"displayName": null, "email": "wandinha.asevedi@lengoflix.com", "emailVerified": false, "isAnonymous": false, "metadata": [Object], "multiFactor": [Object], "phoneNumber": null, "photoURL": null, "providerData": [Array], "providerId": "firebase", "tenantId": null, "uid": "z1GA7rASMuhBCsEXDPXUjL8Bojd2"}}
         } else {
             reset();
@@ -41,12 +44,7 @@ export function SignUp() {
                     navigation.navigate('Home');
                 })
                 .catch(error => {
-                    if (error.code == 'auth/email-already-in-use') {
-                        console.log('Email já existe');
-                    }
-                    if (error.code == 'auth/invalid-email') {
-                        console.log('Email inválido');
-                    }
+                    setErrorFirebase(VerifyErroCode(error.code))
                 })
         }
     }
@@ -68,7 +66,6 @@ export function SignUp() {
                 )}
             />
             {errors.userName && <Text style={styles.labelError}>{errors.userName?.message}</Text>}
-
             <Controller
                 control={control}
                 name="email"
@@ -83,7 +80,6 @@ export function SignUp() {
                 )}
             />
             {errors.email && <Text style={styles.labelError}>{errors.email?.message}</Text>}
-
             <Controller
                 control={control}
                 name="password"
@@ -98,7 +94,6 @@ export function SignUp() {
                 )}
             />
             {errors.password && <Text style={styles.labelError}>{errors.password?.message}</Text>}
-
             <Controller
                 control={control}
                 name="confirmPassword"
@@ -113,6 +108,7 @@ export function SignUp() {
                 )}
             />
             {errors.password && <Text style={styles.labelError}>{errors.confirmPassword?.message}</Text>}
+            {errorFirebase && <Text style={styles.labelError}>{errorFirebase}</Text>}
 
             <TouchableOpacity
                 style={styles.btnCadastrar}

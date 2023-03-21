@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Text,
     View,
@@ -8,11 +8,11 @@ import { styles } from "./styles";
 import { useForm, Controller } from 'react-hook-form'
 import { useNavigation } from "@react-navigation/native";
 import { TextField } from "../../components/TextField";
-
+import auth from '@react-native-firebase/auth';
+import { VerifyErroCode } from "../../utils/VerifyErroCode";
 //Yup
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaSignIn } from "../../utils/schemaSignIn";
-import auth from '@react-native-firebase/auth';
 
 interface userData {
     email: string,
@@ -21,19 +21,21 @@ interface userData {
 
 export function SignIn() {
     const navigation = useNavigation();
-    const { control, handleSubmit, reset, formState: { errors } } = useForm({
+    const { control, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schemaSignIn)
     })
+    const [errorFirebase, setErrorFirebase] = useState<string>()
 
     function handleSignIn(data: userData) {
-        console.log(data);
+        // console.log(data);
         auth()
             .signInWithEmailAndPassword(data.email, data.password)
             .then(() => {
                 navigation.navigate('Home');
             })
             .catch(error => {
-                console.log(error)
+                // console.log(error.code)
+                setErrorFirebase(VerifyErroCode(error.code))
             });
     }
 
@@ -54,7 +56,6 @@ export function SignIn() {
                 )}
             />
             {errors.email && <Text style={styles.labelError}>{errors.email?.message}</Text>}
-
             <Controller
                 control={control}
                 name="password"
@@ -69,6 +70,7 @@ export function SignIn() {
                 )}
             />
             {errors.password && <Text style={styles.labelError}>{errors.password?.message}</Text>}
+            {errorFirebase && <Text style={styles.labelError}>{errorFirebase}</Text>}
             <View style={styles.forgotPassword}>
                 <TouchableOpacity
                     style={styles.btnLogin}
