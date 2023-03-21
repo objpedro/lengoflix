@@ -9,7 +9,9 @@ import {
 import styles from "./styles";
 import { SeriesDetailsContext } from "../../contexts/SeriesDetails/SeriesDetailsContex";
 import LinearGradient from "react-native-linear-gradient";
-import TabViewComponent from "../../components/TabView/TabView";
+import { TabView } from "../../components/TabView";
+import { About } from "../About";
+import { Season } from "../Season";
 
 export function SeriesDetails({ route }) {
     const idSerie = route.params.idSerie;
@@ -49,7 +51,13 @@ export function SeriesDetails({ route }) {
                     </View>
                 </LinearGradient>
             </ImageBackground>
-            <TabViewComponent />
+
+            <TabView
+                itens={[
+                    { name: 'About', component: About, },
+                    { name: 'Season', component: Season, },
+                ]} />
+
         </View>
     )
 }
