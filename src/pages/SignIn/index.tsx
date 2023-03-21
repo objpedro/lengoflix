@@ -24,13 +24,14 @@ export function SignIn() {
     const { control, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schemaSignIn)
     })
-    const [errorFirebase, setErrorFirebase] = useState<string>()
+    const [errorFirebase, setErrorFirebase] = useState<string | null>(null)
 
     function handleSignIn(data: userData) {
         // console.log(data);
         auth()
             .signInWithEmailAndPassword(data.email, data.password)
             .then(() => {
+                setErrorFirebase(null)
                 navigation.navigate('Home');
             })
             .catch(error => {

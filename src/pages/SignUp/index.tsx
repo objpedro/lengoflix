@@ -28,7 +28,7 @@ export function SignUp() {
     const { control, handleSubmit, reset, formState: { errors } } = useForm({
         resolver: yupResolver(schemaSignUp)
     })
-    const [errorFirebase, setErrorFirebase] = useState<string>()
+    const [errorFirebase, setErrorFirebase] = useState<string | null>(null)
 
     function handleSignup(data: userData) {
         if (data.confirmPassword !== data.password) {
@@ -41,6 +41,7 @@ export function SignUp() {
                 .createUserWithEmailAndPassword(data.email, data.password)
                 .then((userCredential) => {
                     // console.log('user: ', userCredential);
+                    setErrorFirebase(null)
                     navigation.navigate('Home');
                 })
                 .catch(error => {
