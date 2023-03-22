@@ -1,24 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FirebaseContext } from "./FirebaseContex";
-import ProviderResult from "../../dto/contexts/providerResult";
 import { IFirebaseProvider } from "../../dto/contexts/iFirebaseProvider";
 import { User } from '../../dto/domain/User';
-import auth from '@react-native-firebase/auth';
+import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import { firebase } from '@react-native-firebase/database';
 import { VerifyErroCode } from "../../utils/VerifyErroCode";
 import { useNavigation } from "@react-navigation/native";
 
 export function FirebaseProvider(props) {
     const [load, setLoad] = useState<boolean>(false);
+    const [authStateChanged, setAuthStateChanged] = useState<FirebaseAuthTypes.User | null>(null);
+    const [userCredential, setUserCredential] = useState<FirebaseAuthTypes.UserCredential>(null);
     const [errorFirebase, setErrorFirebase] = useState<string>('');
     const navigation = useNavigation();
+    const reference = firebase.app().database().ref('/users')
+
+    useEffect(() => {
+        const unsubscribe = auth().onAuthStateChanged(_user => {
+            setAuthStateChanged(_user);
+        })
+
+        return unsubscribe;
+    }, [])
 
     const FirebaseValue: IFirebaseProvider = {
         load,
         setLoad,
         errorFirebase,
         setErrorFirebase,
+        authStateChanged,
+        setAuthStateChanged,
         handleSignIn: async (data: User) => {
-            // console.log(data)
             setLoad(true);
             await auth()
                 .signInWithEmailAndPassword(data.email, data.password)
@@ -28,26 +40,33 @@ export function FirebaseProvider(props) {
                     setLoad(false);
                 })
                 .catch(error => {
-                    // console.log(error.code)
                     setErrorFirebase(VerifyErroCode(error.code))
                     setLoad(false);
                 });
         },
         handleSignUp: async (data: User) => {
-            // console.log(data)
             setLoad(true);
             await auth()
                 .createUserWithEmailAndPassword(data.email, data.password)
-                .then((userCredential) => {
-                    // console.log('user: ', userCredential);
+                .then((userCredential: FirebaseAuthTypes.UserCredential) => {
+                    reference
+                        .child(userCredential.user.uid)
+                        .set({
+                            name: data.userName
+                        });
+                    setUserCredential(userCredential);
                     setErrorFirebase('')
-                    navigation.navigate('Home');
+                    navigation.navigate('Home', { uid: userCredential.user.uid });
                     setLoad(false);
                 })
                 .catch(error => {
                     setErrorFirebase(VerifyErroCode(error.code))
                     setLoad(false);
                 })
+        },
+        handleSignOut: async () => {
+            auth().signOut()
+            setAuthStateChanged(null)
         },
     }
 

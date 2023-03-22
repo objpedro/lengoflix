@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, } from "react";
 import {
     Text,
     View,
@@ -20,12 +20,16 @@ export function SignIn() {
     const { control, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schemaSignIn)
     })
+
     function handleSignIn(data: User) {
         firebaseContext.handleSignIn(data)
     }
 
     return (
         <View style={styles.container}>
+            {/* <>
+                {firebaseContext.authStateChanged && navigation.navigate('Home')}
+            </> */}
             <Text style={styles.header}>Login</Text>
             <Controller
                 control={control}
