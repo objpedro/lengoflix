@@ -1,17 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { ScrollView, TouchableOpacity, Text, SafeAreaView } from 'react-native';
 import { Lancamentos } from "./components/Lancamentos";
 import { useNavigation } from "@react-navigation/native";
 import { FirebaseContext } from "../../contexts/Firebase/FirebaseContex";
+import { UserContext } from "../../contexts/User/UserContext";
 import styles from "./styles";
 
 export function Movies() {
     const navigation = useNavigation()
     const firebaseContext = useContext(FirebaseContext);
+    const userContext = useContext(UserContext);
 
     return (
         <SafeAreaView style={styles.nameUserContainer}>
-            <Text style={styles.nameUser}>Olá mundo</Text>
+            <>
+                {userContext.user && <Text style={styles.nameUser}>Olá, {userContext.user}</Text>}
+            </>
             <ScrollView>
                 <Lancamentos />
                 <TouchableOpacity

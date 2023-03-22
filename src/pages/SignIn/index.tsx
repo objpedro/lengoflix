@@ -27,9 +27,9 @@ export function SignIn() {
 
     return (
         <View style={styles.container}>
-            {/* <>
+            <>
                 {firebaseContext.authStateChanged && navigation.navigate('Home')}
-            </> */}
+            </>
             <Text style={styles.header}>Login</Text>
             <Controller
                 control={control}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FirebaseContext } from "./FirebaseContex";
 import { IFirebaseProvider } from "../../dto/contexts/iFirebaseProvider";
 import { User } from '../../dto/domain/User';
@@ -6,13 +6,14 @@ import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { firebase } from '@react-native-firebase/database';
 import { VerifyErroCode } from "../../utils/VerifyErroCode";
 import { useNavigation } from "@react-navigation/native";
+import { UserContext } from "../User/UserContext";
 
 export function FirebaseProvider(props) {
     const [load, setLoad] = useState<boolean>(false);
     const [authStateChanged, setAuthStateChanged] = useState<FirebaseAuthTypes.User | null>(null);
-    const [userCredential, setUserCredential] = useState<FirebaseAuthTypes.UserCredential>(null);
     const [errorFirebase, setErrorFirebase] = useState<string>('');
     const navigation = useNavigation();
+    const userContext = useContext(UserContext);
     const reference = firebase.app().database().ref('/users')
 
     useEffect(() => {
@@ -34,7 +35,8 @@ export function FirebaseProvider(props) {
             setLoad(true);
             await auth()
                 .signInWithEmailAndPassword(data.email, data.password)
-                .then(() => {
+                .then((userCredential: FirebaseAuthTypes.UserCredential) => {
+                    userContext.getUser(userCredential.user.uid);
                     setErrorFirebase('')
                     navigation.navigate('Home');
                     setLoad(false);
@@ -54,7 +56,7 @@ export function FirebaseProvider(props) {
                         .set({
                             name: data.userName
                         });
-                    setUserCredential(userCredential);
+                    userContext.getUser(userCredential.user.uid);
                     setErrorFirebase('')
                     navigation.navigate('Home', { uid: userCredential.user.uid });
                     setLoad(false);

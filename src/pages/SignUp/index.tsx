@@ -21,9 +21,7 @@ export function SignUp() {
 
     function handleSignup(data: User) {
         if (data.confirmPassword !== data.password) {
-            console.log(data)
             firebaseContext.setErrorFirebase('Senhas não combinam')
-            // user:  {"additionalUserInfo": {"isNewUser": true}, "user": {"displayName": null, "email": "wandinha.asevedi@lengoflix.com", "emailVerified": false, "isAnonymous": false, "metadata": [Object], "multiFactor": [Object], "phoneNumber": null, "photoURL": null, "providerData": [Array], "providerId": "firebase", "tenantId": null, "uid": "z1GA7rASMuhBCsEXDPXUjL8Bojd2"}}
         } else {
             firebaseContext.handleSignUp(data)
             reset();
