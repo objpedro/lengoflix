@@ -21,7 +21,7 @@ export function Movies() {
                 <TouchableOpacity
                     onPress={() => {
                         firebaseContext.handleSignOut();
-                        navigation.navigate('SignIn')
+                        navigation.navigate('Sign')
                     }}
                     style={{
                         margin: 20,

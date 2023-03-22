@@ -30,7 +30,6 @@ export function SignIn() {
             <>
                 {firebaseContext.authStateChanged && navigation.navigate('Home')}
             </>
-            <Text style={styles.header}>Login</Text>
             <Controller
                 control={control}
                 name="email"

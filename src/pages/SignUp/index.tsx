@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import {
     Text,
     View,
-    TouchableOpacity,
 } from 'react-native';
 import { styles } from "./styles";
 import { useForm, Controller } from 'react-hook-form'
@@ -30,7 +29,6 @@ export function SignUp() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>Cadastrar Usuário</Text>
             <Controller
                 control={control}
                 name="userName"
@@ -39,7 +37,7 @@ export function SignUp() {
                         onBlur={onBlur}
                         onChange={onChange}
                         value={value}
-                        placeholder={'Seu nome'}
+                        placeholder={'Seu nome ou apelido'}
                         isPassword={false}
                     />
                 )}

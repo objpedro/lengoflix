@@ -1,5 +1,6 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Sign } from '../pages/Sign';
 import { SignIn } from '../pages/SignIn';
 import { SignUp } from '../pages/SignUp';
 import { Home } from '../pages/Home';
@@ -12,7 +13,14 @@ const Stack = createNativeStackNavigator();
 export default function Routes() {
     return (
         <>
-            <Stack.Navigator initialRouteName={'SignIn'}>
+            <Stack.Navigator initialRouteName={'Sign'}>
+                <Stack.Screen
+                    name='Sign'
+                    component={Sign}
+                    options={{
+                        title: 'Lengoflix',
+                        headerShown: false,
+                    }} />
                 <Stack.Screen
                     name='SignIn'
                     component={SignIn}
@@ -56,7 +64,6 @@ export default function Routes() {
                         headerShown: false,
                     }} />
             </Stack.Navigator>
-
         </>
     );
 }

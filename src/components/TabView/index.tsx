@@ -25,6 +25,14 @@ function renderIcons(item: ItemTabViewProps) {
             return <View style={styles.tabBarIcon}>
                 <Text style={styles.txtNameScreen}>Temporadas</Text>
             </View>
+        case 'SignIn':
+            return <View style={styles.tabBarIcon}>
+                <Text style={styles.txtNameScreen}>Login</Text>
+            </View>
+        case 'SignUp':
+            return <View style={styles.tabBarIcon}>
+                <Text style={styles.txtNameScreen}>Cadastrar</Text>
+            </View>
         default:
             return <View style={styles.tabBarIcon}>
                 <Text style={styles.txtNameScreen}>Default</Text>
