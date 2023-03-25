@@ -13,9 +13,7 @@ export function Movies() {
 
     return (
         <SafeAreaView style={styles.nameUserContainer}>
-            <>
-                {userContext.user && <Text style={styles.nameUser}>Olá, {userContext.user}</Text>}
-            </>
+            {userContext.user && <Text style={styles.nameUser}>Olá, {userContext.user}</Text>}
             <ScrollView>
                 <Lancamentos />
                 <TouchableOpacity

@@ -17,12 +17,13 @@ import { CustomButton } from "../../components/CustomButton";
 export function SignIn() {
     const navigation = useNavigation();
     const firebaseContext = useContext(FirebaseContext);
-    const { control, handleSubmit, formState: { errors } } = useForm({
+    const { control, handleSubmit,reset, formState: { errors } } = useForm({
         resolver: yupResolver(schemaSignIn)
     })
 
     function handleSignIn(data: User) {
         firebaseContext.handleSignIn(data)
+        reset();
     }
 
     return (
