@@ -1,7 +1,9 @@
 import React, { useContext, } from "react";
 import {
-    Text,
     View,
+    Text,
+    ScrollView,
+    SafeAreaView,
     TouchableOpacity,
 } from 'react-native';
 import { styles } from "./styles";
@@ -17,7 +19,7 @@ import { CustomButton } from "../../components/CustomButton";
 export function SignIn() {
     const navigation = useNavigation();
     const firebaseContext = useContext(FirebaseContext);
-    const { control, handleSubmit,reset, formState: { errors } } = useForm({
+    const { control, handleSubmit, reset, formState: { errors } } = useForm({
         resolver: yupResolver(schemaSignIn)
     })
 
@@ -27,59 +29,62 @@ export function SignIn() {
     }
 
     return (
-        <View style={styles.container}>
-            <>
-                {firebaseContext.authStateChanged && navigation.navigate('Home')}
-            </>
-            <Controller
-                control={control}
-                name="email"
-                render={({ field: { onChange, onBlur, value } }) => (
-                    <TextField
-                        onBlur={onBlur}
-                        onChange={onChange}
-                        value={value}
-                        placeholder={'Email'}
-                        isPassword={false}
-                    />
-                )}
-            />
-            {errors.email && <Text style={styles.labelError}>{errors.email?.message}</Text>}
-            <Controller
-                control={control}
-                name="password"
-                render={({ field: { onChange, onBlur, value } }) => (
-                    <TextField
-                        onBlur={onBlur}
-                        onChange={onChange}
-                        value={value}
-                        placeholder={'Senha'}
-                        isPassword={true}
-                    />
-                )}
-            />
-            {errors.password && <Text style={styles.labelError}>{errors.password?.message}</Text>}
-            {firebaseContext.errorFirebase && <Text style={styles.labelError}>{firebaseContext.errorFirebase}</Text>}
-            <View style={styles.forgotPassword}>
-                <CustomButton
-                    onPress={handleSubmit(handleSignIn)}
-                    txtButton={'Logar'}
-                    isLoading={firebaseContext.load} />
+        <SafeAreaView style={styles.container}>
+            <ScrollView>
+
+                <>
+                    {firebaseContext.authStateChanged && navigation.navigate('Home')}
+                </>
+                <Controller
+                    control={control}
+                    name="email"
+                    render={({ field: { onChange, onBlur, value } }) => (
+                        <TextField
+                            onBlur={onBlur}
+                            onChange={onChange}
+                            value={value}
+                            placeholder={'Email'}
+                            isPassword={false}
+                        />
+                    )}
+                />
+                {errors.email && <Text style={styles.labelError}>{errors.email?.message}</Text>}
+                <Controller
+                    control={control}
+                    name="password"
+                    render={({ field: { onChange, onBlur, value } }) => (
+                        <TextField
+                            onBlur={onBlur}
+                            onChange={onChange}
+                            value={value}
+                            placeholder={'Senha'}
+                            isPassword={true}
+                        />
+                    )}
+                />
+                {errors.password && <Text style={styles.labelError}>{errors.password?.message}</Text>}
+                {firebaseContext.errorFirebase && <Text style={styles.labelError}>{firebaseContext.errorFirebase}</Text>}
+                <View style={styles.forgotPassword}>
+                    <CustomButton
+                        onPress={handleSubmit(handleSignIn)}
+                        txtButton={'Logar'}
+                        isLoading={firebaseContext.load} />
+                    <TouchableOpacity
+                        style={styles.forgotPasswordContainer}
+                        onPress={() => {
+                            navigation.navigate('Home');
+                        }}>
+                        <Text style={styles.txtBtnLogin}>Esqueceu a senha?</Text>
+                    </TouchableOpacity>
+                </View>
                 <TouchableOpacity
-                    style={styles.forgotPasswordContainer}
+                    style={styles.btnSignUp}
                     onPress={() => {
-                        navigation.navigate('Home');
+                        navigation.navigate('SignUp');
                     }}>
-                    <Text style={styles.txtBtnLogin}>Esqueceu a senha?</Text>
+                    <Text style={styles.txtBtnLogin}>Novo por aqui? Inscreva-se agora.</Text>
                 </TouchableOpacity>
-            </View>
-            <TouchableOpacity
-                style={styles.btnSignUp}
-                onPress={() => {
-                    navigation.navigate('SignUp');
-                }}>
-                <Text style={styles.txtBtnLogin}>Novo por aqui? Inscreva-se agora.</Text>
-            </TouchableOpacity>
-        </View>
+            </ScrollView>
+        </SafeAreaView>
     )
 }

@@ -4,6 +4,8 @@ import { Lancamentos } from "./components/Lancamentos";
 import { useNavigation } from "@react-navigation/native";
 import { FirebaseContext } from "../../contexts/Firebase/FirebaseContex";
 import { UserContext } from "../../contexts/User/UserContext";
+import { TopRated } from "./components/TopRated";
+import { Popular } from "./components/Popular";
 import styles from "./styles";
 
 export function Movies() {
@@ -16,6 +18,8 @@ export function Movies() {
             {userContext.user && <Text style={styles.nameUser}>Olá, {userContext.user}</Text>}
             <ScrollView>
                 <Lancamentos />
+                <Popular />
+                <TopRated />
                 <TouchableOpacity
                     onPress={() => {
                         firebaseContext.handleSignOut();

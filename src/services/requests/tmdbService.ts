@@ -1,8 +1,8 @@
 import api from "../api";
 
-export async function lancamentosService(page: number) {
+export async function tmdbService(page: number, view: string) {
     try {
-        const resultado = await api.get(`movie/popular`, {
+        const resultado = await api.get(`/movie${view}`, {
             params: {
                 api_key: "a81f256628352a57fc50c3593588644f",
                 language: "pt-BR",

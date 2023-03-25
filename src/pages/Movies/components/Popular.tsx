@@ -11,7 +11,7 @@ import styles from "../styles";
 import { useNavigation } from "@react-navigation/native";
 import { MovieContext } from "../../../contexts/Movie/MovieContext";
 
-export function Lancamentos() {
+export function Popular() {
     const navigation = useNavigation();
     const movieContext = useContext(MovieContext);
     const [loading, setLoading] = useState<boolean>(false);
@@ -20,20 +20,20 @@ export function Lancamentos() {
     async function loadContext() {
         if (loading) return;
         setLoading(true);
-        await movieContext.movieUpcoming(page + 1);
+        await movieContext.moviePopular(page + 1);
         setPage(page + 1);
         setLoading(false);
     }
 
     useEffect(() => {
-        movieContext.movieUpcoming(page);
+        movieContext.moviePopular(page);
     }, [])
 
     return (
         <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
-            <Text style={styles.cabecalho}>Lancamentos</Text>
+            <Text style={styles.cabecalho}>Populares</Text>
             <FlatList
-                data={movieContext.listaFilmes}
+                data={movieContext.listPopular}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 keyExtractor={item => item.id}
