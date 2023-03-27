@@ -10,10 +10,12 @@ import {
 import styles from "../styles";
 import { useNavigation } from "@react-navigation/native";
 import { MovieContext } from "../../../contexts/Movie/MovieContext";
+import { MovieDetailsContext } from "../../../contexts/MovieDetails/MovieDetailsContex";
 
 export function Lancamentos() {
     const navigation = useNavigation();
     const movieContext = useContext(MovieContext);
+    const movieDetailsContext = useContext(MovieDetailsContext);
     const [loading, setLoading] = useState<boolean>(false);
     const [page, setPage] = useState<number>(1);
 
@@ -40,6 +42,7 @@ export function Lancamentos() {
                 renderItem={({ item }) => (
                     <TouchableOpacity
                         onPress={() => {
+                            movieDetailsContext.getMovieDetails(item.id)
                             navigation.navigate('MoviesDetails', { idFilm: item.id })
                         }} >
                         <Image

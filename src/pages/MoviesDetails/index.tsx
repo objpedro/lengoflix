@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import {
     Text,
     View,
@@ -10,9 +10,9 @@ import styles from "./styles";
 import { MovieDetailsContext } from "../../contexts/MovieDetails/MovieDetailsContex";
 import LinearGradient from "react-native-linear-gradient";
 import { RunTime } from "../../components/Runtime/Runtime";
+import { DateFormat } from "../../components/DateFormat/DateFormat";
 
-export function MoviesDetails({ route }) {
-    const idFilm = route.params.idFilm;
+export function MoviesDetails() {
     const movieDetailsContext = useContext(MovieDetailsContext);
     const gradientColor = [
         'rgba(0,0,0,0.0)',
@@ -20,10 +20,6 @@ export function MoviesDetails({ route }) {
         'rgba(0,0,0,0.7)',
         'rgba(0,0,0,1)',
     ]
-
-    useEffect(() => {
-        movieDetailsContext.getMovieDetails(idFilm)
-    }, [])
 
     return (
         <>
@@ -58,7 +54,7 @@ export function MoviesDetails({ route }) {
                                 style={styles.tmdbLogo} />
                             <Text style={styles.releaseDate}>{movieDetailsContext.movieDetails.vote_average} / 10</Text>
                         </View>
-                        <Text style={styles.releaseDate}>{movieDetailsContext.movieDetails.release_date}</Text>
+                        <DateFormat date={movieDetailsContext.movieDetails.release_date} />
                     </View>
                 </View>
                 <Text style={styles.descricao}>{movieDetailsContext.movieDetails.overview}</Text>
