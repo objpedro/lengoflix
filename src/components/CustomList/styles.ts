@@ -14,8 +14,12 @@ const styles = StyleSheet.create({
         fontSize: RFValue(20),
         marginBottom: 10,
     },
+    linearGradient: {
+        width: '100%'
+    },
     body: {
         flexDirection: 'row',
+        // zIndex: -1,
     },
     poster: {
         resizeMode: "cover",

@@ -5,6 +5,12 @@ import colors from "../../utils/color";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: colors.preto,
+    },
+    containerOriginalTitle: {
+        flex: 1,
         padding: 20,
         backgroundColor: colors.preto,
     },
@@ -12,8 +18,7 @@ const styles = StyleSheet.create({
         resizeMode: "cover",
         width: '100%',
         height: RFValue(200),
-        marginRight: 10,
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
     linearGradient: {
         marginTop: 16,

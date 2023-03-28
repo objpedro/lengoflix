@@ -6,25 +6,24 @@ import { FirebaseContext } from "../../contexts/Firebase/FirebaseContex";
 import { UserContext } from "../../contexts/User/UserContext";
 import styles from "./styles";
 import { MovieContext } from "../../contexts/Movie/MovieContext";
+import { Loading } from "../../components/Loading";
 
 export function Movies() {
-    const userContext = useContext(UserContext);
     const movieContext = useContext(MovieContext);
-    const [loading, setLoading] = useState<boolean>(false);
-    const [page, setPage] = useState<number>(1);
+    const userContext = useContext(UserContext);
     const firebaseContext = useContext(FirebaseContext);
     const navigation = useNavigation()
 
     useEffect(() => {
-        movieContext.movieUpcoming(page);
-        movieContext.movieTopRated(page);
-        movieContext.moviePopular(page);
+        movieContext.movieUpcoming(1);
+        movieContext.movieTopRated(1);
+        movieContext.moviePopular(1);
     }, [])
 
     return (
         <SafeAreaView style={styles.nameUserContainer}>
-            {userContext.user && <Text style={styles.nameUser}>Olá, {userContext.user}</Text>}
             <ScrollView>
+                {userContext.user && <Text style={styles.nameUser}>Olá, {userContext.user}</Text>}
                 <CustomList
                     movieList={movieContext.listaFilmes}
                     listName={"Lançamentos"}
