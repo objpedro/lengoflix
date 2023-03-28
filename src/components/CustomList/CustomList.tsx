@@ -1,20 +1,18 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import {
     Text,
     View,
     Image,
     FlatList,
-    ScrollView,
     TouchableOpacity,
-    ActivityIndicator,
 } from 'react-native';
-import styles from "../styles";
+import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
-import { MovieContext } from "../../../contexts/Movie/MovieContext";
-import { MovieDetailsContext } from "../../../contexts/MovieDetails/MovieDetailsContex";
-import { Loading } from "../../../components/Loading";
+import { MovieContext } from "../../contexts/Movie/MovieContext";
+import { MovieDetailsContext } from "../../contexts/MovieDetails/MovieDetailsContex";
+import { Loading } from "../Loading";
 
-export function Lancamentos() {
+export function CustomList({ movieList, listName, functionName }) {
     const navigation = useNavigation();
     const movieContext = useContext(MovieContext);
     const movieDetailsContext = useContext(MovieDetailsContext);
@@ -24,23 +22,29 @@ export function Lancamentos() {
     async function loadContext() {
         if (loading) return;
         setLoading(true);
-        await movieContext.movieUpcoming(page + 1);
+        switch (functionName) {
+            case 'movieUpcoming':
+                await movieContext.movieUpcoming(page + 1);
+                break;
+            case 'moviePopular':
+                await movieContext.moviePopular(page + 1);
+                break;
+            case 'movieTopRated':
+                await movieContext.movieTopRated(page + 1);
+                break;
+            default:
+                break;
+        }
         setPage(page + 1);
         setLoading(false);
     }
 
-    useEffect(() => {
-        movieContext.movieUpcoming(page);
-    }, [])
-
     return (
-        <View showsVerticalScrollIndicator={false} style={styles.container}>
-            <Text style={styles.cabecalho}>Lancamentos</Text>
-            <View style={{
-                flexDirection: 'row',
-            }}>
+        <View style={styles.container}>
+            <Text style={styles.header}>{listName}</Text>
+            <View style={styles.body}>
                 <FlatList
-                    data={movieContext.listaFilmes}
+                    data={movieList}
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
                     keyExtractor={item => item.id}
@@ -58,7 +62,7 @@ export function Lancamentos() {
                     onEndReached={loadContext}
                     onEndReachedThreshold={0.1}
                 />
-                <Loading size="large" isVisible={movieContext.load} />
+                <Loading size="large" isVisible={loading} />
             </View>
         </View>
     )
