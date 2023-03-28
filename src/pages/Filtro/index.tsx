@@ -59,7 +59,7 @@ export function Filtro() {
                     </TouchableOpacity>
                 )}
             />
-            <Loading isVisible={filmesFiltradosContext.load} />
+            <Loading isVisible={filmesFiltradosContext.load} size={"large"} />
         </View>
     )
 }

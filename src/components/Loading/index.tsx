@@ -4,7 +4,7 @@ import colors from '../../utils/color';
 
 interface Props {
   isVisible: boolean,
-  size: number,
+  size: number | "small" | "large" | undefined,
 }
 
 export function Loading({ isVisible, size }: Props) {
