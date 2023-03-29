@@ -10,13 +10,17 @@ import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { MovieContext } from "../../contexts/Movie/MovieContext";
 import { MovieDetailsContext } from "../../contexts/MovieDetails/MovieDetailsContex";
+import { SeriesDetailsContext } from "../../contexts/SeriesDetails/SeriesDetailsContex";
 import LinearGradient from "react-native-linear-gradient";
+import { FiltroContext } from "../../contexts/Filtro/FiltroContext";
 import { Loading } from "../Loading";
 
-export function CustomList({ movieList, listName, functionName }) {
-    const navigation = useNavigation();
+export function CustomList({ movieList, listName, functionName, searchData }) {
     const movieContext = useContext(MovieContext);
     const movieDetailsContext = useContext(MovieDetailsContext);
+    const seriesDetailsContext = useContext(SeriesDetailsContext);
+    const filtroContext = useContext(FiltroContext);
+    const navigation = useNavigation();
     const [loading, setLoading] = useState<boolean>(false);
     const [page, setPage] = useState<number>(1);
     const gradientColor = [
@@ -44,6 +48,9 @@ export function CustomList({ movieList, listName, functionName }) {
             case 'movieTopRated':
                 await movieContext.movieTopRated(page + 1);
                 break;
+            case 'listarFilmesFiltrados':
+                await filtroContext.getTitlesPages(searchData, page + 1);
+                break;
             default:
                 break;
         }
@@ -53,7 +60,7 @@ export function CustomList({ movieList, listName, functionName }) {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>{listName}</Text>
+            {listName && <Text style={styles.header}>{listName}</Text>}
             <LinearGradient style={styles.linearGradient}
                 colors={gradientColor}
                 useAngle={true}
@@ -68,8 +75,18 @@ export function CustomList({ movieList, listName, functionName }) {
                             <View>
                                 <TouchableOpacity
                                     onPress={() => {
-                                        movieDetailsContext.getMovieDetails(item.id)
-                                        navigation.navigate('MoviesDetails', { idFilm: item.id })
+                                        switch (item.media_type) {
+                                            case 'movie':
+                                                movieDetailsContext.getMovieDetails(item.id)
+                                                navigation.navigate('MoviesDetails', { idFilm: item.id })
+                                                break;
+                                            case 'tv':
+                                                seriesDetailsContext.getSeriesDetails(item.id)
+                                                navigation.navigate('SeriesDetails', { idSerie: item.id })
+                                                break;
+                                            default:
+                                                console.log('item.media_type', item.media_type)
+                                        }
                                     }} >
                                     <Image
                                         style={styles.poster}

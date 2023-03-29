@@ -6,7 +6,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.preto,
-        padding: 20,
     },
     cabecalho: {
         color: '#fff',
@@ -20,9 +19,14 @@ const styles = StyleSheet.create({
         marginRight: 10,
         borderRadius: 5,
     },
+    searchResult:{
+        color: colors.branco,
+        paddingHorizontal: 20,
+    },
     searchContainer: {
         flexDirection: 'row',
         marginBottom: 10,
+        padding: 20,
     },
     searchFilme: {
         width: '80%',

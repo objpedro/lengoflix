@@ -6,7 +6,6 @@ import { FirebaseContext } from "../../contexts/Firebase/FirebaseContex";
 import { UserContext } from "../../contexts/User/UserContext";
 import styles from "./styles";
 import { MovieContext } from "../../contexts/Movie/MovieContext";
-import { Loading } from "../../components/Loading";
 
 export function Movies() {
     const movieContext = useContext(MovieContext);
@@ -27,17 +26,20 @@ export function Movies() {
                 <CustomList
                     movieList={movieContext.listaFilmes}
                     listName={"Lançamentos"}
-                    functionName={"movieUpcoming"} />
+                    functionName={"movieUpcoming"}
+                    searchData={''} />
 
                 <CustomList
                     movieList={movieContext.listTopRated}
                     listName={"Aclamados pela Crítica"}
-                    functionName={"movieTopRated"} />
+                    functionName={"movieTopRated"}
+                    searchData={''} />
 
                 <CustomList
                     movieList={movieContext.listPopular}
                     listName={"Populares"}
-                    functionName={"moviePopular"} />
+                    functionName={"moviePopular"}
+                    searchData={''} />
 
                 <TouchableOpacity
                     onPress={() => {

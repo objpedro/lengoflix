@@ -17,7 +17,7 @@ export function FiltroProvider(props) {
         listarFilmesFiltrados: async (tituloFilme: string) => {
             setLoad(true);
             let ret: ProviderResult = null;
-            const requestResult = await filtrarFilmeService(tituloFilme);
+            const requestResult = await filtrarFilmeService(tituloFilme, 1);
             if (requestResult) {
                 setListaFilmesFiltrados(requestResult);
                 // console.log("Lista Filmes Filtrados Sucesso: ", requestResult);
@@ -36,7 +36,30 @@ export function FiltroProvider(props) {
                 setLoad(false);
             }
             return ret;
-        }
+        },
+        getTitlesPages: async (tituloFilme: string, page: number) => {
+            setLoad(true);
+            let ret: ProviderResult = null;
+            const requestResult = await filtrarFilmeService(tituloFilme, page);
+            if (requestResult) {
+                setListaFilmesFiltrados([...listaFilmesFiltrados, ...requestResult]);
+                // console.log("Lista Filmes Filtrados Por Página Sucesso: ", requestResult);
+                ret = {
+                    ...ret,
+                    sucesso: true
+                };
+                setLoad(false);
+            } else {
+                console.log("Lista Filmes Filtrados Por Página Falha: ", requestResult);
+                ret = {
+                    ...ret,
+                    sucesso: false,
+                    mensagemErro: requestResult
+                };
+                setLoad(false);
+            }
+            return ret;
+        },
     }
 
     return (
