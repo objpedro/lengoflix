@@ -26,7 +26,10 @@ export function MoviesDetails() {
         <View style={styles.container}>
             {
                 movieDetailsContext.load ?
-                    <Loading size="large" isVisible={true} />
+                    <View style={styles.loadingContainer}>
+                        <Text style={styles.textLoading}>Carregando...</Text>
+                        <Loading size="large" isVisible={true} />
+                    </View>
                     :
                     <>
                         <ImageBackground

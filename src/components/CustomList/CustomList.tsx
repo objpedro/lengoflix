@@ -75,17 +75,22 @@ export function CustomList({ movieList, listName, functionName, searchData }) {
                             <View>
                                 <TouchableOpacity
                                     onPress={() => {
-                                        switch (item.media_type) {
-                                            case 'movie':
-                                                movieDetailsContext.getMovieDetails(item.id)
-                                                navigation.navigate('MoviesDetails', { idFilm: item.id })
-                                                break;
-                                            case 'tv':
-                                                seriesDetailsContext.getSeriesDetails(item.id)
-                                                navigation.navigate('SeriesDetails', { idSerie: item.id })
-                                                break;
-                                            default:
-                                                console.log('item.media_type', item.media_type)
+                                        if (item.media_type == undefined) {
+                                            movieDetailsContext.getMovieDetails(item.id)
+                                            navigation.navigate('MoviesDetails', { idFilm: item.id })
+                                        } else {
+                                            switch (item.media_type) {
+                                                case 'movie':
+                                                    movieDetailsContext.getMovieDetails(item.id)
+                                                    navigation.navigate('MoviesDetails', { idFilm: item.id })
+                                                    break;
+                                                case 'tv':
+                                                    seriesDetailsContext.getSeriesDetails(item.id)
+                                                    navigation.navigate('SeriesDetails', { idSerie: item.id })
+                                                    break;
+                                                default:
+                                                    console.log('item.media_type', item.media_type)
+                                            }
                                         }
                                     }} >
                                     <Image
