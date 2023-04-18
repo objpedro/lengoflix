@@ -12,6 +12,7 @@ import LinearGradient from "react-native-linear-gradient";
 import { RunTime } from "../../components/Runtime/Runtime";
 import { DateFormat } from "../../components/DateFormat/DateFormat";
 import { Loading } from "../../components/Loading";
+import { Review } from "../../components/Review/Review";
 
 export function MoviesDetails() {
     const movieDetailsContext = useContext(MovieDetailsContext);
@@ -61,7 +62,7 @@ export function MoviesDetails() {
                                         <Image
                                             source={require('../../assets/the_movie_db_logo.png')}
                                             style={styles.tmdbLogo} />
-                                        <Text style={styles.releaseDate}>{movieDetailsContext.movieDetails.vote_average} / 10</Text>
+                                        <Review review={movieDetailsContext.movieDetails.vote_average} />
                                     </View>
                                     <DateFormat date={movieDetailsContext.movieDetails.release_date} />
                                 </View>
