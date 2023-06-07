@@ -5,7 +5,16 @@ interface IMovieProvider {
     //Listagem de Filmes
     listaFilmes: Movie[];
     setListaFilmes: (filme: Movie[]) => void;
-    listarFilmes: (page: number) => Promise<ProviderResult>;
+    movieUpcoming: (page: number) => Promise<ProviderResult>;
+
+    listTopRated: Movie[];
+    setListTopRated: (movie: Movie[]) => void;
+    movieTopRated: (page: number) => Promise<ProviderResult>;
+
+    listPopular: Movie[];
+    setListPopular: (movie: Movie[]) => void;
+    moviePopular: (page: number) => Promise<ProviderResult>;
+
 
     //Loading
     // page: number,

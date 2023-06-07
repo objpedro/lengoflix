@@ -1,6 +1,6 @@
 import React from "react";
-import { IFiltro } from "../../dto/contexts/iFiltroProvider";
+import { IFiltroProvider } from "../../dto/contexts/iFiltroProvider";
 
-const FiltroContext = React.createContext<IFiltro>(null);
+const FiltroContext = React.createContext<IFiltroProvider>(null);
 
 export { FiltroContext };

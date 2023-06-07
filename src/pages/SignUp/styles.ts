@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-start',
         color: colors.error,
         marginBottom: 8,
+        marginTop: 10,
     }
 })
 

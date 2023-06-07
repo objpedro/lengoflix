@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     labelError: {
         alignSelf: 'flex-start',
         color: colors.error,
+        marginTop: 10,
         marginBottom: 8,
     },
     forgotPasswordContainer: {

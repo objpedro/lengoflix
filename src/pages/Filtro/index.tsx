@@ -8,14 +8,13 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import { styles } from "./styles";
-import { useNavigation } from "@react-navigation/native";
 import { FiltroContext } from "../../contexts/Filtro/FiltroContext";
-import { Loading } from "../../components/Loading";
+import { CustomList } from "../../components/CustomList/CustomList";
 
 export function Filtro() {
-    const navigation = useNavigation();
     const filmesFiltradosContext = useContext(FiltroContext);
     const [searchData, setSearchData] = useState<string>('');
+    const [searchResult, setSearchResult] = useState<string>('');
 
     return (
         <View style={styles.container}>
@@ -28,38 +27,21 @@ export function Filtro() {
                 />
                 <TouchableOpacity
                     style={styles.searchButton}
-                    onPress={() => filmesFiltradosContext.listarFilmesFiltrados(searchData)}
+                    onPress={() => {
+                        filmesFiltradosContext.listarFilmesFiltrados(searchData, 1)
+                        setSearchResult(searchData)
+                        setSearchData('');
+                    }}
                 >
                     <Text style={styles.textSearchButton}>Buscar</Text>
                 </TouchableOpacity>
             </View>
-
-            <FlatList
-                data={filmesFiltradosContext.listaFilmesFiltrados}
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-                keyExtractor={filmes => filmes.id}
-                renderItem={({ item }) => (
-                    <TouchableOpacity
-                        onPress={() => {
-                            switch (item.media_type) {
-                                case 'movie':
-                                    navigation.navigate('MoviesDetails', { idFilm: item.id })
-                                    break;
-                                case 'tv':
-                                    navigation.navigate('SeriesDetails', { idSerie: item.id })
-                                    break;
-                                default:
-                                    console.log('item.media_type', item.media_type)
-                            }
-                        }} >
-                        <Image
-                            style={styles.poster}
-                            source={{ uri: `https://image.tmdb.org/t/p/original/${item.poster_path}` }} />
-                    </TouchableOpacity>
-                )}
-            />
-            <Loading isVisible={filmesFiltradosContext.load} />
+            {searchResult && <Text style={styles.searchResult}>{`Resultados para "${searchResult}":`}</Text>}
+            <CustomList
+                movieList={filmesFiltradosContext.listaFilmesFiltrados}
+                listName={""}
+                functionName={"listarFilmesFiltrados"}
+                searchData={searchResult} />
         </View>
     )
 }

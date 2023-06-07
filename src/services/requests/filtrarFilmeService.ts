@@ -1,12 +1,13 @@
 import api from "../api";
 
-export async function filtrarFilmeService(tituloFilme: string) {
+export async function filtrarFilmeService(tituloFilme: string, page: number) {
     try {
         const resultado = await api.get(`search/multi`, {
             params: {
                 api_key: "a81f256628352a57fc50c3593588644f",
                 language: "pt-BR",
-                query: `${tituloFilme}`
+                query: `${tituloFilme}`,
+                page: page,
             }
         });
         return resultado.data.results

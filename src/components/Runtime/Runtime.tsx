@@ -5,13 +5,12 @@ import styles from "./styles";
 export function RunTime(runtime: number) {
 
     function minutesToHm(runtime: number) {
-        let entrada = runtime.runtime;
-        entrada = Number(entrada);
-        var h = Math.floor(entrada / 60);
-        var m = Math.floor(entrada % 60);
+        let entrada = Number(runtime.runtime);
+        let h = Math.floor(entrada / 60);
+        let m = Math.floor(entrada % 60);
 
-        var hDisplay = h > 0 ? h + 'h ' : "";
-        var mDisplay = m > 0 ? m + 'm' : "";
+        let hDisplay = h > 0 ? h + 'h ' : "";
+        let mDisplay = m > 0 ? m + 'm' : "";
         return hDisplay + mDisplay;
     }
 

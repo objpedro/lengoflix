@@ -33,7 +33,16 @@ const styles = StyleSheet.create({
         backgroundColor: colors.branco,
         alignItems: 'center',
         justifyContent: 'center',
-    }
+    },
+    nameUserContainer: {
+        backgroundColor: colors.preto,
+    },
+    nameUser: {
+        marginTop: 20,
+        marginLeft: 20,
+        fontSize: RFValue(30),
+        color: colors.branco,
+    },
 })
 
 export default styles;

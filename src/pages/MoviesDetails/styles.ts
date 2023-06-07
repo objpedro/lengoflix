@@ -5,6 +5,24 @@ import colors from "../../utils/color";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: colors.preto,
+    },
+    loadingContainer: {
+        flexDirection: "row",
+        alignItems: 'center',
+        borderRadius: 15,
+        padding: 20,
+        backgroundColor: 'rgba(255,255,255,0.1)',
+    },
+    textLoading: {
+        marginRight: 10,
+        fontSize: RFValue(15),
+        color: colors.branco,
+    },
+    containerOriginalTitle: {
+        flex: 1,
         padding: 20,
         backgroundColor: colors.preto,
     },
@@ -12,8 +30,7 @@ const styles = StyleSheet.create({
         resizeMode: "cover",
         width: '100%',
         height: RFValue(200),
-        marginRight: 10,
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
     linearGradient: {
         marginTop: 16,
