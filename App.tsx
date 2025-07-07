@@ -1,28 +1,33 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { MovieProvider } from './src/contexts/Movie/MovieProvider';
+import { MovieDetailsProvider } from './src/contexts/MovieDetails/MovieDetailsProvider';
+import { FiltroProvider } from './src/contexts/Filtro/FiltroProvider';
+import { SeriesProvider } from './src/contexts/Series/SeriesProvider';
+import { SeriesDetailsProvider } from './src/contexts/SeriesDetails/SeriesDetailsProvider';
+import { EpisodesProvider } from './src/contexts/Episodes/EpisodesProvider';
+// import { FirebaseProvider } from './src/contexts/Firebase/FirebaseProvider';
+import { UserProvider } from './src/contexts/User/UserProvider';
+import ContextBuilder from './src/contexts/utils/ContextBuilder';
+import Routes from './src/routes/rotas';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+const ContextContainer = ContextBuilder([
+  MovieProvider,
+  MovieDetailsProvider,
+  FiltroProvider,
+  SeriesProvider,
+  SeriesDetailsProvider,
+  EpisodesProvider,
+  // FirebaseProvider,
+  UserProvider,
+]);
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-
+export default function App() {
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NewAppScreen templateFileName="App.tsx" />
-    </View>
+    <NavigationContainer>
+      <ContextContainer>
+        <Routes />
+      </ContextContainer>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
-export default App;
