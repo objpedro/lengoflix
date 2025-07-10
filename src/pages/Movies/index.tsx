@@ -2,15 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { ScrollView, TouchableOpacity, Text, SafeAreaView } from 'react-native';
 import { CustomList } from "../../components/CustomList/CustomList";
 import { useNavigation } from "@react-navigation/native";
-import { FirebaseContext } from "../../contexts/Firebase/FirebaseContex";
-import { UserContext } from "../../contexts/User/UserContext";
 import styles from "./styles";
 import { MovieContext } from "../../contexts/Movie/MovieContext";
 
 export function Movies() {
     const movieContext = useContext(MovieContext);
-    const userContext = useContext(UserContext);
-    const firebaseContext = useContext(FirebaseContext);
     const navigation = useNavigation()
 
     useEffect(() => {
@@ -22,7 +18,6 @@ export function Movies() {
     return (
         <SafeAreaView style={styles.nameUserContainer}>
             <ScrollView>
-                {userContext.user && <Text style={styles.nameUser}>Olá, {userContext.user}</Text>}
                 <CustomList
                     movieList={movieContext.listaFilmes}
                     listName={"Lançamentos"}
@@ -43,8 +38,7 @@ export function Movies() {
 
                 <TouchableOpacity
                     onPress={() => {
-                        firebaseContext.handleSignOut();
-                        navigation.navigate('Sign')
+                        console.log("Era o: navigation.navigate('Sign')")
                     }}
                     style={{
                         margin: 20,
