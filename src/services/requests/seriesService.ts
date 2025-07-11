@@ -1,6 +1,6 @@
 import api from "../api";
 
-export async function seriesService(view: string, page: number) {
+export async function seriesService(page: number, view: string) {
     try {
         const resultado = await api.get(`tv/${view}`, {
             params: {

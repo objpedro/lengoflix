@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ScrollView, TouchableOpacity, Text, SafeAreaView } from 'react-native';
+import { ScrollView, TouchableOpacity, Text, SafeAreaView, View } from 'react-native';
 import { CustomList } from "../../components/CustomList/CustomList";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./styles";
@@ -16,41 +16,29 @@ export function Movies() {
     }, [])
 
     return (
-        <SafeAreaView style={styles.nameUserContainer}>
+        <View style={styles.nameUserContainer}>
             <ScrollView>
                 <CustomList
+                    typeShow={'movie'}
                     movieList={movieContext.listaFilmes}
                     listName={"Lançamentos"}
                     functionName={"movieUpcoming"}
                     searchData={''} />
 
                 <CustomList
+                    typeShow={'movie'}
                     movieList={movieContext.listTopRated}
                     listName={"Aclamados pela Crítica"}
                     functionName={"movieTopRated"}
                     searchData={''} />
 
                 <CustomList
+                    typeShow={'movie'}
                     movieList={movieContext.listPopular}
                     listName={"Populares"}
                     functionName={"moviePopular"}
                     searchData={''} />
-
-                <TouchableOpacity
-                    onPress={() => {
-                        console.log("Era o: navigation.navigate('Sign')")
-                    }}
-                    style={{
-                        margin: 20,
-                        padding: 5,
-                        backgroundColor: 'blue',
-                        alignItems: 'center'
-                    }}>
-                    <Text style={{
-                        color: 'white'
-                    }}>Deslogar</Text>
-                </TouchableOpacity>
             </ScrollView>
-        </SafeAreaView>
+        </View>
     )
 }

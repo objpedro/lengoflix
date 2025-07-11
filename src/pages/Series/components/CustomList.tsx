@@ -11,30 +11,33 @@ import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { SeriesContext } from "../../../contexts/Series/SeriesContext";
 
-export function Popular() {
+interface CustomListProps {
+  view: string;
+}
+
+export function CustomList({ view }: CustomListProps) {
     const navigation = useNavigation();
     const seriesContext = useContext(SeriesContext);
     const [loading, setLoading] = useState<boolean>(false);
     const [page, setPage] = useState<number>(1);
-    const view = 'popular';
 
     async function loadContext() {
         if (loading) return;
         setLoading(true);
-        await seriesContext.obterSeries(view, page + 1);
+        await seriesContext.getPopular(page + 1);
         setPage(page + 1);
         setLoading(false);
     }
 
     useEffect(() => {
-        seriesContext.obterSeries(view, page);
+        seriesContext.getPopular(page + 1);
     }, [])
 
     return (
         <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
             <Text style={styles.cabecalho}>Populares</Text>
             <FlatList
-                data={seriesContext.listaSeries}
+                data={seriesContext.popularList}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 keyExtractor={item => item.id}

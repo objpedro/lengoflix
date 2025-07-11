@@ -35,7 +35,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     nameUserContainer: {
+        flex: 1,
         backgroundColor: colors.preto,
+        paddingVertical: 30
     },
     nameUser: {
         marginTop: 20,

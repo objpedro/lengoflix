@@ -1,142 +1,88 @@
 import React from "react";
 import { Image, ImageURISource, View, Text } from 'react-native';
-import { styles } from "./style";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { RFValue } from "react-native-responsive-fontsize";
+import { styles } from "./style";
 import colors from "../../utils/color";
 
 const Tab = createBottomTabNavigator();
 
 interface ItemTabNavigatorParam {
-    titulo: string;
-    page: React.FC<{}>;
-    icone: ImageURISource;
-    id?: string;
+  titulo: string;
+  page: React.FC<{}>;
+  icone: ImageURISource;
+  id?: string;
 }
 
 interface TabNavigatorParam {
-    itens: ItemTabNavigatorParam[];
+  itens: ItemTabNavigatorParam[];
 }
 
-function renderIcons(item: ItemTabNavigatorParam, focused: boolean) {
-    switch (item.titulo) {
-        case 'Movies':
-            return <>
-                <Image
-                    source={item.icone}
-                    resizeMode={'contain'}
-                    style={{
-                        alignItems: "center",
-                        justifyContent: "center",
-                        width: 20,
-                        height: 20,
-                        tintColor: focused ? colors.whiteBlue : colors.preto,
-                    }}
-                />
-                <Text style={{
-                    fontSize: RFValue(12),
-                    color: focused ? colors.whiteBlue : colors.preto,
-                }}>Filmes</Text>
-            </>
-        case 'Filtro':
-            return <>
-                <Image
-                    source={item.icone}
-                    resizeMode={'contain'}
-                    style={{
-                        alignItems: "center",
-                        justifyContent: "center",
-                        width: 20,
-                        height: 20,
-                        tintColor: focused ? colors.whiteBlue : colors.preto,
-                    }}
-                />
-                <Text style={{
-                    fontSize: RFValue(12),
-                    color: focused ? colors.whiteBlue : colors.preto,
-                }}>Filtro</Text>
-            </>
-        case 'Series':
-            return <>
-                <Image
-                    source={item.icone}
-                    resizeMode={'contain'}
-                    style={{
-                        alignItems: "center",
-                        justifyContent: "center",
-                        width: 20,
-                        height: 20,
-                        tintColor: focused ? colors.whiteBlue : colors.preto,
-                    }}
-                />
-                <Text style={{
-                    fontSize: RFValue(12),
-                    color: focused ? colors.whiteBlue : colors.preto,
-                }}>Series</Text>
-            </>
-        default:
-            return <>
-                <Image
-                    source={item.icone}
-                    resizeMode={'contain'}
-                    style={{
-                        alignItems: "center",
-                        justifyContent: "center",
-                        width: 20,
-                        height: 20,
-                        tintColor: focused ? colors.whiteBlue : colors.preto,
-                    }}
-                />
-                <Text style={{
-                    fontSize: RFValue(12),
-                    color: focused ? colors.whiteBlue : colors.preto,
-                }}>Default</Text>
-            </>
-    }
+function TabIcon({ item, focused }: { item: ItemTabNavigatorParam; focused: boolean }) {
+  const labelMap: Record<string, string> = {
+    'Movies': 'Filmes',
+    'Filtro': 'Filtro',
+    'Series': 'Series',
+  };
+
+  const label = labelMap[item.titulo] || 'Default';
+  const color = focused ? colors.whiteBlue : colors.preto;
+
+  return (
+    <>
+      <Image
+        source={item.icone}
+        resizeMode="contain"
+        style={{
+          width: 20,
+          height: 20,
+          tintColor: color,
+        }}
+      />
+      <Text style={{ fontSize: RFValue(12), color }}>{label}</Text>
+    </>
+  );
 }
 
-function montaTabs(param: TabNavigatorParam) {
-    return param.itens.map(item => {
-        return (
-            <Tab.Screen
-                name={item.titulo}
-                component={item.page}
-                key={item.titulo}
-                options={{
-                    tabBarIcon: ({ focused }) => (
-                        <View
-                            style={styles.containerTabNavigation}
-                            accessibilityLabel={item.id}
-                        >
-                            {renderIcons(item, focused)}
-                        </View>
-                    ),
-                    headerShown: false,
-                }}
-            />
-        )
-    })
+function montaTabs({ itens }: TabNavigatorParam) {
+  return itens.map((item) => (
+    <Tab.Screen
+      key={item.titulo}
+      name={item.titulo}
+      component={item.page}
+      options={{
+        tabBarIcon: ({ focused }) => (
+          <View
+            style={styles.containerTabNavigation}
+            accessibilityLabel={item.id}
+          >
+            <TabIcon item={item} focused={focused} />
+          </View>
+        ),
+        headerShown: false,
+      }}
+    />
+  ));
 }
 
-function TabNavigator(param: TabNavigatorParam) {
-    return (
-        <>
-            <Tab.Navigator
-                screenOptions={{
-                    tabBarShowLabel: false,
-                    tabBarStyle: {
-                        width: "100%",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        backgroundColor: colors.azul,
-                        elevation: 1,
-                    },
-                    tabBarHideOnKeyboard: true
-                }}>
-                {montaTabs(param)}
-            </Tab.Navigator>
-        </>
-    )
+function TabNavigator({ itens }: TabNavigatorParam) {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          width: "100%",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: colors.azul,
+          elevation: 1,
+        },
+        tabBarHideOnKeyboard: true,
+      }}
+    >
+      {montaTabs({ itens })}
+    </Tab.Navigator>
+  );
 }
 
 export { TabNavigator };
