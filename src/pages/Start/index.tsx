@@ -1,16 +1,18 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
+import colors from '../../utils/color';
+
 export default function StartScreen({ navigation }: any) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Bem-vindo ao MovieApp</Text>
+      <Text style={styles.title}>Bem-vindo ao Lengoflix</Text>
 
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate('Login')}
       >
-        <Text style={styles.buttonText}>Login</Text>
+        <Text style={styles.buttonText}>Login/Cadastro</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -41,7 +43,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width: '100%',
-    backgroundColor: '#e50914',
+    backgroundColor: colors.azul,
     padding: 16,
     borderRadius: 8,
     alignItems: 'center',

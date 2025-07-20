@@ -14,7 +14,8 @@ export default function LoginScreen({ navigation }: any) {
       if (token) {
         setRequestToken(token);
         setAuthUrl(
-          `https://www.themoviedb.org/authenticate/${token}?redirect_to=https://www.yourapp.com/auth`,
+          // `https://www.themoviedb.org/authenticate/${token}?redirect_to=https://www.yourapp.com/auth`,
+          `https://www.themoviedb.org/authenticate/${token}?redirect_to=https://www.yourapp.com/auth&language=pt-BR`,
         );
       }
     }
