@@ -43,13 +43,16 @@ export function CustomList({
     if (typeShow == 'movie') {
       switch (functionName) {
         case 'movieUpcoming':
-          await movieContext.movieUpcoming(page + 1);
+          await movieContext.getMoviesUpcoming(page + 1);
           break;
         case 'moviePopular':
-          await movieContext.moviePopular(page + 1);
+          await movieContext.getMoviesPopular(page + 1);
           break;
         case 'movieTopRated':
-          await movieContext.movieTopRated(page + 1);
+          await movieContext.getMoviesTopRated(page + 1);
+          break;
+        case 'nowPlaying':
+          await movieContext.getMoviesNowPlaying(page + 1);
           break;
         case 'listarFilmesFiltrados':
           await filtroContext.getTitlesPages(searchData, page + 1);

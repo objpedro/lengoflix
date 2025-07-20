@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 import { Image, ImageURISource, View, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { RFValue } from "react-native-responsive-fontsize";
-import { styles } from "./style";
-import colors from "../../utils/color";
+import { RFValue } from 'react-native-responsive-fontsize';
+import { styles } from './style';
+import colors from '../../utils/color';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,16 +18,23 @@ interface TabNavigatorParam {
   itens: ItemTabNavigatorParam[];
 }
 
-function TabIcon({ item, focused }: { item: ItemTabNavigatorParam; focused: boolean }) {
+function TabIcon({
+  item,
+  focused,
+}: {
+  item: ItemTabNavigatorParam;
+  focused: boolean;
+}) {
   const labelMap: Record<string, string> = {
-    'Movies': 'Filmes',
-    'Filtro': 'Filtro',
-    'Series': 'Series',
+    Movies: 'Filmes',
+    Filtro: 'Filtro',
+    Series: 'Series',
   };
 
   const label = labelMap[item.titulo] || 'Default';
   const color = focused ? colors.whiteBlue : colors.preto;
 
+  // Nome e icone
   return (
     <>
       <Image
@@ -39,13 +46,13 @@ function TabIcon({ item, focused }: { item: ItemTabNavigatorParam; focused: bool
           tintColor: color,
         }}
       />
-      <Text style={{ fontSize: RFValue(12), color }}>{label}</Text>
+      <Text style={{ fontSize: RFValue(8), color }}>{label}</Text>
     </>
   );
 }
 
 function montaTabs({ itens }: TabNavigatorParam) {
-  return itens.map((item) => (
+  return itens.map(item => (
     <Tab.Screen
       key={item.titulo}
       name={item.titulo}
@@ -71,9 +78,9 @@ function TabNavigator({ itens }: TabNavigatorParam) {
       screenOptions={{
         tabBarShowLabel: false,
         tabBarStyle: {
-          width: "100%",
-          alignItems: "center",
-          justifyContent: "center",
+          width: '100%',
+          alignItems: 'center',
+          justifyContent: 'center',
           backgroundColor: colors.azul,
           elevation: 1,
         },

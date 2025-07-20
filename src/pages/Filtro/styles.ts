@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.preto,
+        paddingVertical: 30
     },
     cabecalho: {
         color: '#fff',
