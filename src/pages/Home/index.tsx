@@ -9,6 +9,7 @@ import { Series } from '../Series';
 import { Filtro } from "../Filtro";
 
 export function Home() {
+    // const sessionId = route.params.sessionId;
     return (
         <View
             style={{ flex: 1 }}>

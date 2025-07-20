@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   View,
 } from 'react-native';
+import { getUserInfo } from '../../services/requests/getUserInfo';
 import { CustomList } from '../../components/CustomList/CustomList';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
@@ -14,6 +15,7 @@ import { MovieContext } from '../../contexts/Movie/MovieContext';
 export function Movies() {
   const movieContext = useContext(MovieContext);
   const navigation = useNavigation();
+  // const userInfo = await getUserInfo(sessionId);
 
   useEffect(() => {
     movieContext.getMoviesUpcoming(1);
@@ -24,19 +26,26 @@ export function Movies() {
 
   return (
     <View style={styles.nameUserContainer}>
+      {/* {userInfo ? (
+        <Text>
+          Olá, ${userInfo.name || userInfo.username} o que vamos assistir hoje?
+        </Text>
+      ) : (
+        <Text>Olá!</Text>
+      )} */}
       <ScrollView>
         <CustomList
           typeShow={'movie'}
           movieList={movieContext.nowPlayingList}
-          listName={'Em exibição agora'}
+          listName={'Nos Cinemas'}
           functionName={'nowPlaying'}
           searchData={''}
         />
         <CustomList
           typeShow={'movie'}
-          movieList={movieContext.listaFilmes}
-          listName={'Lançamentos'}
-          functionName={'movieUpcoming'}
+          movieList={movieContext.listPopular}
+          listName={'Em Alta'}
+          functionName={'moviePopular'}
           searchData={''}
         />
         <CustomList
@@ -48,9 +57,9 @@ export function Movies() {
         />
         <CustomList
           typeShow={'movie'}
-          movieList={movieContext.listPopular}
-          listName={'Populares'}
-          functionName={'moviePopular'}
+          movieList={movieContext.listaFilmes}
+          listName={'Lançamentos'}
+          functionName={'movieUpcoming'}
           searchData={''}
         />
       </ScrollView>

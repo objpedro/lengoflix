@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     },
     searchResult:{
         color: colors.branco,
+        fontSize: RFValue(15),
         paddingHorizontal: 20,
     },
     searchContainer: {

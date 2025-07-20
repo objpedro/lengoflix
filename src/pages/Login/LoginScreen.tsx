@@ -14,7 +14,6 @@ export default function LoginScreen({ navigation }: any) {
       if (token) {
         setRequestToken(token);
         setAuthUrl(
-          // `https://www.themoviedb.org/authenticate/${token}?redirect_to=https://www.yourapp.com/auth`,
           `https://www.themoviedb.org/authenticate/${token}?redirect_to=https://www.yourapp.com/auth&language=pt-BR`,
         );
       }
@@ -32,23 +31,26 @@ export default function LoginScreen({ navigation }: any) {
         // Aqui você pode salvar o sessionId (em contexto ou async storage)
         console.log('Sessão criada:', sessionId);
         navigation.replace('Home'); // redireciona para o app
+        // navigation.replace('Home', {sessionId: sessionId,}); // redireciona para o app}
       }
     }
-  };
 
-  if (!authUrl) {
+    if (!authUrl) {
+      return (
+        <View
+          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+        >
+          <ActivityIndicator size="large" color="#000" />
+        </View>
+      );
+    }
+
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" color="#000" />
-      </View>
+      <WebView
+        source={{ uri: authUrl }}
+        onNavigationStateChange={handleNavigationChange}
+        startInLoadingState
+      />
     );
-  }
-
-  return (
-    <WebView
-      source={{ uri: authUrl }}
-      onNavigationStateChange={handleNavigationChange}
-      startInLoadingState
-    />
-  );
+  };
 }

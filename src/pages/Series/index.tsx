@@ -25,6 +25,20 @@ export function Series() {
       <ScrollView>
         <CustomList
           typeShow={'tv'}
+          movieList={serieContext.airingTodayList}
+          listName={'Estreias do Dia'}
+          functionName={'airingToday'}
+          searchData={''}
+        />
+          <CustomList
+            typeShow={'tv'}
+            movieList={serieContext.onTheAirList}
+            listName={'No Ar'}
+            functionName={'onTheAir'}
+            searchData={''}
+          />
+        <CustomList
+          typeShow={'tv'}
           movieList={serieContext.popularList}
           listName={'Populares'}
           functionName={'popular'}
@@ -32,23 +46,9 @@ export function Series() {
         />
         <CustomList
           typeShow={'tv'}
-          movieList={serieContext.airingTodayList}
-          listName={'Em alta hoje'}
-          functionName={'airingToday'}
-          searchData={''}
-        />
-        <CustomList
-          typeShow={'tv'}
           movieList={serieContext.topRatedList}
-          listName={'Mais bem avaliados'}
+          listName={'Mais bem avaliadas'}
           functionName={'topRated'}
-          searchData={''}
-        />
-        <CustomList
-          typeShow={'tv'}
-          movieList={serieContext.onTheAirList}
-          listName={'No ar hoje'}
-          functionName={'onTheAir'}
           searchData={''}
         />
       </ScrollView>
