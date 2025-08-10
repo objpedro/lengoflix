@@ -5,6 +5,7 @@ import {
     Image,
     FlatList,
     ImageBackground,
+    ScrollView,
 } from 'react-native';
 import styles from "./styles";
 import { MovieDetailsContext } from "../../contexts/MovieDetails/MovieDetailsContex";
@@ -67,7 +68,11 @@ export function MoviesDetails() {
                                     <DateFormat date={movieDetailsContext.movieDetails.release_date} />
                                 </View>
                             </View>
-                            <Text style={styles.descricao}>{movieDetailsContext.movieDetails.overview}</Text>
+                            <View style={{ height: '20%'}}>
+                                <ScrollView>
+                                    <Text style={styles.descricao}>{movieDetailsContext.movieDetails.overview}</Text>
+                                </ScrollView>
+                            </View>
                         </View>
                     </>
             }
