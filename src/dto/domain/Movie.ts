@@ -12,6 +12,7 @@ interface Movie {
     release_date: string,
     runtime: number,
     vote_average: number,
+    tagline: string
 }
 
 export { Movie };

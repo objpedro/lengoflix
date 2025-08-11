@@ -19,7 +19,7 @@ export function MovieDetailsProvider(props) {
             let ret: ProviderResult = null;
             const requestResult = await filmDetailsService(idFilme)
             if (requestResult) {
-                // console.log("Movie Provider Sucesso: ", requestResult);
+                console.log("Movie Provider Sucesso: ", requestResult);
                 setMovieDetails(requestResult);
                 ret = {
                     ...ret,
