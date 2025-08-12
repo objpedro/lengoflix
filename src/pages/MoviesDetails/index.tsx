@@ -16,120 +16,103 @@ import { Loading } from '../../components/Loading';
 import { Review } from '../../components/Review/Review';
 import colors from '../../utils/color';
 
+const gradientColor = [
+  'rgba(0, 23, 31,0.0)',
+  'rgba(0, 23, 31,0.6)',
+  'rgba(0, 23, 31,0.7)',
+  'rgba(0, 23, 31,0.9)',
+  'rgba(0, 23, 31,1)',
+];
+
 export function MoviesDetails() {
-  const movieDetailsContext = useContext(MovieDetailsContext);
-  const gradientColor = [
-    'rgba(0,0,0,0.0)',
-    'rgba(0,0,0,0.6)',
-    'rgba(0,0,0,0.7)',
-    'rgba(0,0,0,1)',
-  ];
+  const { load, movieDetails } = useContext(MovieDetailsContext);
+
+  if (load) {
+    return (
+      <View style={styles.loadingContainer}>
+        <Text style={styles.textLoading}>Carregando...</Text>
+        <Loading size="large" isVisible />
+      </View>
+    );
+  }
+
+  const {
+    backdrop_path,
+    title,
+    runtime,
+    genres,
+    original_title,
+    vote_average,
+    release_date,
+    tagline,
+    overview,
+  } = movieDetails;
 
   return (
     <View style={styles.container}>
-      {movieDetailsContext.load ? (
-        <View style={styles.loadingContainer}>
-          <Text style={styles.textLoading}>Carregando...</Text>
-          <Loading size="large" isVisible={true} />
-        </View>
-      ) : (
-        <>
-          <ImageBackground
-            style={styles.poster}
-            source={{
-              uri: `https://image.tmdb.org/t/p/original/${movieDetailsContext.movieDetails.backdrop_path}`,
-            }}
-          >
-            <LinearGradient
-              colors={gradientColor}
-              style={styles.linearGradient}
-            >
-              <View style={styles.genresContainer}>
-                <Text style={styles.tituloDoFilme}>
-                  {movieDetailsContext.movieDetails.title}
-                </Text>
-                <View style={styles.runTimeContainer}>
-                  <RunTime runtime={movieDetailsContext.movieDetails.runtime} />
-                  <FlatList
-                    data={movieDetailsContext.movieDetails.genres}
-                    horizontal={true}
-                    renderItem={({ item }) => (
-                      <Text style={styles.genres}> • {item.name}</Text>
-                    )}
-                  />
-                </View>
-              </View>
-            </LinearGradient>
-          </ImageBackground>
-          <View style={styles.containerOriginalTitle}>
-            <View
-              style={{
-                backgroundColor: colors.branco,
-                height: 0.5,
-                marginBottom: 5,
-              }}
-            />
-
-            <Text style={styles.tituloOriginal}>
-              Titulo original: {movieDetailsContext.movieDetails.original_title}
-            </Text>
-            <View style={styles.containerInfo}>
-              <View style={styles.releaseDateContainer}>
-                <View style={styles.voteAverageContainer}>
-                  <Image
-                    source={require('../../assets/the_movie_db_logo.png')}
-                    style={styles.tmdbLogo}
-                  />
-                  <Review
-                    review={movieDetailsContext.movieDetails.vote_average}
-                  />
-                </View>
-                <DateFormat
-                  date={movieDetailsContext.movieDetails.release_date}
-                />
-              </View>
+      <ImageBackground
+        style={styles.poster}
+        source={{
+          uri: `https://image.tmdb.org/t/p/original/${backdrop_path}`,
+        }}
+      >
+        <LinearGradient colors={gradientColor} style={styles.linearGradient}>
+          <View style={styles.genresContainer}>
+            <Text style={styles.tituloDoFilme}>{title}</Text>
+            <View style={styles.runTimeContainer}>
+              <RunTime runtime={runtime} />
+              <FlatList
+                data={genres}
+                horizontal
+                keyExtractor={item => String(item.id)}
+                renderItem={({ item }) => (
+                  <Text style={styles.genres}> • {item.name}</Text>
+                )}
+              />
             </View>
-
-            <View
-              style={{
-                backgroundColor: colors.branco,
-                height: 0.5,
-                marginTop: -5,
-                marginBottom: 5,
-              }}
-            />
-
-            {/* TAGLINE */}
-            {movieDetailsContext.movieDetails.tagline ? (
-              <Text style={styles.tituloOriginal}>
-                {movieDetailsContext.movieDetails.tagline}
-              </Text>
-            ) : (
-              <></>
-            )}
-
-            {/* SINOPSE */}
-            {movieDetailsContext.movieDetails.overview ? (
-              <>
-                <Text style={styles.tituloDoFilme}>Sinopse</Text>
-                <View style={{ height: '20%' }}>
-                  <ScrollView>
-                    <Text style={styles.descricao}>
-                      {movieDetailsContext.movieDetails.overview}
-                    </Text>
-                  </ScrollView>
-                </View>
-              </>
-            ) : (
-              <>
-                <Text style={styles.tituloDoFilme}>
-                  Não foi encontrado a sinopse do filme
-                </Text>
-              </>
-            )}
           </View>
-        </>
-      )}
+        </LinearGradient>
+      </ImageBackground>
+
+      <View style={styles.containerContent}>
+        <View style={styles.divider} />
+
+        <Text style={styles.tituloOriginal}>
+          Título original: {original_title}
+        </Text>
+
+        <View style={styles.containerInfo}>
+          <View style={styles.releaseDateContainer}>
+            <View style={styles.voteAverageContainer}>
+              <Image
+                source={require('../../assets/the_movie_db_logo.png')}
+                style={styles.tmdbLogo}
+              />
+              <Review review={vote_average} />
+            </View>
+            <DateFormat date={release_date} />
+          </View>
+        </View>
+
+        <View style={styles.divider} />
+
+        {tagline && <Text style={styles.tagline}>''{tagline}''</Text>}
+
+        {overview ? (
+          <>
+            <Text style={styles.tituloDoFilme}>Sinopse</Text>
+            <View style={styles.overviewContainer}>
+              <ScrollView>
+                <Text style={styles.descricao}>{overview}</Text>
+              </ScrollView>
+            </View>
+          </>
+        ) : (
+          <Text style={styles.tituloDoFilme}>
+            Não foi encontrada a sinopse do filme
+          </Text>
+        )}
+      </View>
     </View>
   );
 }
