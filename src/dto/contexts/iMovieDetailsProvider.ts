@@ -1,15 +1,21 @@
-import { Movie } from "../domain/Movie";
-import ProviderResult from "./providerResult";
+import { Movie } from '../domain/Movie';
+import { Review } from '../domain/Review';
+import ProviderResult from './providerResult';
 
 interface IMovieDetailsProvider {
-    //Listagem de Filmes
-    movieDetails: Movie;
-    setMovieDetails: (movie: Movie) => void;
-    getMovieDetails: (movieId: number) => Promise<ProviderResult>;
+  //Listagem de Filmes
+  movieDetails: Movie;
+  setMovieDetails: (movie: Movie) => void;
+  getMovieDetails: (movieId: number) => Promise<ProviderResult>;
 
-    //Loading
-    load: boolean;
-    setLoad: (status: boolean) => void;
+  //Reviews
+  reviews: Review[];
+  setReviews: (review: Review[]) => void;
+  getReviews: (reviewId: number) => Promise<ProviderResult>;
+
+  //Loading
+  load: boolean;
+  setLoad: (status: boolean) => void;
 }
 
-export { IMovieDetailsProvider }
+export type { IMovieDetailsProvider };

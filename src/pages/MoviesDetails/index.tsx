@@ -25,7 +25,7 @@ const gradientColor = [
 ];
 
 export function MoviesDetails() {
-  const { load, movieDetails } = useContext(MovieDetailsContext);
+  const { load, movieDetails, reviews } = useContext(MovieDetailsContext);
 
   if (load) {
     return (
